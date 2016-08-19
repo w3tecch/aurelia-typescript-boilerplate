@@ -1,0 +1,19 @@
+.dashboard {
+	background-image: url('../assets/images/background3.png');
+	background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+
+	display: flex;
+	flex-direction: column;
+	padding: 30px;
+
+	h1 {
+		text-align: center;
+		align-items: center;
+		justify-content: center;
+		flex: 2;
+	}
+
+
+}
