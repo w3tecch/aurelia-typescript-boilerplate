@@ -1,5 +1,3 @@
-//import {computedFrom} from 'aurelia-framework';
-
 export class Welcome {
   public heading: string = 'Welcome to the Aurelia Navigation App';
   public firstName: string = 'John';

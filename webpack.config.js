@@ -22,7 +22,7 @@ const autoprefixer = require('autoprefixer');
 const title = pkg.title;
 const baseUrl = '/';
 const rootDir = path.resolve();
-const srcDir = path.resolve('src');
+const srcDir = path.resolve('src/app');
 const outDir = path.resolve('dist');
 argv.env = (argv.env === true ? 'development' : argv.env) || 'development';
 
@@ -32,6 +32,7 @@ const coreBundles = {
     'aurelia-polyfills',
     'aurelia-pal',
     'aurelia-pal-browser',
+    'regenerator-runtime',
     'jquery',
     'bluebird'
   ],
@@ -108,6 +109,7 @@ switch (ENV) {
       require('@easy-webpack/config-fonts-and-images')(),
       require('@easy-webpack/config-global-bluebird')(),
       require('@easy-webpack/config-global-jquery')(),
+      require('@easy-webpack/config-global-regenerator')(),
       require('@easy-webpack/config-generate-index-html')
         ({ minify: true }),
 
@@ -143,6 +145,7 @@ switch (ENV) {
       require('@easy-webpack/config-fonts-and-images')(),
       require('@easy-webpack/config-global-bluebird')(),
       require('@easy-webpack/config-global-jquery')(),
+      require('@easy-webpack/config-global-regenerator')(),
       require('@easy-webpack/config-generate-index-html')(),
 
       require('@easy-webpack/config-copy-files')
@@ -180,9 +183,11 @@ switch (ENV) {
       require('@easy-webpack/config-fonts-and-images')(),
       require('@easy-webpack/config-global-bluebird')(),
       require('@easy-webpack/config-global-jquery')(),
+      require('@easy-webpack/config-global-regenerator')(),
       require('@easy-webpack/config-generate-index-html')
         ({
           minify: false, overrideOptions: {
+            template: './src/index.html',
             metadata: config.metadata
           }
         }),

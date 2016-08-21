@@ -102,6 +102,7 @@
     "@easy-webpack/config-generate-index-html": "^2.0.1",
     "@easy-webpack/config-global-bluebird": "^1.2.0",
     "@easy-webpack/config-global-jquery": "^1.2.0",
+    "@easy-webpack/config-global-regenerator": "^1.2.0",
     "@easy-webpack/config-html": "^2.0.2",
     "@easy-webpack/config-json": "^2.0.2",
     "@easy-webpack/config-sass": "^1.1.2",
