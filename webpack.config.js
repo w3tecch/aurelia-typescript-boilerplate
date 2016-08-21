@@ -113,10 +113,9 @@ switch (ENV) {
       require('@easy-webpack/config-global-regenerator')(),
       require('@easy-webpack/config-generate-index-html')
         ({
-          minify: false, overrideOptions: {
-            template: './src/index.html',
-            metadata: config.metadata
-          }
+          minify: true, overrideOptions: Object.assign({
+            template: './src/index.ejs'
+          }, config.metadata)
         }),
       require('@easy-webpack/config-json')(),
 
@@ -153,7 +152,12 @@ switch (ENV) {
       require('@easy-webpack/config-global-bluebird')(),
       require('@easy-webpack/config-global-jquery')(),
       require('@easy-webpack/config-global-regenerator')(),
-      require('@easy-webpack/config-generate-index-html')(),
+      require('@easy-webpack/config-generate-index-html')
+        ({
+          minify: true, overrideOptions: Object.assign({
+            template: './src/index.ejs'
+          }, config.metadata)
+        }),
 
       require('@easy-webpack/config-copy-files')
         ({ patterns: [{ from: 'src/assets/images/favicon.ico', to: 'favicon.ico' }] }),
@@ -193,10 +197,9 @@ switch (ENV) {
       require('@easy-webpack/config-global-regenerator')(),
       require('@easy-webpack/config-generate-index-html')
         ({
-          minify: false, overrideOptions: {
-            template: './src/index.html',
-            metadata: config.metadata
-          }
+          minify: false, overrideOptions: Object.assign({
+            template: './src/index.ejs'
+          }, config.metadata)
         }),
 
       require('@easy-webpack/config-copy-files')
