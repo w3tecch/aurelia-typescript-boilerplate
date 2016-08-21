@@ -32,7 +32,6 @@ const coreBundles = {
     'aurelia-polyfills',
     'aurelia-pal',
     'aurelia-pal-browser',
-    'regenerator-runtime',
     'jquery',
     'bluebird'
   ],
@@ -109,7 +108,6 @@ switch (ENV) {
       require('@easy-webpack/config-fonts-and-images')(),
       require('@easy-webpack/config-global-bluebird')(),
       require('@easy-webpack/config-global-jquery')(),
-      require('@easy-webpack/config-global-regenerator')(),
       require('@easy-webpack/config-generate-index-html')
         ({ minify: true }),
 
@@ -117,7 +115,7 @@ switch (ENV) {
         ({ appChunkName: 'app', firstChunk: 'aurelia-bootstrap' }),
 
       require('@easy-webpack/config-copy-files')
-        ({ patterns: [{ from: 'favicon.ico', to: 'favicon.ico' }] }),
+        ({ patterns: [{ from: 'src/assets/images/favicon.ico', to: 'favicon.ico' }] }),
 
       require('@easy-webpack/config-uglify')
         ({ debug: false })
@@ -145,8 +143,10 @@ switch (ENV) {
       require('@easy-webpack/config-fonts-and-images')(),
       require('@easy-webpack/config-global-bluebird')(),
       require('@easy-webpack/config-global-jquery')(),
-      require('@easy-webpack/config-global-regenerator')(),
       require('@easy-webpack/config-generate-index-html')(),
+
+      require('@easy-webpack/config-copy-files')
+        ({ patterns: [{ from: 'src/assets/images/favicon.ico', to: 'favicon.ico' }] }),
 
       require('@easy-webpack/config-test-coverage-istanbul')()
     );
@@ -180,7 +180,6 @@ switch (ENV) {
       require('@easy-webpack/config-fonts-and-images')(),
       require('@easy-webpack/config-global-bluebird')(),
       require('@easy-webpack/config-global-jquery')(),
-      require('@easy-webpack/config-global-regenerator')(),
       require('@easy-webpack/config-generate-index-html')
         ({
           minify: false, overrideOptions: {
@@ -189,7 +188,7 @@ switch (ENV) {
         }),
 
       require('@easy-webpack/config-copy-files')
-        ({ patterns: [{ from: './assets', to: 'assets' }] }),
+        ({ patterns: [{ from: 'src/assets/images/favicon.ico', to: 'favicon.ico' }] }),
 
       require('@easy-webpack/config-common-chunks-simple')
         ({ appChunkName: 'app', firstChunk: 'aurelia-bootstrap' }),

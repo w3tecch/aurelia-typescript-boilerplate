@@ -1,10 +1,10 @@
-﻿/// <reference path="../node_modules/@types/jquery/index.d.ts"/>
+﻿/// <reference path="../../node_modules/@types/jquery/index.d.ts"/>
 import {Aurelia} from 'aurelia-framework';
 
 /**
  * Main Sass file
  */
-import '../styles/styles.scss';
+import '../styles/index.scss';
 
 /**
  * Third Party Libraries
@@ -13,11 +13,8 @@ import 'jquery';
 import 'bootstrap';
 import 'lodash';
 import 'moment';
-import 'pixi.js';
 import * as Bluebird from 'bluebird';
 Bluebird.config({ warnings: false });
-
-console.log(PIXI);
 
 /**
  * Aurelia configure

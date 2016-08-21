@@ -1,7 +1,7 @@
 {
   "name": "aurelia-ts-boilerplate",
   "version": "1.0.0",
-  "description": "A starter kit for building a standard navigation-style app with Aurelia and webpack.",
+  "description": "A starter kit for building a standard navigation-style app with Aurelia, typescript and webpack.",
   "main": "dist/app.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test ./node_modules/karma/bin/karma start test/karma.conf.js",
@@ -42,8 +42,8 @@
   },
   "keywords": [
     "aurelia",
-    "skeleton",
-    "navigation",
+    "boilterplate",
+    "typescript",
     "webpack"
   ],
   "license": "MIT",
@@ -102,7 +102,6 @@
     "@easy-webpack/config-generate-index-html": "^2.0.1",
     "@easy-webpack/config-global-bluebird": "^1.2.0",
     "@easy-webpack/config-global-jquery": "^1.2.0",
-    "@easy-webpack/config-global-regenerator": "^1.2.0",
     "@easy-webpack/config-html": "^2.0.2",
     "@easy-webpack/config-json": "^2.0.2",
     "@easy-webpack/config-sass": "^1.1.2",
@@ -119,12 +118,6 @@
     "@types/moment": "^2.13.0",
     "@types/whatwg-fetch": "0.0.27",
     "aurelia-tools": "^0.2.4",
-    "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-es2015-loose": "^7.0.0",
-    "babel-preset-es2015-loose-native-modules": "^1.0.0",
-    "babel-preset-stage-1": "^6.5.0",
-    "babel-register": "^6.11.6",
     "bootstrap-sass": "^3.3.7",
     "concurrently": "^2.2.0",
     "cross-env": "^2.0.0",
@@ -147,11 +140,5 @@
     "wait-on": "^1.5.2",
     "webpack": ">=2.1.0-beta.18 || ^2.1.0",
     "webpack-dev-server": ">=2.1.0-beta.0 || ^2.1.0"
-  },
-  "babel": {
-    "presets": [
-      "es2015",
-      "stage-1"
-    ]
   }
 }

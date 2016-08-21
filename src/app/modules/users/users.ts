@@ -13,7 +13,8 @@ interface IUser {
 export class Users {
   public heading: string = 'Github Users';
   public users: Array<IUser> = [];
-  public http: HttpClient;
+
+  private http: HttpClient;
 
   constructor(@lazy(HttpClient) private getHttpClient: () => HttpClient) {}
 

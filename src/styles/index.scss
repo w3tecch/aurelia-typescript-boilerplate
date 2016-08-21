@@ -1,0 +1,18 @@
+// "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
+/**
+ * Bootstrap
+ */
+@import "variables";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
+@import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap.scss";
+
+/**
+ * Other thrid party libraries
+ */
+@import '../../node_modules/font-awesome/css/font-awesome.css';
+@import '../../node_modules/animate.css/animate.css';
+
+/**
+ *
+ */
+@import 'navigation';
