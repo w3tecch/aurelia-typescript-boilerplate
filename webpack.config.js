@@ -111,7 +111,12 @@ switch (ENV) {
       require('@easy-webpack/config-global-jquery')(),
       require('@easy-webpack/config-global-regenerator')(),
       require('@easy-webpack/config-generate-index-html')
-        ({ minify: true }),
+        ({
+          minify: false, overrideOptions: {
+            template: './src/index.html',
+            metadata: config.metadata
+          }
+        }),
 
       require('@easy-webpack/config-common-chunks-simple')
         ({ appChunkName: 'app', firstChunk: 'aurelia-bootstrap' }),
