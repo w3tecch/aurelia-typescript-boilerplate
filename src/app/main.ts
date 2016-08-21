@@ -1,5 +1,4 @@
-﻿/// <reference path="../../node_modules/@types/jquery/index.d.ts"/>
-import {Aurelia} from 'aurelia-framework';
+﻿import {Aurelia} from 'aurelia-framework';
 
 /**
  * Main Sass file
@@ -16,6 +15,8 @@ import 'moment';
 import * as Bluebird from 'bluebird';
 Bluebird.config({ warnings: false });
 
+import enTranslation from './../assets/i18n/en';
+
 /**
  * Aurelia configure
  *
@@ -26,7 +27,20 @@ Bluebird.config({ warnings: false });
 export async function configure(aurelia: Aurelia): Promise<void> {
   aurelia.use
     .standardConfiguration()
-    .developmentLogging();
+    .developmentLogging()
+    .plugin('aurelia-i18n', (instance) => {
+        // adapt options to your needs (see http://i18next.com/docs/options/)
+        // make sure to return the promise of the setup method, in order to guarantee proper loading
+        return instance.setup({
+          resources: {
+            en: enTranslation
+          },
+          lng : 'en',
+          attributes : ['t', 'i18n'],
+          fallbackLng : 'en',
+          debug : false
+        });
+      });
 
   // Uncomment the line below to enable animation.
   // aurelia.use.plugin('aurelia-animator-css');

@@ -60,7 +60,8 @@ const coreBundles = {
     'aurelia-templating',
     'aurelia-templating-binding',
     'aurelia-templating-router',
-    'aurelia-templating-resources'
+    'aurelia-templating-resources',
+    'aurelia-i18n'
   ]
 }
 
@@ -117,6 +118,7 @@ switch (ENV) {
             metadata: config.metadata
           }
         }),
+      require('@easy-webpack/config-json')(),
 
       require('@easy-webpack/config-common-chunks-simple')
         ({ appChunkName: 'app', firstChunk: 'aurelia-bootstrap' }),

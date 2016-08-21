@@ -72,6 +72,7 @@
     "aurelia-fetch-client": "^1.0.0",
     "aurelia-framework": "^1.0.0",
     "aurelia-history-browser": "^1.0.0",
+    "aurelia-i18n": "^1.0.0",
     "aurelia-loader-webpack": "^1.0.0",
     "aurelia-logging-console": "^1.0.0",
     "aurelia-pal-browser": "^1.0.0",
