@@ -75,17 +75,18 @@ const baseConfig = {
     path: outDir,
   }
 }
-let config = generateConfig(baseConfig);
 
 /**
  * Metadata
  */
-config.metadata = {
-  title: pkg.title,
-  description: pkg.description,
-  version: pkg.version,
-  baseUrl: baseUrl,
-  root: rootDir
+let config = {
+  metadata: {
+    title: pkg.title,
+    description: pkg.description,
+    version: pkg.version,
+    baseUrl: baseUrl,
+    root: rootDir
+  }
 }
 
 // advanced configuration:
@@ -100,7 +101,7 @@ switch (ENV) {
     }
 
     config = generateConfig(
-      config,
+      baseConfig,
 
       require('@easy-webpack/config-env-production')
         ({ compress: true }),
@@ -142,7 +143,7 @@ switch (ENV) {
 
   case 'test':
     config = generateConfig(
-      config,
+      baseConfig,
 
       require('@easy-webpack/config-env-development')
         ({ devtool: 'inline-source-map' }),
@@ -180,7 +181,7 @@ switch (ENV) {
   case 'development':
     process.env.NODE_ENV = 'development';
     config = generateConfig(
-      config,
+      baseConfig,
 
       require('@easy-webpack/config-env-development')(),
 
