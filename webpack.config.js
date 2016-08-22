@@ -85,8 +85,7 @@ config.metadata = {
   description: pkg.description,
   version: pkg.version,
   baseUrl: baseUrl,
-  root: rootDir,
-  port: 3000
+  root: rootDir
 }
 
 // advanced configuration:
