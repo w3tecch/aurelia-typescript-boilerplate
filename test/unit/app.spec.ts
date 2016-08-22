@@ -1,9 +1,9 @@
 import './setup';
-import {App} from '../../src/app';
+import {App} from '../../src/app/app';
 
 class RouterStub {
   routes;
-  
+
   configure(handler) {
     handler(this);
   }

@@ -1,9 +1,9 @@
 import './setup';
-import {ChildRouter} from '../../src/child-router';
+import {ChildRouter} from '../../src/app/modules/child-router/child-router';
 
 class RouterStub {
   routes;
-  
+
   configure(handler) {
     handler(this);
   }
