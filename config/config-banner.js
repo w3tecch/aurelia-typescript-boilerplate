@@ -12,11 +12,11 @@ var configBanner = function (options) {
   return {
 		plugins: [
 			new webpack.BannerPlugin(
-				' @name           ' + options.context.name + '\n' +
-				' @description    ' + options.context.description + '\n\n' +
-				' @version        ' + options.context.version + '\n' +
-				' @author         ' + options.context.author + '\n' +
-				' @license        ' + options.context.license + '\n'
+				' @name           ' + options.title + '\n' +
+				' @description    ' + options.description + '\n\n' +
+				' @version        ' + options.version + '\n' +
+				' @author         ' + options.author + '\n' +
+				' @license        ' + options.license + '\n'
 			)
 		]
 		};

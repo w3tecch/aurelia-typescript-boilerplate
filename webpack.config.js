@@ -91,6 +91,14 @@ config.metadata = {
 // advanced configuration:
 switch (ENV) {
   case 'production':
+    let banner = {
+      title: pkg.title,
+      description: pkg.description,
+      version: pkg.version,
+      author: pkg.author,
+      license: pkg.license
+    }
+
     config = generateConfig(
       config,
 
@@ -103,9 +111,10 @@ switch (ENV) {
       require('@easy-webpack/config-typescript')(),
       require('@easy-webpack/config-html')(),
 
-      require('@easy-webpack/config-css')
-        ({ filename: 'styles.css', allChunks: true, sourceMap: false }),
+      require('@easy-webpack/config-sass')
+        ({ allChunks: true, sourceMap: false }),
 
+      require('./config/config-globals.js')(),
       require('@easy-webpack/config-fonts-and-images')(),
       require('@easy-webpack/config-global-bluebird')(),
       require('@easy-webpack/config-global-jquery')(),
@@ -125,7 +134,9 @@ switch (ENV) {
         ({ patterns: [{ from: 'src/assets/images/favicon.ico', to: 'favicon.ico' }] }),
 
       require('@easy-webpack/config-uglify')
-        ({ debug: false })
+        ({ debug: false }),
+
+      require('./config/config-banner')(banner)
     );
     break;
 
@@ -159,7 +170,7 @@ switch (ENV) {
         }),
 
       require('@easy-webpack/config-copy-files')
-        ({ patterns: [{ from: 'src/assets/images/favicon.ico', to: 'favicon.ico' }] }),
+        ({ patterns: [{ from: 'src/assets/images/favicon.ico', to: 'favicon.ico' }] })//,
 
       //require('@easy-webpack/config-test-coverage-istanbul')() // doesn't work currently with webpack 2'
     );
