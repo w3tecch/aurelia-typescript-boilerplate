@@ -144,8 +144,8 @@ switch (ENV) {
 
       require('@easy-webpack/config-html')(),
 
-      require('@easy-webpack/config-css')
-        ({ filename: 'styles.css', allChunks: true, sourceMap: false }),
+      require('@easy-webpack/config-sass')
+        ({ allChunks: true, sourceMap: false }),
 
       require('@easy-webpack/config-fonts-and-images')(),
       require('@easy-webpack/config-global-bluebird')(),
@@ -161,7 +161,7 @@ switch (ENV) {
       require('@easy-webpack/config-copy-files')
         ({ patterns: [{ from: 'src/assets/images/favicon.ico', to: 'favicon.ico' }] }),
 
-      require('@easy-webpack/config-test-coverage-istanbul')()
+      //require('@easy-webpack/config-test-coverage-istanbul')() // doesn't work currently with webpack 2'
     );
     break;
 

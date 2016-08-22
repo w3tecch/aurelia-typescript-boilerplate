@@ -37,13 +37,13 @@ module.exports = function(config) {
     preprocessors: {
       'spec-bundle.js': ['coverage', 'webpack', 'sourcemap']
     },
-    
+
     webpack: require('../webpack.config'),
 
     coverageReporter: {
       reporters: [{
         type: 'json',
-        subdir: '.', 
+        subdir: '.',
         file: 'coverage-final.json'
       }]
     },
