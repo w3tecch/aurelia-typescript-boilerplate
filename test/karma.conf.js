@@ -48,14 +48,14 @@ module.exports = function(config) {
       }]
     },
 
-    remapIstanbulReporter: {
+    /*remapIstanbulReporter: {
       src: path.join(__dirname, 'coverage/coverage-final.json'),
       reports: {
         html: path.join(__dirname, 'coverage/')
       },
       timeoutNotCreated: 1000,
       timeoutNoMoreFiles: 1000
-    },
+    },*/
 
     // Webpack please don't spam the console when running in karma!
     webpackServer: { noInfo: true },
@@ -66,7 +66,7 @@ module.exports = function(config) {
      * possible values: 'dots', 'progress'
      * available reporters: https://npmjs.org/browse/keyword/karma-reporter
      */
-    reporters: [ 'mocha', 'coverage', 'karma-remap-istanbul' ],
+    reporters: [ 'mocha', 'coverage' ], //, 'karma-remap-istanbul' ],
 
     // web server port
     port: 9876,
