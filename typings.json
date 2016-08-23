@@ -6,6 +6,7 @@
     "jasmine": "registry:dt/jasmine#2.2.0+20160621224255",
     "jquery": "registry:dt/jquery#1.10.0+20160704162008",
     "lodash": "registry:dt/lodash#4.14.0+20160817155621",
+    "materialize-css": "registry:dt/materialize-css#0.97.5+20160628040906",
     "moment": "registry:dt/moment#2.8.0+20160316155526",
     "moment-node": "registry:dt/moment-node#2.11.1+20160511043338",
     "whatwg-fetch": "registry:dt/whatwg-fetch#0.0.0+20160728142841"
