@@ -25,6 +25,7 @@ const rootDir = path.resolve();
 const srcDir = path.resolve('src/app');
 const outDir = path.resolve('dist');
 argv.env = (argv.env === true ? 'development' : argv.env) || 'development';
+let config;
 
 const coreBundles = {
   bootstrap: [
@@ -64,7 +65,7 @@ const coreBundles = {
     'aurelia-i18n',
     'aurelia-animator-velocity'
   ]
-}
+};
 
 const baseConfig = {
   entry: {
@@ -75,20 +76,19 @@ const baseConfig = {
   output: {
     path: outDir,
   }
-}
+};
 
 /**
  * Metadata
  */
-let config = {
-  metadata: {
-    title: pkg.title,
-    description: pkg.description,
-    version: pkg.version,
-    baseUrl: baseUrl,
-    root: rootDir
-  }
-}
+const metadata = {
+  title: pkg.title,
+  description: pkg.description,
+  version: pkg.version,
+  author: pkg.author,
+  baseUrl: baseUrl,
+  root: rootDir
+};
 
 // advanced configuration:
 switch (ENV) {
@@ -125,7 +125,7 @@ switch (ENV) {
         ({
           minify: true, overrideOptions: Object.assign({
             template: './src/index.ejs'
-          }, config.metadata)
+          }, metadata)
         }),
       require('@easy-webpack/config-json')(),
 
@@ -168,7 +168,7 @@ switch (ENV) {
         ({
           minify: true, overrideOptions: Object.assign({
             template: './src/index.ejs'
-          }, config.metadata)
+          }, metadata)
         }),
 
       require('@easy-webpack/config-copy-files')
@@ -211,7 +211,7 @@ switch (ENV) {
         ({
           minify: false, overrideOptions: Object.assign({
             template: './src/index.ejs'
-          }, config.metadata)
+          }, metadata)
         }),
 
       require('@easy-webpack/config-copy-files')

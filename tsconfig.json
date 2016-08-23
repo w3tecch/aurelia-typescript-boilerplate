@@ -6,7 +6,8 @@
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "sourceMap": true,
-    "allowJs": true
+    "allowJs": true,
+    "allowUnreachableCode": true
   },
   "awesomeTypescriptLoaderOptions": {
     "doTypeCheck": true,
@@ -14,7 +15,9 @@
     "useBabel": true,
     "useCache": true,
     "babelOptions": {
-      "presets": ["es2015-loose-native-modules"]
+      "presets": [
+        "es2015-loose-native-modules"
+      ]
     }
   },
   "exclude": [

@@ -31,6 +31,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     /**
      * This enables the animation plugin for aurelia
      * See: http://aurelia.io/hub.html#/doc/api/aurelia/templating/latest/class/Animator
+     * See: https://gooy.github.io/aurelia-animator-velocity/#
      */
     .plugin('aurelia-animator-velocity')
     /**
