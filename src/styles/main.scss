@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+/**
+ * import Bootstrap
+ */
+// @import "variables";
+// @import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap-sprockets";
+// @import "../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+/**
+ * import materialize-css
+ */
+$roboto-font-path: "../../node_modules/materialize-css/fonts/roboto/" !default;
+@import "../../node_modules/materialize-css/sass/materialize";
+// @import "variables";
+
+/**
+ * Other thrid party libraries
+ */
+@import '../../node_modules/font-awesome/css/font-awesome.css';
+@import '../../node_modules/animate.css/animate.css';
+
+/**
+ * custome styles
+ */
+@import 'base';
+@import 'bem';
+@import 'navigation';

@@ -77,6 +77,7 @@
     "aurelia-i18n": "^1.0.0",
     "aurelia-loader-webpack": "^1.0.0",
     "aurelia-logging-console": "^1.0.0",
+    "aurelia-materialize-bridge": "^0.13.0",
     "aurelia-pal-browser": "^1.0.0",
     "aurelia-polyfills": "^1.0.0",
     "aurelia-route-recognizer": "^1.0.0",
@@ -90,6 +91,7 @@
     "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.1.0",
     "lodash": "^4.15.0",
+    "materialize-css": "^0.97.7",
     "moment": "^2.14.1"
   },
   "devDependencies": {

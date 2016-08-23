@@ -1,9 +1,11 @@
-﻿import {Aurelia} from 'aurelia-framework';
+﻿// import 'materialize-css';
+import 'materialize-css';
+import {Aurelia} from 'aurelia-framework';
 
 /**
  * Main Sass file
  */
-import '../styles/index.scss';
+import '../styles/main.scss';
 
 /**
  * Third Party Libraries
@@ -49,7 +51,15 @@ export async function configure(aurelia: Aurelia): Promise<void> {
       attributes: ['t', 'i18n'],
       fallbackLng: 'en',
       debug: false
-    }));
+    }))
+    /**
+     * aurelia-materialize-bridge
+     *
+     * See: http://aurelia-ui-toolkits.github.io/demo-materialize/#/installation
+     * See: https://github.com/aurelia-ui-toolkits/aurelia-materialize-bridge
+     * See: https://github.com/aurelia-ui-toolkits/demo-materialize
+     */
+    .plugin('aurelia-materialize-bridge', bridge => bridge.useAll());
 
   // Uncomment the line below to enable animation.
   // aurelia.use.plugin('aurelia-animator-css');
