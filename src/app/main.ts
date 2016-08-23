@@ -1,5 +1,4 @@
-﻿// import 'materialize-css';
-import 'materialize-css';
+﻿import 'materialize-css';
 import {Aurelia} from 'aurelia-framework';
 
 /**
