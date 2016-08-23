@@ -61,7 +61,8 @@ const coreBundles = {
     'aurelia-templating-binding',
     'aurelia-templating-router',
     'aurelia-templating-resources',
-    'aurelia-i18n'
+    'aurelia-i18n',
+    'aurelia-animator-velocity'
   ]
 }
 

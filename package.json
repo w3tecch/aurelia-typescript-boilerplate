@@ -68,6 +68,7 @@
   },
   "dependencies": {
     "animate.css": "^3.5.1",
+    "aurelia-animator-velocity": "^1.0.0",
     "aurelia-bootstrapper-webpack": "^1.0.0",
     "aurelia-event-aggregator": "^1.0.0",
     "aurelia-fetch-client": "^1.0.0",

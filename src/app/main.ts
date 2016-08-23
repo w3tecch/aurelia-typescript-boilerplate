@@ -28,19 +28,27 @@ export async function configure(aurelia: Aurelia): Promise<void> {
   aurelia.use
     .standardConfiguration()
     .developmentLogging()
-    .plugin('aurelia-i18n', (instance) => {
-        // adapt options to your needs (see http://i18next.com/docs/options/)
-        // make sure to return the promise of the setup method, in order to guarantee proper loading
-        return instance.setup({
-          resources: {
-            en: enTranslation
-          },
-          lng : 'en',
-          attributes : ['t', 'i18n'],
-          fallbackLng : 'en',
-          debug : false
-        });
-      });
+    /**
+     * This enables the animation plugin for aurelia
+     * See: http://aurelia.io/hub.html#/doc/api/aurelia/templating/latest/class/Animator
+     */
+    .plugin('aurelia-animator-velocity')
+    /**
+     * i18n support
+     * adapt options to your needs (see http://i18next.com/docs/options/)
+     * make sure to return the promise of the setup method, in order to guarantee proper loading
+     *
+     * See: https://github.com/aurelia/i18n
+     */
+    .plugin('aurelia-i18n', (instance) => instance.setup({
+      resources: {
+        en: enTranslation
+      },
+      lng: 'en',
+      attributes: ['t', 'i18n'],
+      fallbackLng: 'en',
+      debug: false
+    }));
 
   // Uncomment the line below to enable animation.
   // aurelia.use.plugin('aurelia-animator-css');
