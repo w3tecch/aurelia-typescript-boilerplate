@@ -1,8 +1,4 @@
-# aurelia-ts-boilerplate
-In Progress
-
-## ToDo's
-- Make it mobile ready with cordova
+## In Progress
 
 ## Prerequisites
 1. Install [NodeJS](https://nodejs.org/en/)
