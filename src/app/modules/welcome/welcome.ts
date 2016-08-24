@@ -26,7 +26,8 @@ export class Welcome {
 
   public submit(): void {
     this.previousValue = this.fullName;
-    alert(`Welcome, ${this.fullName}!`);
+    this.toast.show(`Welcome, ${this.fullName}!`, 4000);
+    // alert(`Welcome, ${this.fullName}!`);
   }
 
   public canDeactivate(): boolean {
