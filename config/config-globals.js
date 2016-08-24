@@ -13,7 +13,8 @@ var configGlobal = function (level) {
 		plugins: [
 			new webpack.ProvidePlugin({
 				'moment': 'moment',
-				'_': 'lodash'
+				'_': 'lodash',
+				'Hammer': 'hammerjs'
 			})
 		]
 		};

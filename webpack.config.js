@@ -35,7 +35,11 @@ const coreBundles = {
     'aurelia-pal-browser',
     'regenerator-runtime',
     'jquery',
-    'bluebird'
+    'hammerjs',
+    'materialize-css',
+    'bluebird',
+    'lodash',
+    'moment'
   ],
   // these will be included in the 'aurelia' bundle (except for the above bootstrap packages)
   aurelia: [
@@ -76,8 +80,8 @@ const baseConfig = {
   entry: {
     'app': [/* this is filled by the aurelia-webpack-plugin */],
     'aurelia-bootstrap': coreBundles.bootstrap,
-    'aurelia': coreBundles.aurelia.filter(pkg => coreBundles.bootstrap.indexOf(pkg) === -1),
-    'materialize': coreBundles.materialize
+    'aurelia': coreBundles.aurelia.filter(pkg => coreBundles.bootstrap.indexOf(pkg) === -1)
+    // 'materialize': coreBundles.materialize
   },
   output: {
     path: outDir,
