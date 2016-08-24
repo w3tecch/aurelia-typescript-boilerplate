@@ -1,21 +1,28 @@
-﻿import 'materialize-css';
-import {Aurelia} from 'aurelia-framework';
-
-/**
+﻿/**
  * Main Sass file
  */
 import '../styles/main.scss';
+
+// comment out if you don't want a Promise polyfill (remove also from webpack.config.js)
+import * as Bluebird from 'bluebird';
+Bluebird.config({ warnings: false });
 
 /**
  * Third Party Libraries
  */
 import 'jquery';
-import 'bootstrap';
+import 'materialize-css';
 import 'lodash';
 import 'moment';
-import * as Bluebird from 'bluebird';
-Bluebird.config({ warnings: false });
 
+/**
+ * Aurelia
+ */
+import {Aurelia} from 'aurelia-framework';
+
+/**
+ * Translations
+ */
 import enTranslation from './../assets/i18n/en';
 
 /**
@@ -34,7 +41,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
      * See: http://aurelia.io/hub.html#/doc/api/aurelia/templating/latest/class/Animator
      * See: https://gooy.github.io/aurelia-animator-velocity/#
      */
-    .plugin('aurelia-animator-velocity')
+    // .plugin('aurelia-animator-velocity')
     /**
      * i18n support
      * adapt options to your needs (see http://i18next.com/docs/options/)
