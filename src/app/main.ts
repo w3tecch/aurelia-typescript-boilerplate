@@ -41,7 +41,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
      * See: http://aurelia.io/hub.html#/doc/api/aurelia/templating/latest/class/Animator
      * See: https://gooy.github.io/aurelia-animator-velocity/#
      */
-    // .plugin('aurelia-animator-velocity')
+    .plugin('aurelia-animator-velocity')
     /**
      * i18n support
      * adapt options to your needs (see http://i18next.com/docs/options/)

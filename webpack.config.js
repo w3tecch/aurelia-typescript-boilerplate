@@ -62,13 +62,7 @@ const coreBundles = {
     'aurelia-templating-router',
     'aurelia-templating-resources',
     'aurelia-i18n'
-    // 'aurelia-animator-velocity',
-    // 'aurelia-validation'
-    // 'aurelia-materialize-bridge'
   ]
-  // materialize: [
-  //   'materialize-css'
-  // ]
 };
 
 const baseConfig = {
@@ -76,7 +70,6 @@ const baseConfig = {
     'app': [/* this is filled by the aurelia-webpack-plugin */],
     'aurelia-bootstrap': coreBundles.bootstrap,
     'aurelia': coreBundles.aurelia.filter(pkg => coreBundles.bootstrap.indexOf(pkg) === -1),
-    // 'materialize': coreBundles.materialize
   },
   output: {
     path: outDir,
