@@ -1,7 +1,7 @@
 #ToDo's
 
 [X] Add materialize-css
-[ ] Make materialize-css sass configurable with variables and color plattern
+[X] Make materialize-css sass configurable with variables and color plattern
 [ ] Add google design icons with npm
 [ ] Add config mgmt
 [ ] Add cordova
