@@ -164,3 +164,14 @@ Integration tests are performed with [Protractor](http://angular.github.io/protr
   ```shell
   npm run e2e:start
   ```
+
+4. There is a configuration management in place. Three standart environments are already set (devlopment, test and production).
+You can also add more environments with ```--env <env-name>``` but there is a catch: You have to add ```--``` for each npm command you
+run throw so if your like to set the evnirnment for ```npm start``` you have to do this like so:
+
+  ```shell
+  npm start -- -- --env <json-file-name-without-extension>
+  ```
+
+This because ```npm start``` runs ```npm run server:dev``` and then the target command, so we have to to pass the ```--env``` by providing two times ```--```.
+You can find the configurations in ```<root>/environment```.

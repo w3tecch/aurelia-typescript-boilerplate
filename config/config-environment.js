@@ -17,7 +17,6 @@ function getDefinitions(env, name, version) {
   return {
     NAME: JSON.stringify(name),
     VERSION: JSON.stringify(version),
-    // ENV: JSON.stringify(require(`./environment/${env}.json`))
     ENV: JSON.stringify(require(process.cwd() + `/environment/${env}.json`))
 	};
 

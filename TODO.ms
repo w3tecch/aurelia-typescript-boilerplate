@@ -3,7 +3,7 @@
 [X] Add materialize-css
 [X] Make materialize-css sass configurable with variables and color plattern
 [X] Add google design icons with npm
-[ ] Add config mgmt
+[X] Add config mgmt
 [ ] Add cordova
 [ ] Add travis
 [ ] Add greenkeeper
