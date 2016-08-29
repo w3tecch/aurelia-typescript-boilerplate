@@ -5,6 +5,7 @@ export class App {
 
   public configureRouter(config: RouterConfiguration, router: Router): void {
     config.title = 'Aurelia';
+    config.options.pushState = true;
     config.map([
       { route: ['', 'welcome'], name: 'welcome',      moduleId: './modules/welcome/welcome',      nav: true, title: 'Welcome' },
       { route: 'users',         name: 'users',        moduleId: './modules/users/users',        nav: true, title: 'Github Users' },
