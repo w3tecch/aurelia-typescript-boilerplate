@@ -13,10 +13,7 @@ export class Welcome {
 
   constructor(
     private toast: MdToastService
-  ) {
-    this.toast.show('You agreed!', 4000);
-    this.toast.show((<IAppConfig>AppConfig).NAME, 4000);
-  }
+  ) { }
 
   //Getters can't be directly observed, so they must be dirty checked.
   //However, if you tell Aurelia the dependencies, it no longer needs to dirty check the property.
@@ -29,6 +26,11 @@ export class Welcome {
   public submit(): void {
     this.previousValue = this.fullName;
     this.toast.show(`Welcome, ${this.fullName}!`, 4000);
+  }
+
+  public attached(): void {
+    this.toast.show('You agreed!', 4000);
+    this.toast.show((<IAppConfig>AppConfig).NAME, 4000);
   }
 
   public canDeactivate(): boolean {
