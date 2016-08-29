@@ -89,13 +89,13 @@
     "aurelia-templating-router": "^1.0.0",
     "aurelia-validation": "^0.11.0",
     "bluebird": "^3.4.1",
-    "font-awesome": "^4.6.3",
     "hammerjs": "^2.0.8",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "2.2.4",
     "lodash": "^4.15.0",
     "materialize-css": "^0.97.7",
-    "moment": "^2.14.1"
+    "moment": "^2.14.1",
+    "material-design-icons": "2.2.1"
   },
   "devDependencies": {
     "@easy-webpack/config-aurelia": "^2.0.1",

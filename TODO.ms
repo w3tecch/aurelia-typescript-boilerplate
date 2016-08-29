@@ -2,7 +2,7 @@
 
 [X] Add materialize-css
 [X] Make materialize-css sass configurable with variables and color plattern
-[ ] Add google design icons with npm
+[X] Add google design icons with npm
 [ ] Add config mgmt
 [ ] Add cordova
 [ ] Add travis
