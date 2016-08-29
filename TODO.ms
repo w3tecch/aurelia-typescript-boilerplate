@@ -7,6 +7,6 @@
 [ ] Add cordova
 [ ] Add travis
 [ ] Add greenkeeper
-[ ] Remove Bootstrap
+[X] Remove Bootstrap
 [ ] Add bootstrap manual to the readme
 [ ] Add all important libs like moment, lodash ...
