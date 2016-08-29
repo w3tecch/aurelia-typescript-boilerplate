@@ -18,12 +18,22 @@ import 'moment';
 /**
  * Aurelia
  */
-import { Aurelia } from 'aurelia-framework';
+import { Aurelia, LogManager } from 'aurelia-framework';
 
 /**
  * Translations
  */
 import enTranslation from './../assets/i18n/en';
+
+/**
+ * Extend aurelia logging
+ *
+ * valid entries: none, error, warn, info, debug
+ */
+import { ConsoleAppender } from 'aurelia-logging-console';
+import AppConfig, { IAppConfig } from './utils/app.config';
+LogManager.addAppender(new ConsoleAppender());
+LogManager.setLevel(LogManager.logLevel[(<IAppConfig>AppConfig).CONFIG.LOG_LEVEL]);
 
 /**
  * Aurelia configure
@@ -35,7 +45,6 @@ import enTranslation from './../assets/i18n/en';
 export async function configure(aurelia: Aurelia): Promise<void> {
   aurelia.use
     .standardConfiguration()
-    .developmentLogging()
     /**
      * This enables the animation plugin for aurelia
      * See: http://aurelia.io/hub.html#/doc/api/aurelia/templating/latest/class/Animator

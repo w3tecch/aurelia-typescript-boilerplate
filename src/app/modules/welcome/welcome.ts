@@ -1,19 +1,24 @@
 import { inject, computedFrom } from 'aurelia-framework';
+import { LogManager } from 'aurelia-framework';
 import { MdToastService } from 'aurelia-materialize-bridge';
-import AppConfig, { IAppConfig } from './../../app.config';
+import AppConfig, { IAppConfig } from './../../utils/app.config';
 
 @inject(MdToastService)
 export class Welcome {
+  private previousValue: string = this.fullName;
+  private logger;
+
   public heading: string = 'Welcome to the Aurelia Navigation App';
   public firstName: string = 'John';
   public lastName: string = 'Doe';
   public selectedDate = undefined;
 
-  private previousValue: string = this.fullName;
-
   constructor(
     private toast: MdToastService
-  ) { }
+  ) {
+    this.logger = LogManager.getLogger('Welcome VM');
+    this.logger.warn((<IAppConfig>AppConfig));
+  }
 
   //Getters can't be directly observed, so they must be dirty checked.
   //However, if you tell Aurelia the dependencies, it no longer needs to dirty check the property.

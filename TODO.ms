@@ -4,9 +4,10 @@
 [X] Make materialize-css sass configurable with variables and color plattern
 [X] Add google design icons with npm
 [X] Add config mgmt
+[X] Add logging system
 [ ] Add cordova
 [ ] Add travis
 [ ] Add greenkeeper
 [X] Remove Bootstrap
-[ ] Add bootstrap manual to the readme
+[X] Add bootstrap manual to the readme
 [X] Add all important libs like moment, lodash ...
