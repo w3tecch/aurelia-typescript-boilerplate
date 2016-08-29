@@ -18,17 +18,12 @@ import 'moment';
 /**
  * Aurelia
  */
-import {Aurelia} from 'aurelia-framework';
+import { Aurelia } from 'aurelia-framework';
 
 /**
  * Translations
  */
 import enTranslation from './../assets/i18n/en';
-
-/**
- * Loads the environment configuration
- */
-import AppConfig from './app.config';
 
 /**
  * Aurelia configure
@@ -41,10 +36,6 @@ export async function configure(aurelia: Aurelia): Promise<void> {
   aurelia.use
     .standardConfiguration()
     .developmentLogging()
-    /**
-     * Adds the app config to the aurelia injection lifecycle
-     */
-    .instance('AppConfig', AppConfig)
     /**
      * This enables the animation plugin for aurelia
      * See: http://aurelia.io/hub.html#/doc/api/aurelia/templating/latest/class/Animator

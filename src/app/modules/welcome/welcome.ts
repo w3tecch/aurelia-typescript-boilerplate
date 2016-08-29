@@ -1,5 +1,6 @@
-import { inject } from 'aurelia-framework';
+import { inject, computedFrom } from 'aurelia-framework';
 import { MdToastService } from 'aurelia-materialize-bridge';
+import AppConfig, { IAppConfig } from './../../app.config';
 
 @inject(MdToastService)
 export class Welcome {
@@ -10,16 +11,17 @@ export class Welcome {
 
   private previousValue: string = this.fullName;
 
-  constructor(private toast) {
-    //
+  constructor(
+    private toast: MdToastService
+  ) {
     this.toast.show('You agreed!', 4000);
+    this.toast.show((<IAppConfig>AppConfig).NAME, 4000);
   }
 
   //Getters can't be directly observed, so they must be dirty checked.
   //However, if you tell Aurelia the dependencies, it no longer needs to dirty check the property.
-  //To optimize by declaring the properties that this getter is computed from, uncomment the line below
-  //as well as the corresponding import above.
-  //@computedFrom('firstName', 'lastName')
+  //To optimize by declaring the properties that this getter is computed from.
+  @computedFrom('firstName', 'lastName')
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;
   }
@@ -27,7 +29,6 @@ export class Welcome {
   public submit(): void {
     this.previousValue = this.fullName;
     this.toast.show(`Welcome, ${this.fullName}!`, 4000);
-    // alert(`Welcome, ${this.fullName}!`);
   }
 
   public canDeactivate(): boolean {

@@ -1,26 +1,24 @@
 /**
  * Environment Config
  */
-interface IAppConfigEnv {
-  NAME: string;
+export interface IAppConfigEnv {
   API_URL: string;
-  LOG_LEVEL: string;
 }
-
-declare var NAME: string;
-declare var VERSION: string;
-declare var ENV: IAppConfigEnv;
 
 export interface IAppConfig {
   NAME: string;
   VERSION: string;
-  ENV: IAppConfigEnv;
+  CONFIG: IAppConfigEnv;
 }
+
+declare var NAME: string;
+declare var VERSION: string;
+declare var CONFIG: IAppConfigEnv;
 
 const AppConfig: IAppConfig = {
   NAME: NAME,
   VERSION: VERSION,
-  ENV: ENV
+  CONFIG: CONFIG
 };
 
 export default AppConfig;
