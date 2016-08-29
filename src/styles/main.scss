@@ -9,8 +9,8 @@ $roboto-font-path: "../../node_modules/materialize-css/fonts/roboto/" !default;
 @import "../../node_modules/materialize-css/sass/components/color";
 
 // Variables;
-@import "../../node_modules/materialize-css/sass/components/variables";
 @import "variables";
+@import "../../node_modules/materialize-css/sass/components/variables";
 
 // Reset
 @import "../../node_modules/materialize-css/sass/components/normalize";
