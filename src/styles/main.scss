@@ -4,9 +4,7 @@
  * import materialize-css
  */
 $roboto-font-path: "../../node_modules/materialize-css/fonts/roboto/" !default;
-$materializecss-path: "../../node_modules/materialize-css/sass/components";
-// Mixins
-// @import "components/prefixer";
+
 @import "../../node_modules/materialize-css/sass/components/mixins";
 @import "../../node_modules/materialize-css/sass/components/color";
 
