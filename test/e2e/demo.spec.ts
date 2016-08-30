@@ -6,7 +6,7 @@ describe('aurelia skeleton app', function() {
   let po_welcome: PageObject_Welcome;
   let po_skeleton: PageObject_Skeleton;
 
-  beforeEach( () => {
+  beforeEach(() => {
     po_skeleton = new PageObject_Skeleton();
     po_welcome = new PageObject_Welcome();
 
