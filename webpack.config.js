@@ -114,6 +114,12 @@ switch (ENV) {
       require('@easy-webpack/config-sass')
         ({ allChunks: true, sourceMap: false }),
 
+      require('./config/config-environment.js')
+        ({ env: argv.env, name: pkg.name, version: pkg.version }),
+
+      require('./config/config-notifier.js')
+        (metadata.title, { contentImage: path.resolve('src/assets/images/favicon.ico') }),
+
       require('./config/config-globals.js')(),
       require('@easy-webpack/config-fonts-and-images')(),
       require('@easy-webpack/config-global-bluebird')(),
@@ -158,6 +164,12 @@ switch (ENV) {
       require('@easy-webpack/config-sass')
         ({ allChunks: true, sourceMap: false }),
 
+      require('./config/config-environment.js')
+        ({ env: argv.env, name: pkg.name, version: pkg.version }),
+
+      require('./config/config-notifier.js')
+        (metadata.title, { contentImage: path.resolve('src/assets/images/favicon.ico') }),
+
       require('@easy-webpack/config-fonts-and-images')(),
       require('@easy-webpack/config-global-bluebird')(),
       require('@easy-webpack/config-global-jquery')(),
@@ -199,6 +211,9 @@ switch (ENV) {
 
       require('./config/config-environment.js')
         ({ env: argv.env, name: pkg.name, version: pkg.version }),
+
+      require('./config/config-notifier.js')
+        (metadata.title, { contentImage: path.resolve('src/assets/images/favicon.ico') }),
 
       require('./config/config-globals.js')(),
       require('@easy-webpack/config-fonts-and-images')(),

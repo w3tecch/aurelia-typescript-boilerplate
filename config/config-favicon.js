@@ -7,7 +7,7 @@ const webpack = require('webpack');
 const faviconsWebpackPlugin = require('favicons-webpack-plugin');
 
 /**
- * Banner config
+ * Favicon config
  */
 const configFavicon = function (appName, icon, icons) {
   return {
