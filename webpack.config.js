@@ -170,7 +170,7 @@ switch (ENV) {
         }),
 
       require('./config/config-favicon.js')
-        (metadata.title,  path.resolve('src/assets/images/favicon.ico')),//,
+        (metadata.title,  path.resolve('src/assets/images/favicon.ico'))//,
 
       //require('@easy-webpack/config-test-coverage-istanbul')() // doesn't work currently with webpack 2'
     );
