@@ -3,6 +3,9 @@ import {App} from '../../src/app/app';
 
 class RouterStub {
   routes;
+  options = {
+    pushState: false
+  };
 
   configure(handler) {
     handler(this);
