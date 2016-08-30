@@ -130,8 +130,8 @@ switch (ENV) {
       require('@easy-webpack/config-common-chunks-simple')
         ({ appChunkName: 'app', firstChunk: 'aurelia-bootstrap' }),
 
-      require('@easy-webpack/config-copy-files')
-        ({ patterns: [{ from: 'src/assets/images/favicon.ico', to: 'favicon.ico' }] }),
+      require('./config/config-favicon.js')
+        (metadata.title,  path.resolve('src/assets/images/favicon.ico')),
 
       require('@easy-webpack/config-uglify')
         ({ debug: false }),
@@ -169,8 +169,8 @@ switch (ENV) {
           }, metadata)
         }),
 
-      require('@easy-webpack/config-copy-files')
-        ({ patterns: [{ from: 'src/assets/images/favicon.ico', to: 'favicon.ico' }] })//,
+      require('./config/config-favicon.js')
+        (metadata.title,  path.resolve('src/assets/images/favicon.ico')),//,
 
       //require('@easy-webpack/config-test-coverage-istanbul')() // doesn't work currently with webpack 2'
     );
@@ -212,8 +212,8 @@ switch (ENV) {
           }, metadata)
         }),
 
-      require('@easy-webpack/config-copy-files')
-        ({ patterns: [{ from: 'src/assets/images/favicon.ico', to: 'favicon.ico' }] }),
+      require('./config/config-favicon.js')
+        (metadata.title,  path.resolve('src/assets/images/favicon.ico')),
 
       require('@easy-webpack/config-common-chunks-simple')
         ({ appChunkName: 'app', firstChunk: 'aurelia-bootstrap' }),
