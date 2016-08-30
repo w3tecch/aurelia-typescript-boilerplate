@@ -5,7 +5,7 @@ const webpack = require('webpack');
 /**
  * Environment Config
  */
-var configEnv = function (options) {
+const configEnv = function (options) {
   return {
 		plugins: [
 			new webpack.DefinePlugin(getDefinitions(options.env, options.name, options.version))

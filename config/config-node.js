@@ -8,7 +8,7 @@ const webpack = require('webpack');
 /**
  * Node lib config
  */
-var configNode = function (level) {
+const configNode = function (level) {
   return {
 		/*
 		 * Include polyfills or mocks for various node stuff

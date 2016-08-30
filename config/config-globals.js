@@ -8,7 +8,7 @@ const webpack = require('webpack');
 /**
  * Global lib config
  */
-var configGlobal = function (level) {
+const configGlobal = function (level) {
   return {
 		plugins: [
 			new webpack.ProvidePlugin({

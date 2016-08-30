@@ -8,7 +8,7 @@ const webpack = require('webpack');
 /**
  * Banner config
  */
-var configBanner = function (options) {
+const configBanner = function (options) {
   return {
 		plugins: [
 			new webpack.BannerPlugin(
