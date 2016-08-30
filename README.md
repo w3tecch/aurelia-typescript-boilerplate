@@ -1,10 +1,6 @@
-# aurelia-ts-boilerplate
-In Progress
-
-## ToDo's
-- Test the test env
-- Test the dist env
-- Make it mobile ready with cordova
+[![Build Status](https://api.travis-ci.org/w3tecch/aurelia-ts-boilerplate.svg?branch=master)](https://travis-ci.org/w3tecch/aurelia-ts-boilerplate)
+[![Dependency Status](https://david-dm.org/w3tecch/aurelia-ts-boilerplate.svg)](https://david-dm.org/w3tecch/aurelia-ts-boilerplate)
+[![devDependency Status](https://david-dm.org/w3tecch/aurelia-ts-boilerplate/dev-status.svg)](https://david-dm.org/w3tecch/aurelia-ts-boilerplate#info=devDependencies)
 
 ## Prerequisites
 1. Install [NodeJS](https://nodejs.org/en/)
@@ -171,37 +167,18 @@ Integration tests are performed with [Protractor](http://angular.github.io/protr
   npm run e2e:start
   ```
 
-## Electron (coming soon)
+## Environment confugration
+There is a configuration management in place. Three standart environments are already set (devlopment, test and production).
+You can also add more environments with ```--env <env-name>``` but there is a catch: You have to add ```--``` for each npm command you
+run throw so if your like to set the evnirnment for ```npm start``` you have to do this like so:
 
-To add Electron support to the skeleton, first run:
+  ```shell
+  npm start -- -- --env <json-file-name-without-extension>
+  ```
 
-```shell
-npm run electron:setup
-```
+This because ```npm start``` runs ```npm run server:dev``` and then the target command, so we have to to pass the ```--env``` by providing two times ```--```.
+You can find the configurations in ```<root>/environment```.
 
-Once the packages are installed, you may either view your app in Electron or build application packages for production:
-
-```shell
-# developing on Electron with live-reload
-npm run electron:start
-
-# creates packages for the current operating system
-npm run electron:package
-
-# creates packages for all operating systems
-npm run electron:package:all
-```
-
-The entry-file for Electron can be found in `config/electron.entry.development.ts`.
-
-Building or creating the Electron package will create a file `electron.js` in the root directory of the skeleton.
-
-### Loading native packages in Electron
-
-If you have packages that cannot work in the Electron Renderer process (e.g. native packages), or wish to use the package in the renderer process as if it is running under Node, list them under `externals`, in the file `config/webpack.electron.js`.
-
-## Acknowledgments
-
-Parts of code responsible for Webpack configuration were inspired by or copied from @AngularClass' [angular2-webpack-starter](https://github.com/AngularClass/angular2-webpack-starter).
-
-Parts of code responsible for Webpack-Electron configuration and packaging were inspired by or copied from @chentsulin's [electron-react-boilerplate](https://github.com/chentsulin/electron-react-boilerplate).
+## HTML5 pushState routing
+By default pushState, also known as html5 routing, is enabled. The Webpack server is already configured to handle this but many webserver need
+extra confuration to enable this.

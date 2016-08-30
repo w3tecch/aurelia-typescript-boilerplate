@@ -1,0 +1,17 @@
+/* ==========================================================================
+   Materialize variables overwrites
+    - See node_modules/materialize-css/sass/components/variables for variable
+      overwrite options.
+    - See node_modules/materialize-css/sass/components/color for color
+      overwrite options.
+    - Hint: remove !default to overwrite variables
+   ========================================================================== */
+
+$primary-color: color("indigo", "lighten-2");
+$primary-color-light: lighten($primary-color, 15%);
+$primary-color-dark: darken($primary-color, 15%);
+
+$secondary-color: color("teal", "lighten-1");
+$success-color: color("green", "base");
+$error-color: color("red", "base");
+$link-color: color("light-blue", "darken-1");
