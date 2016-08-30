@@ -192,6 +192,12 @@ npm install -g cordova
 npm run cordova:init
 ```
 
+Finally add the following code just before the ```</body>``` closing tag:
+```
+<!-- Cordova -->
+<script src="cordova.js"></script>
+```
+
 ### Run and build
 Cordova takes the ```www``` folder source to create the Cordova app. This ```www``` folder is a symlink to the ```dist``` folder.
 So make sure you run for example ```npm run build``` first before runing/buildinga Cordova app.
