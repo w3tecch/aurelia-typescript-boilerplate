@@ -3,9 +3,11 @@ node_js:
   - "5.9.0"
 install:
   - npm install
+  - npm install -g typings
 before_script:
   - typings install
 script:
   - npm test
+  - npm run build:prod
 notifications:
   email: false
