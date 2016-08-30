@@ -18,7 +18,7 @@ describe('aurelia skeleton app', function() {
   });
 
   it('should display greeting', () => {
-    expect(po_welcome.getGreeting()).toBe('Welcome to the Aurelia Navigation App');
+    expect(po_welcome.getGreeting()).toContain('Welcome to the Aurelia Navigation App');
   });
 
   it('should automatically write down the fullname', () => {
@@ -31,12 +31,8 @@ describe('aurelia skeleton app', function() {
     expect(po_welcome.getFullname()).toBe('ROB EISENBERG');
   });
 
-  it('should show alert message when clicking submit button', () => {
-    expect(po_welcome.openAlertDialog()).toBe(true);
-  });
-
   it('should navigate to users page', () => {
-    po_skeleton.navigateTo('#/users');
+    po_skeleton.navigateTo('/users');
     expect(po_skeleton.getCurrentPageTitle()).toBe('Github Users | Aurelia');
   });
 });

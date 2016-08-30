@@ -38,12 +38,6 @@ export class Welcome {
     this.toast.show((<IAppConfig>AppConfig).NAME, 4000);
   }
 
-  public canDeactivate(): boolean {
-    if (this.fullName !== this.previousValue) {
-      return confirm('Are you sure you want to leave?');
-    }
-  }
-
   public setDate(): void {
     let date = new Date();
     this.selectedDate = date;

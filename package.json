@@ -10,7 +10,7 @@
     "webdriver:start": "cross-env ./node_modules/.bin/webdriver-manager start",
     "pree2e": "npm run webdriver:update -- --standalone",
     "e2e": "concurrently --kill-others \"npm run e2e:start-when-ready\" \"cross-env WEBPACK_PORT=19876 npm start\"",
-    "e2e:start-when-ready": "wait-on --timeout 20000 http-get://localhost:19876/index.html && npm run e2e:start",
+    "e2e:start-when-ready": "wait-on --timeout 60000 http-get://localhost:19876/index.html && npm run e2e:start",
     "e2e:start": "cross-env ./node_modules/.bin/protractor test/protractor.conf.js",
     "e2e:live": "npm run e2e:start -- --elementExplorer",
     "clean": "npm cache clean && rimraf node_modules test/coverage dist",
