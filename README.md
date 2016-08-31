@@ -198,6 +198,19 @@ Finally add the following code just before the ```</body>``` closing tag:
 <script src="cordova.js"></script>
 ```
 
+Cordova has a issue in the way they serve the source code files to the WebView in the platforms. So we have to remove/alter the following code
+to make sure everything works in cordova.
+
+Remove the following line in src/index.ejs
+```
+12: <base href="<%= htmlWebpackPlugin.options.baseUrl %>">
+```
+
+Remove the following line in src/app/app.ts
+```
+8: config.options.pushState = true;
+```
+
 ### Run and build
 Cordova takes the ```www``` folder source to create the Cordova app. This ```www``` folder is a symlink to the ```dist``` folder.
 So make sure you run for example ```npm run build``` first before runing/buildinga Cordova app.
