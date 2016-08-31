@@ -35,7 +35,8 @@
     "server:dev:hmr": "npm run server:dev -- --hot",
     "server:prod": "http-server dist --cors",
     "webpack": "cross-env ./node_modules/.bin/webpack",
-    "webpack-dev-server": "cross-env ./node_modules/.bin/webpack-dev-server"
+    "webpack-dev-server": "cross-env ./node_modules/.bin/webpack-dev-server",
+    "cordova:init": "node ./config/init-cordova.js"
   },
   "repository": {
     "type": "git",
@@ -90,12 +91,13 @@
     "aurelia-validation": "^0.11.0",
     "bluebird": "^3.4.3",
     "hammerjs": "^2.0.8",
+    "intl": "^1.2.4",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "2.2.4",
     "lodash": "^4.15.0",
+    "material-design-icons": "3.0.0",
     "materialize-css": "^0.97.7",
-    "moment": "^2.14.1",
-    "material-design-icons": "3.0.0"
+    "moment": "^2.14.1"
   },
   "devDependencies": {
     "@easy-webpack/config-aurelia": "^2.2.0",
@@ -142,6 +144,7 @@
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.0",
     "minimist": "^1.2.0",
+    "ncp": "^2.0.0",
     "node-sass": "^3.8.0",
     "phantomjs-polyfill": "0.0.2",
     "phantomjs-prebuilt": "^2.1.12",

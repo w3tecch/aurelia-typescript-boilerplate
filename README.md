@@ -182,3 +182,35 @@ You can find the configurations in ```<root>/environment```.
 ## HTML5 pushState routing
 By default pushState, also known as html5 routing, is enabled. The Webpack server is already configured to handle this but many webserver need
 extra confuration to enable this.
+
+## Cordova
+
+### Installation
+Initiate cordova with the following commands:
+```shell
+npm install -g cordova
+npm run cordova:init
+```
+
+Finally add the following code just before the ```</body>``` closing tag:
+```
+<!-- Cordova -->
+<script src="cordova.js"></script>
+```
+
+Cordova has a issue in the way they serve the source code files to the WebView in the platforms. So we have to remove/alter the following code
+to make sure everything works in cordova.
+
+Remove the following line in src/index.ejs
+```
+12: <base href="<%= htmlWebpackPlugin.options.baseUrl %>">
+```
+
+Remove the following line in src/app/app.ts
+```
+8: config.options.pushState = true;
+```
+
+### Run and build
+Cordova takes the ```www``` folder source to create the Cordova app. This ```www``` folder is a symlink to the ```dist``` folder.
+So make sure you run for example ```npm run build``` first before runing/buildinga Cordova app.
