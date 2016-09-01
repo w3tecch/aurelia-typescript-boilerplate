@@ -65,3 +65,29 @@
 	-webkit-animation: shake 1s;
 	animation: shake 1s;
 }
+
+@keyframes slideLeftIn {
+  0% {
+    transform: translate(100%, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes slideLeftOut {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
+.pages.au-enter {
+  transform: translate(100%, 0);
+}
+.pages.au-enter-active {
+  animation: slideLeftIn 0.6s;
+}
+.pages.au-leave-active {
+  animation: slideLeftOut 0.6s;
+}
