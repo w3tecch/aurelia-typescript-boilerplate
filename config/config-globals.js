@@ -8,15 +8,14 @@ const webpack = require('webpack');
 /**
  * Global lib config
  */
-const configGlobal = function (level) {
-  return {
+const configGlobal = function(level) {
+	return {
 		plugins: [
 			new webpack.ProvidePlugin({
 				'moment': 'moment',
-				'_': 'lodash',
-				'Hammer': 'hammerjs'
+				'_': 'lodash'
 			})
 		]
-		};
+	};
 };
 module.exports = configGlobal;
