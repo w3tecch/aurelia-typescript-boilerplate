@@ -49,6 +49,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
      * Adds the app config to the framework's dependency injection container.
      */
     .instance('AppConfig', AppConfig)
+
     /**
      * This enables the animation plugin for aurelia
      * See: https://github.com/aurelia/animator-css
@@ -72,6 +73,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
       fallbackLng: 'en',
       debug: false
     }))
+
     /**
      * aurelia-materialize-bridge
      *
@@ -92,7 +94,6 @@ export async function configure(aurelia: Aurelia): Promise<void> {
 
   // Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
   // aurelia.use.plugin('aurelia-html-import-template-loader')
-
   await aurelia.start();
   aurelia.setRoot('app');
 
@@ -103,17 +104,3 @@ export async function configure(aurelia: Aurelia): Promise<void> {
   offline.install();
   */
 }
-
-/**
- * animated.css helper function
- */
-$.fn.extend({
-  animateCss: function (animationName: string): JQuery {
-    let animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-    return $(this)
-      .addClass('animated ' + animationName)
-      .one(animationEnd, () => {
-        $(this).removeClass('animated ' + animationName);
-      });
-  }
-});
