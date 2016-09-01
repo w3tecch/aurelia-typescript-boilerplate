@@ -46,6 +46,10 @@ export async function configure(aurelia: Aurelia): Promise<void> {
   aurelia.use
     .standardConfiguration()
     /**
+     * Adds the app config to the framework's dependency injection container.
+     */
+    .instance('AppConfig', AppConfig)
+    /**
      * This enables the animation plugin for aurelia
      * See: http://aurelia.io/hub.html#/doc/api/aurelia/templating/latest/class/Animator
      * See: https://gooy.github.io/aurelia-animator-velocity/#
@@ -78,6 +82,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     /**
      * Import commen things
      */
+    .feature('common/attributes')
     .feature('common/components');
 
   // Uncomment the line below to enable animation.
