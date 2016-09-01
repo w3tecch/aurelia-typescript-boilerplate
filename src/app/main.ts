@@ -86,7 +86,8 @@ export async function configure(aurelia: Aurelia): Promise<void> {
      * Import commen things
      */
     .feature('common/attributes')
-    .feature('common/components');
+    .feature('common/components')
+    .feature('common/services');
 
   // Uncomment the line below to enable animation.
   // aurelia.use.plugin('aurelia-animator-css');
