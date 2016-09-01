@@ -34,7 +34,8 @@ const coreBundles = {
     'aurelia-pal',
     'aurelia-pal-browser',
     'regenerator-runtime',
-    'bluebird'
+    'bluebird',
+    'intl'
   ],
   // these will be included in the 'aurelia' bundle (except for the above bootstrap packages)
   aurelia: [
@@ -60,8 +61,7 @@ const coreBundles = {
     'aurelia-templating',
     'aurelia-templating-binding',
     'aurelia-templating-router',
-    'aurelia-templating-resources',
-    'aurelia-i18n'
+    'aurelia-templating-resources'
   ]
 };
 

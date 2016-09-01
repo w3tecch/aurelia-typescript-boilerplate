@@ -201,3 +201,25 @@ Finally add the following code just before the ```</body>``` closing tag:
 ### Run and build
 Cordova takes the ```www``` folder source to create the Cordova app. This ```www``` folder is a symlink to the ```dist``` folder.
 So make sure you run for example ```npm run build``` first before runing/buildinga Cordova app.
+
+###
+
+Index remove base-url
+
+Style
+html {
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+}
+
+### Libraries
+
+FastClick
+
+### Configs
+
+bounce
+
+### Plugins
+
+
