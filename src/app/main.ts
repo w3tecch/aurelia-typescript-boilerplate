@@ -47,10 +47,11 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .standardConfiguration()
     /**
      * This enables the animation plugin for aurelia
-     * See: http://aurelia.io/hub.html#/doc/api/aurelia/templating/latest/class/Animator
-     * See: https://gooy.github.io/aurelia-animator-velocity/#
+     * See: https://github.com/aurelia/animator-css
+     * See: http://blog.durandal.io/2015/07/17/animating-apps-with-aurelia-part-1/
      */
-    .plugin('aurelia-animator-velocity')
+    .plugin('aurelia-animator-css')
+
     /**
      * i18n support
      * adapt options to your needs (see http://i18next.com/docs/options/)
