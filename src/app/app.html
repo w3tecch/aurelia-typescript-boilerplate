@@ -1,7 +1,14 @@
 <template>
-  <nav-bar router.bind="router"></nav-bar>
 
-  <div class="container">
-    <router-view></router-view>
-  </div>
+  <header>
+    <nav-bar router.bind="router"></nav-bar>
+  </header>
+
+  <main>
+    <div class="container">
+      <router-view></router-view>
+    </div>
+  </main>
+
+  <footer-bar></footer-bar>
 </template>

@@ -1,18 +1,19 @@
-<template bindable="router">
+<template>
 
-  <nav role="navigation">
-    <div class="nav-wrapper">
-      <a href="/" class="brand-logo"><i class="material-icons">home</i>${router.title}</a>
+  <md-sidenav view-model.ref="sideNav" md-fixed="true" md-close-on-click="true">
+    <md-card md-image="http://aurelia-ui-toolkits.github.io/demo-materialize/images/card-sample-1.jpg"
+             md-title="David Weber"
+             class="image-only-card"></md-card>
 
-      <ul id="nav-mobile" class="right">
-        <li class="loader" if.bind="router.isNavigating">
-          <i class="fa fa-spinner fa-spin fa-2x"></i>
-        </li>
-        <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
-          <a data-toggle="collapse" data-target="#skeleton-navigation-navbar-collapse.in" href.bind="row.href">${row.title}</a>
-        </li>
-      </ul>
-    </div>
-  </nav>
+    <ul>
+      <li md-waves repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
+        <a href.bind="row.href" click.delegate="closeNav()">${row.title}</a>
+      </li>
+    </ul>
+  </md-sidenav>
 
+  <md-navbar md-fixed="true">
+    <a md-sidenav-collapse="ref.bind: sideNav;" md-waves class="left hide-on-large-only"><i class="material-icons">menu</i></a>
+    <a href="/" class="brand-logo center">${router.title}</a>
+  </md-navbar>
 </template>

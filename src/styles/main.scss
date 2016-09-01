@@ -50,8 +50,12 @@ $roboto-font-path: "../../node_modules/materialize-css/fonts/roboto/" !default;
 @import '../../node_modules/animate.css/animate.css';
 
 /**
- * custome styles
+ * custom styles
  */
 @import 'base';
 @import 'bem';
 @import 'splash';
+
+@import 'custom/custom-cards';
+@import 'custom/header';
+@import 'custom/footer';

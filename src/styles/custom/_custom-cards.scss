@@ -1,0 +1,9 @@
+.image-only-card {
+    .card {
+      margin-top: 0px;
+
+      .card-content {
+        display: none;
+      }
+    }
+}
