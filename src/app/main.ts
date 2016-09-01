@@ -74,7 +74,11 @@ export async function configure(aurelia: Aurelia): Promise<void> {
      * See: https://github.com/aurelia-ui-toolkits/aurelia-materialize-bridge
      * See: https://github.com/aurelia-ui-toolkits/demo-materialize
      */
-    .plugin('aurelia-materialize-bridge', bridge => bridge.useAll());
+    .plugin('aurelia-materialize-bridge', bridge => bridge.useAll())
+    /**
+     * Import commen things
+     */
+    .feature('common/components');
 
   // Uncomment the line below to enable animation.
   // aurelia.use.plugin('aurelia-animator-css');
