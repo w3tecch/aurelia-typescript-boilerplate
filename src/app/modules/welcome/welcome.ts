@@ -2,11 +2,12 @@ import { inject, computedFrom } from 'aurelia-framework';
 import { LogManager } from 'aurelia-framework';
 import { MdToastService } from 'aurelia-materialize-bridge';
 import { CssAnimator } from 'aurelia-animator-css';
+import { Logger } from 'aurelia-logging';
 
 @inject(MdToastService, CssAnimator, Element, 'AppConfig')
 export class Welcome {
   private previousValue: string = this.fullName;
-  private logger;
+  private logger: Logger;
 
   public heading: string = 'Welcome to the Aurelia Navigation App';
   public firstName: string = 'John';
@@ -27,7 +28,9 @@ export class Welcome {
     private appConfig: AppConfig.IAppConfig
   ) {
     this.logger = LogManager.getLogger('Welcome VM');
-    this.logger.warn((appConfig));
+    this.logger.info('appConfig', appConfig);
+    this.logger.info('lodash', _);
+    this.logger.info('moment', moment());
   }
 
   //Getters can't be directly observed, so they must be dirty checked.

@@ -1,7 +1,6 @@
 ﻿/**
  * Gets and defines the environment configruation
  */
-/// <reference path="../../custom_typings/app-config.d.ts" />
 declare var NAME: string;
 declare var VERSION: string;
 declare var CONFIG: AppConfig.IAppConfigEnv;
@@ -26,8 +25,6 @@ Bluebird.config({ warnings: false });
  */
 import 'jquery';
 import 'materialize-css';
-import 'lodash';
-import 'moment';
 
 /**
  * Aurelia
