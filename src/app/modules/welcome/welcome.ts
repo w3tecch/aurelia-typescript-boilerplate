@@ -2,9 +2,8 @@ import { inject, computedFrom } from 'aurelia-framework';
 import { LogManager } from 'aurelia-framework';
 import { MdToastService } from 'aurelia-materialize-bridge';
 import { CssAnimator } from 'aurelia-animator-css';
-import AppConfig, { IAppConfig } from './../../utils/app.config';
 
-@inject(MdToastService, CssAnimator, Element)
+@inject(MdToastService, CssAnimator, Element, 'AppConfig')
 export class Welcome {
   private previousValue: string = this.fullName;
   private logger;
@@ -24,10 +23,11 @@ export class Welcome {
   constructor(
     private toast: MdToastService,
     private animator: CssAnimator,
-    private element: Element
+    private element: Element,
+    private appConfig: AppConfig.IAppConfig
   ) {
     this.logger = LogManager.getLogger('Welcome VM');
-    this.logger.warn((<IAppConfig>AppConfig));
+    this.logger.warn((appConfig));
   }
 
   //Getters can't be directly observed, so they must be dirty checked.
@@ -45,7 +45,7 @@ export class Welcome {
 
   public attached(): void {
     this.toast.show('You agreed!', 4000);
-    this.toast.show((<IAppConfig>AppConfig).NAME, 4000);
+    this.toast.show((<AppConfig.IAppConfig>this.appConfig).NAME, 4000);
   }
 
   public setDate(): void {

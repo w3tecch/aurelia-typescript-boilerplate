@@ -3,18 +3,15 @@
 /**
  * import materialize-css
  */
-$roboto-font-path: "../../node_modules/materialize-css/fonts/roboto/" !default;
 
+$roboto-font-path: "../../node_modules/materialize-css/fonts/roboto/" !default;
 @import "../../node_modules/materialize-css/sass/components/mixins";
 @import "../../node_modules/materialize-css/sass/components/color";
-
 // Variables;
 @import "variables";
 @import "../../node_modules/materialize-css/sass/components/variables";
-
 // Reset
 @import "../../node_modules/materialize-css/sass/components/normalize";
-
 // Components
 @import "../../node_modules/materialize-css/sass/components/global";
 @import "../../node_modules/materialize-css/sass/components/icons-material-design";
@@ -46,17 +43,18 @@ $roboto-font-path: "../../node_modules/materialize-css/fonts/roboto/" !default;
 /**
  * Other thrid party libraries
  */
+
 @import 'google-design-icons';
 @import '../../node_modules/animate.css/animate.css';
 
 /**
  * custom styles
  */
+
 @import 'base';
 @import 'bem';
 @import 'splash';
 @import 'animation';
-
 @import 'custom/custom-cards';
 @import 'custom/header';
 @import 'custom/footer';

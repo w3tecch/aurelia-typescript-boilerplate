@@ -1,16 +1,26 @@
 @media all and (min-width: 992px) {
-  header, main, footer {
+  header,
+  main,
+  footer {
     padding-left: 300px;
   }
   md-navbar[md-fixed="true"] nav {
     padding-right: 300px;
   }
 }
+
 @media all and (max-width: 992px) {
-  header, main, footer {
+  header,
+  main,
+  footer {
     padding-left: 0;
   }
   md-navbar[md-fixed="true"] nav {
     padding-right: 0;
   }
+}
+
+nav .nav-wrapper {
+  padding-left: 15px;
+  padding-right: 15px;
 }

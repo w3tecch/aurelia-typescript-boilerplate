@@ -1,4 +1,18 @@
 ﻿/**
+ * Gets and defines the environment configruation
+ */
+/// <reference path="../../custom_typings/app-config.d.ts" />
+declare var NAME: string;
+declare var VERSION: string;
+declare var CONFIG: AppConfig.IAppConfigEnv;
+
+const AppConfig: AppConfig.IAppConfig = {
+  NAME: NAME,
+  VERSION: VERSION,
+  CONFIG: CONFIG
+};
+
+/**
  * Main Sass file
  */
 import '../styles/main.scss';
@@ -31,9 +45,8 @@ import enTranslation from './../assets/i18n/en';
  * valid entries: none, error, warn, info, debug
  */
 import { ConsoleAppender } from 'aurelia-logging-console';
-import AppConfig, { IAppConfig } from './utils/app.config';
 LogManager.addAppender(new ConsoleAppender());
-LogManager.setLevel(LogManager.logLevel[(<IAppConfig>AppConfig).CONFIG.LOG_LEVEL]);
+LogManager.setLevel(LogManager.logLevel[(<AppConfig.IAppConfig>AppConfig).CONFIG.LOG_LEVEL]);
 
 /**
  * Aurelia configure
@@ -82,12 +95,12 @@ export async function configure(aurelia: Aurelia): Promise<void> {
      * See: https://github.com/aurelia-ui-toolkits/demo-materialize
      */
     .plugin('aurelia-materialize-bridge', bridge => bridge.useAll())
+
     /**
      * Import commen things
      */
-    .feature('common/attributes')
-    .feature('common/components')
-    .feature('common/services');
+    .feature('resources/attributes')
+    .feature('resources/components');
 
   // Uncomment the line below to enable animation.
   // aurelia.use.plugin('aurelia-animator-css');
