@@ -183,7 +183,7 @@ You can find the configurations in ```<root>/environment```.
 By default pushState, also known as html5 routing, is enabled. The Webpack server is already configured to handle this but many webserver need
 extra confuration to enable this.
 
-## Cordova
+## Cordova - Mobile Development
 
 ### Installation
 Initiate cordova with the following commands:
@@ -211,23 +211,63 @@ Remove the following line in src/app/app.ts
 8: config.options.pushState = true;
 ```
 
+Add those lines to the src/styles/_base.scss
+```
+html {
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+  -webkit-user-select: none;  /* Chrome all / Safari all */
+  -moz-user-select: none;     /* Firefox all */
+  -ms-user-select: none;      /* IE 10+ */
+  user-select: none;          /* Likely future */
+}
+```css
+
+Install the following Libraries
+```
+npm i hammerjs fastclick iscroll --save
+```
+
+Install the following Libraries
+```
+npm i hammerjs fastclick --save
+```
+
+Provide those Libraries for the whole app and to do so add this into the config/config-globals.js file.
+````
+...
+new webpack.ProvidePlugin({
+  'moment': 'moment',
+  '_': 'lodash',
+  'Hammer': 'hammerjs',
+  'FastClick': 'fastclick'
+})
+...
+```
+
+Add this at the bottom of the src/main.ts file to activate FastClick and to prevent default by touchmoves.
+```
+/**
+ * Disabels the scroll events from the generel page
+ */
+document.addEventListener('touchmove', e => e.preventDefault(), false);
+
+/**
+ * Activates Fastclick
+ */
+$(() => {
+  FastClick.attach(document.body);
+});
+```
+
+
 ### Run and build
 Cordova takes the ```www``` folder source to create the Cordova app. This ```www``` folder is a symlink to the ```dist``` folder.
 So make sure you run for example ```npm run build``` first before runing/buildinga Cordova app.
 
 ###
 
-Index remove base-url
 
-Style
-html {
-	-ms-touch-action: manipulation;
-	touch-action: manipulation;
-}
-
-### Libraries
-
-FastClick
 
 ### Configs
 
