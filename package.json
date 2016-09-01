@@ -71,7 +71,7 @@
   },
   "dependencies": {
     "animate.css": "^3.5.1",
-    "aurelia-animator-velocity": "^1.0.0",
+    "aurelia-animator-css": "^1.0.0",
     "aurelia-bootstrapper-webpack": "^1.0.0",
     "aurelia-event-aggregator": "^1.0.0",
     "aurelia-fetch-client": "^1.0.0",
@@ -90,7 +90,6 @@
     "aurelia-templating-router": "^1.0.0",
     "aurelia-validation": "^0.11.0",
     "bluebird": "^3.4.3",
-    "hammerjs": "^2.0.8",
     "intl": "^1.2.4",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "2.2.4",
