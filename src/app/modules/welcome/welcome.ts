@@ -1,9 +1,10 @@
 import { inject, computedFrom } from 'aurelia-framework';
 import { LogManager } from 'aurelia-framework';
 import { MdToastService } from 'aurelia-materialize-bridge';
+import { CssAnimator } from 'aurelia-animator-css';
 import AppConfig, { IAppConfig } from './../../utils/app.config';
 
-@inject(MdToastService)
+@inject(MdToastService, CssAnimator, Element)
 export class Welcome {
   private previousValue: string = this.fullName;
   private logger;
@@ -12,9 +13,18 @@ export class Welcome {
   public firstName: string = 'John';
   public lastName: string = 'Doe';
   public selectedDate = undefined;
+  public animators = [
+    'Base-Animator',
+    'CSS-Animator',
+    'Velocity-Animator',
+    'TinyAnimate-Animator',
+    'GreenSock-Animator'
+  ];
 
   constructor(
-    private toast: MdToastService
+    private toast: MdToastService,
+    private animator: CssAnimator,
+    private element: Element
   ) {
     this.logger = LogManager.getLogger('Welcome VM');
     this.logger.warn((<IAppConfig>AppConfig));
@@ -41,6 +51,15 @@ export class Welcome {
   public setDate(): void {
     let date = new Date();
     this.selectedDate = date;
+  }
+
+  public removeAnimator(animator): void {
+    let index = this.animators.indexOf(animator);
+    this.animators.splice(index, 1);
+  }
+
+  public animateMe(): void {
+    this.animator.animate(<HTMLElement>this.element.querySelector('.btn-animate-me'), 'btn-animation');
   }
 
 }
