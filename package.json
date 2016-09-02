@@ -77,7 +77,7 @@
     "aurelia-fetch-client": "^1.0.0",
     "aurelia-framework": "^1.0.2",
     "aurelia-history-browser": "^1.0.0",
-    "aurelia-i18n": "^1.1.1",
+    "aurelia-i18n": "git+ssh://git@github.com:w3tecch/i18n.git",
     "aurelia-loader-webpack": "^1.0.2",
     "aurelia-logging-console": "^1.0.0",
     "aurelia-materialize-bridge": "^0.13.0",

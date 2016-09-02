@@ -15,4 +15,5 @@ tmp
 .idea
 .awcache
 npm-debug.log
+npm-debug.log*
 /typings
