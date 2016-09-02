@@ -12,7 +12,7 @@
 [X] Add all important libs like moment, lodash ...
 [ ] Add custome attribute example
 [ ] Add service example
-[ ] Add cordova
+[X] Add cordova
 [ ] Add cordova docu and helpers and stuff
-[ ] Add travis
+[X] Add travis
 [ ] Add greenkeeper
