@@ -11,7 +11,6 @@ const get = easyWebpack.get;
 const path = require('path');
 const ENV = process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() || 'development';
 const pkg = require(path.join(process.cwd(), 'package.json'));
-const argv = require('minimist')(process.argv.slice(2));
 
 /**
  * Other libraries
@@ -24,7 +23,6 @@ const baseUrl = '/';
 const rootDir = path.resolve();
 const srcDir = path.resolve('src/app');
 const outDir = path.resolve('dist');
-argv.env = (argv.env === true ? 'development' : argv.env) || 'development';
 let config;
 
 const coreBundles = {
@@ -115,7 +113,7 @@ switch (ENV) {
         ({ allChunks: true, sourceMap: false }),
 
       require('./config/config-environment.js')
-        ({ env: argv.env, name: pkg.name, version: pkg.version }),
+        ({ env: ENV, name: pkg.name, version: pkg.version }),
 
       require('./config/config-notifier.js')
         (metadata.title, { contentImage: path.resolve('src/assets/images/favicon.ico') }),
@@ -165,7 +163,7 @@ switch (ENV) {
         ({ allChunks: true, sourceMap: false }),
 
       require('./config/config-environment.js')
-        ({ env: argv.env, name: pkg.name, version: pkg.version }),
+        ({ env: ENV, name: pkg.name, version: pkg.version }),
 
       require('./config/config-notifier.js')
         (metadata.title, { contentImage: path.resolve('src/assets/images/favicon.ico') }),
@@ -210,7 +208,7 @@ switch (ENV) {
         ({ allChunks: true, sourceMap: false }),
 
       require('./config/config-environment.js')
-        ({ env: argv.env, name: pkg.name, version: pkg.version }),
+        ({ env: ENV, name: pkg.name, version: pkg.version }),
 
       require('./config/config-notifier.js')
         (metadata.title, { contentImage: path.resolve('src/assets/images/favicon.ico') }),

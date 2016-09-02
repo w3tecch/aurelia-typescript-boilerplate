@@ -42,8 +42,6 @@ import enTranslation from './../assets/i18n/en';
  * valid entries: none, error, warn, info, debug
  */
 import { ConsoleAppender } from 'aurelia-logging-console';
-LogManager.addAppender(new ConsoleAppender());
-LogManager.setLevel(LogManager.logLevel[(<AppConfig.IAppConfig>AppConfig).CONFIG.LOG_LEVEL]);
 
 /**
  * Aurelia configure
@@ -53,6 +51,9 @@ LogManager.setLevel(LogManager.logLevel[(<AppConfig.IAppConfig>AppConfig).CONFIG
  * @returns {Promise<void>}
  */
 export async function configure(aurelia: Aurelia): Promise<void> {
+  LogManager.addAppender(new ConsoleAppender());
+  LogManager.setLevel(LogManager.logLevel[(<AppConfig.IAppConfig>AppConfig).CONFIG.LOG_LEVEL]);
+
   aurelia.use
     .standardConfiguration()
     /**

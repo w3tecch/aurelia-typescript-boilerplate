@@ -142,7 +142,6 @@
     "karma-remap-istanbul": "^0.2.1",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.0",
-    "minimist": "^1.2.0",
     "ncp": "^2.0.0",
     "node-sass": "^3.8.0",
     "phantomjs-polyfill": "0.0.2",

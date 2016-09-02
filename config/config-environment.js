@@ -14,6 +14,7 @@ const configEnv = function (options) {
 };
 
 function getDefinitions(env, name, version) {
+  console.log(env);
   return {
     NAME: JSON.stringify(name),
     VERSION: JSON.stringify(version),
