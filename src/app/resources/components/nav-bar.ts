@@ -1,11 +1,8 @@
 import { bindable } from 'aurelia-framework';
+import { Router } from 'aurelia-router';
 
-export class NavBar {
-  @bindable public router = undefined;
-
-  public attached(): void {
-    $('.button-collapse').sideNav();
-  }
+export class NavBarCustomElement {
+  @bindable public router: Router = undefined;
 
   public closeNav(): void {
     $('.button-collapse').sideNav('hide');
