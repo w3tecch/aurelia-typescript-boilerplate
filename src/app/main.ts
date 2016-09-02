@@ -1,4 +1,17 @@
 ﻿/**
+ * Gets and defines the environment configruation
+ */
+declare var NAME: string;
+declare var VERSION: string;
+declare var CONFIG: AppConfig.IAppConfigEnv;
+
+const AppConfig: AppConfig.IAppConfig = {
+  NAME: NAME,
+  VERSION: VERSION,
+  CONFIG: CONFIG
+};
+
+/**
  * Main Sass file
  */
 import '../styles/main.scss';
@@ -12,8 +25,6 @@ Bluebird.config({ warnings: false });
  */
 import 'jquery';
 import 'materialize-css';
-import 'lodash';
-import 'moment';
 
 /**
  * Aurelia
@@ -31,9 +42,6 @@ import enTranslation from './../assets/i18n/en';
  * valid entries: none, error, warn, info, debug
  */
 import { ConsoleAppender } from 'aurelia-logging-console';
-import AppConfig, { IAppConfig } from './utils/app.config';
-LogManager.addAppender(new ConsoleAppender());
-LogManager.setLevel(LogManager.logLevel[(<IAppConfig>AppConfig).CONFIG.LOG_LEVEL]);
 
 /**
  * Aurelia configure
@@ -43,14 +51,23 @@ LogManager.setLevel(LogManager.logLevel[(<IAppConfig>AppConfig).CONFIG.LOG_LEVEL
  * @returns {Promise<void>}
  */
 export async function configure(aurelia: Aurelia): Promise<void> {
+  LogManager.addAppender(new ConsoleAppender());
+  LogManager.setLevel(LogManager.logLevel[(<AppConfig.IAppConfig>AppConfig).CONFIG.LOG_LEVEL]);
+
   aurelia.use
     .standardConfiguration()
     /**
-     * This enables the animation plugin for aurelia
-     * See: http://aurelia.io/hub.html#/doc/api/aurelia/templating/latest/class/Animator
-     * See: https://gooy.github.io/aurelia-animator-velocity/#
+     * Adds the app config to the framework's dependency injection container.
      */
-    .plugin('aurelia-animator-velocity')
+    .instance('AppConfig', AppConfig)
+
+    /**
+     * This enables the animation plugin for aurelia
+     * See: https://github.com/aurelia/animator-css
+     * See: http://blog.durandal.io/2015/07/17/animating-apps-with-aurelia-part-1/
+     */
+    .plugin('aurelia-animator-css')
+
     /**
      * i18n support
      * adapt options to your needs (see http://i18next.com/docs/options/)
@@ -67,6 +84,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
       fallbackLng: 'en',
       debug: false
     }))
+
     /**
      * aurelia-materialize-bridge
      *
@@ -74,7 +92,13 @@ export async function configure(aurelia: Aurelia): Promise<void> {
      * See: https://github.com/aurelia-ui-toolkits/aurelia-materialize-bridge
      * See: https://github.com/aurelia-ui-toolkits/demo-materialize
      */
-    .plugin('aurelia-materialize-bridge', bridge => bridge.useAll());
+    .plugin('aurelia-materialize-bridge', bridge => bridge.useAll())
+
+    /**
+     * Import commen things
+     */
+    .feature('resources/attributes')
+    .feature('resources/components');
 
   // Uncomment the line below to enable animation.
   // aurelia.use.plugin('aurelia-animator-css');
@@ -82,7 +106,6 @@ export async function configure(aurelia: Aurelia): Promise<void> {
 
   // Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
   // aurelia.use.plugin('aurelia-html-import-template-loader')
-
   await aurelia.start();
   aurelia.setRoot('app');
 
@@ -93,17 +116,3 @@ export async function configure(aurelia: Aurelia): Promise<void> {
   offline.install();
   */
 }
-
-/**
- * animated.css helper function
- */
-$.fn.extend({
-  animateCss: function (animationName: string): JQuery {
-    let animationEnd = 'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend';
-    return $(this)
-      .addClass('animated ' + animationName)
-      .one(animationEnd, () => {
-        $(this).removeClass('animated ' + animationName);
-      });
-  }
-});

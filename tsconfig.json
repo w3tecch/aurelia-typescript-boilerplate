@@ -10,6 +10,7 @@
   "awesomeTypescriptLoaderOptions": {
     "doTypeCheck": true,
     "forkChecker": true,
+    "resolveGlobs": true,
     "useBabel": true,
     "useCache": true,
     "babelOptions": {
@@ -18,6 +19,13 @@
       ]
     }
   },
+  "filesGlob": [
+    "./src/**/*.ts",
+    "./test/**/*.ts",
+    "!./node_modules/**/*.ts",
+    "typings-custom/*.ts",
+    "typings/index.d.ts"
+  ],
   "exclude": [
     "node_modules",
     "dist",

@@ -10,7 +10,6 @@
 $primary-color: color("indigo", "lighten-2");
 $primary-color-light: lighten($primary-color, 15%);
 $primary-color-dark: darken($primary-color, 15%);
-
 $secondary-color: color("teal", "lighten-1");
 $success-color: color("green", "base");
 $error-color: color("red", "base");

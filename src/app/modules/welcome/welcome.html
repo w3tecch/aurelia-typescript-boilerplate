@@ -1,5 +1,7 @@
 <template>
-  <section class="au-animate" anim-enter="fadeIn" anim-leave="fadeOut">
+  <section class="au-animate pages">
+
+    <!-- Form Expamples -->
     <h2>${heading} <i class="material-icons">3d_rotation</i></h2>
     <form role="form" submit.delegate="submit()">
       <div class="form-group">
@@ -19,5 +21,15 @@
       </div>
       <button type="submit" class="btn btn-default">Submit</button>
     </form>
+
+    <!-- Animation Expamples -->
+    <h2>Animation Expamples</h2>
+    <ul class="aurelia-animators au-stagger">
+      <li class="au-animate" repeat.for="anim of animators">
+      <i class="material-icons" click.delegate="$parent.removeAnimator(anim)">delete</i> ${anim}</li>
+    </ul>
+
+    <button class="btn btn-animate-me" click.delegate="animateMe()">Animate me!</button>
+
   </section>
 </template>

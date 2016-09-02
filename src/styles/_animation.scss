@@ -1,0 +1,93 @@
+.aurelia-animators {
+	padding: 20px;
+	list-style: none;
+}
+
+.aurelia-animators>li.au-enter {
+	opacity: 0!important;
+}
+
+.aurelia-animators>li.au-enter-active {
+	-webkit-animation: fadeIn 2s;
+	animation: fadeIn 2s;
+}
+
+.aurelia-animators>li.au-leave-active {
+	-webkit-animation: fadeOut 2s;
+	animation: fadeOut 2s;
+}
+
+.aurelia-animators.au-stagger {
+	-webkit-animation-delay: 50ms;
+	animation-delay: 50ms;
+}
+
+
+/* CSS3-Animations */
+
+@-webkit-keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+@-webkit-keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+@keyframes fadeOut {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+
+.btn-animation-add {
+	-webkit-animation: shake 1s;
+	animation: shake 1s;
+}
+
+@keyframes slideLeftIn {
+  0% {
+    transform: translate(100%, 0);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes slideLeftOut {
+  0% {
+    transform: translate(0, 0);
+  }
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
+.pages.au-enter {
+  transform: translate(100%, 0);
+}
+.pages.au-enter-active {
+  animation: slideLeftIn 0.6s;
+}
+.pages.au-leave-active {
+  animation: slideLeftOut 0.6s;
+}

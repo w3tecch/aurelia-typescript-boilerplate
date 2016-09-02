@@ -1,23 +1,36 @@
 import { inject, computedFrom } from 'aurelia-framework';
 import { LogManager } from 'aurelia-framework';
 import { MdToastService } from 'aurelia-materialize-bridge';
-import AppConfig, { IAppConfig } from './../../utils/app.config';
+import { CssAnimator } from 'aurelia-animator-css';
+import { Logger } from 'aurelia-logging';
 
-@inject(MdToastService)
+@inject(MdToastService, CssAnimator, Element, 'AppConfig')
 export class Welcome {
   private previousValue: string = this.fullName;
-  private logger;
+  private logger: Logger;
 
   public heading: string = 'Welcome to the Aurelia Navigation App';
   public firstName: string = 'John';
   public lastName: string = 'Doe';
   public selectedDate = undefined;
+  public animators = [
+    'Base-Animator',
+    'CSS-Animator',
+    'Velocity-Animator',
+    'TinyAnimate-Animator',
+    'GreenSock-Animator'
+  ];
 
   constructor(
-    private toast: MdToastService
+    private toast: MdToastService,
+    private animator: CssAnimator,
+    private element: Element,
+    private appConfig: AppConfig.IAppConfig
   ) {
     this.logger = LogManager.getLogger('Welcome VM');
-    this.logger.warn((<IAppConfig>AppConfig));
+    this.logger.info('appConfig', appConfig);
+    this.logger.info('lodash', _);
+    this.logger.info('moment', moment());
   }
 
   //Getters can't be directly observed, so they must be dirty checked.
@@ -35,12 +48,21 @@ export class Welcome {
 
   public attached(): void {
     this.toast.show('You agreed!', 4000);
-    this.toast.show((<IAppConfig>AppConfig).NAME, 4000);
+    this.toast.show((<AppConfig.IAppConfig>this.appConfig).NAME, 4000);
   }
 
   public setDate(): void {
     let date = new Date();
     this.selectedDate = date;
+  }
+
+  public removeAnimator(animator): void {
+    let index = this.animators.indexOf(animator);
+    this.animators.splice(index, 1);
+  }
+
+  public animateMe(): void {
+    this.animator.animate(<HTMLElement>this.element.querySelector('.btn-animate-me'), 'btn-animation');
   }
 
 }

@@ -29,7 +29,7 @@ export class Users {
         .withBaseUrl('https://api.github.com/');
     });
 
-    const response = await http.fetch('users');
+    const response = await http.fetch('orgs/w3tecch/public_members');
     this.users = await response.json();
   }
 }

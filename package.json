@@ -1,7 +1,7 @@
 {
   "name": "aurelia-ts-boilerplate",
   "title": "Aurelia TS Boilerplate",
-  "version": "1.0.0",
+  "version": "0.0.2",
   "description": "A starter kit for building a standard navigation-style app with Aurelia, typescript and webpack.",
   "main": "dist/app.js",
   "scripts": {
@@ -35,7 +35,8 @@
     "server:dev:hmr": "npm run server:dev -- --hot",
     "server:prod": "http-server dist --cors",
     "webpack": "cross-env ./node_modules/.bin/webpack",
-    "webpack-dev-server": "cross-env ./node_modules/.bin/webpack-dev-server"
+    "webpack-dev-server": "cross-env ./node_modules/.bin/webpack-dev-server",
+    "cordova:init": "node ./config/init-cordova.js"
   },
   "repository": {
     "type": "git",
@@ -51,10 +52,10 @@
   "author": "w3tec <info@w3tec.ch> (http://w3tec.ch/)",
   "contributors": [
     {
-      "name": "Gery Hirschfeld"
+      "name": "Gery Hirschfeld <gery.hirschfeld@w3tec.ch> (https://github.com/hirsch88)"
     },
     {
-      "name": "David Weber"
+      "name": "David Weber <david.weber@w3tec.ch> (https://github.com/dweber019)"
     }
   ],
   "bugs": {
@@ -70,13 +71,13 @@
   },
   "dependencies": {
     "animate.css": "^3.5.1",
-    "aurelia-animator-velocity": "^1.0.0",
+    "aurelia-animator-css": "^1.0.0",
     "aurelia-bootstrapper-webpack": "^1.0.0",
     "aurelia-event-aggregator": "^1.0.0",
     "aurelia-fetch-client": "^1.0.0",
     "aurelia-framework": "^1.0.2",
     "aurelia-history-browser": "^1.0.0",
-    "aurelia-i18n": "^1.1.1",
+    "aurelia-i18n": "git+https://a6a36e9d3ce3276f41c6a077296f46d12c271954:x-oauth-basic@github.com/w3tecch/i18n.git",
     "aurelia-loader-webpack": "^1.0.2",
     "aurelia-logging-console": "^1.0.0",
     "aurelia-materialize-bridge": "^0.13.0",
@@ -89,13 +90,13 @@
     "aurelia-templating-router": "^1.0.0",
     "aurelia-validation": "^0.11.0",
     "bluebird": "^3.4.3",
-    "hammerjs": "^2.0.8",
+    "intl": "^1.2.4",
     "isomorphic-fetch": "^2.2.1",
     "jquery": "2.2.4",
     "lodash": "^4.15.0",
+    "material-design-icons": "3.0.0",
     "materialize-css": "^0.97.7",
-    "moment": "^2.14.1",
-    "material-design-icons": "3.0.0"
+    "moment": "^2.14.1"
   },
   "devDependencies": {
     "@easy-webpack/config-aurelia": "^2.2.0",
@@ -141,7 +142,7 @@
     "karma-remap-istanbul": "^0.2.1",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-webpack": "^1.8.0",
-    "minimist": "^1.2.0",
+    "ncp": "^2.0.0",
     "node-sass": "^3.8.0",
     "phantomjs-polyfill": "0.0.2",
     "phantomjs-prebuilt": "^2.1.12",
