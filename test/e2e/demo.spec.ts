@@ -2,9 +2,15 @@ import {PageObject_Welcome} from './welcome.po';
 import {PageObject_Skeleton} from './skeleton.po';
 import {browser, element, by, By, $, $$, ExpectedConditions} from 'protractor/globals';
 
-describe('aurelia skeleton app', function() {
+describe('aurelia skeleton app', function () {
   let po_welcome: PageObject_Welcome;
   let po_skeleton: PageObject_Skeleton;
+
+  beforeAll(() => {
+    const width = 1500;
+    const height = 800;
+    browser.driver.manage().window().setSize(width, height);
+  });
 
   beforeEach(() => {
     po_skeleton = new PageObject_Skeleton();
@@ -14,7 +20,7 @@ describe('aurelia skeleton app', function() {
   });
 
   it('should load the page and display the initial page title', () => {
-    expect(po_skeleton.getCurrentPageTitle()).toBe('Welcome | Aurelia');
+    expect(po_skeleton.getCurrentPageTitle()).toBe('Welcome | Aurelia TS Boilerplate');
   });
 
   it('should display greeting', () => {
@@ -33,6 +39,6 @@ describe('aurelia skeleton app', function() {
 
   it('should navigate to users page', () => {
     po_skeleton.navigateTo('/users');
-    expect(po_skeleton.getCurrentPageTitle()).toBe('Github Users | Aurelia');
+    expect(po_skeleton.getCurrentPageTitle()).toBe('Github Users | Aurelia TS Boilerplate');
   });
 });
