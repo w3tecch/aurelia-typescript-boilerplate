@@ -1,7 +1,7 @@
 {
   "name": "aurelia-ts-boilerplate",
   "title": "Aurelia TS Boilerplate",
-  "version": "0.0.2",
+  "version": "0.2.1",
   "description": "A starter kit for building a standard navigation-style app with Aurelia, typescript and webpack.",
   "main": "dist/app.js",
   "scripts": {
@@ -77,7 +77,7 @@
     "aurelia-fetch-client": "^1.0.0",
     "aurelia-framework": "^1.0.2",
     "aurelia-history-browser": "^1.0.0",
-    "aurelia-i18n": "git+https://a6a36e9d3ce3276f41c6a077296f46d12c271954:x-oauth-basic@github.com/w3tecch/i18n.git",
+    "aurelia-i18n": "w3tecch/i18n",
     "aurelia-loader-webpack": "^1.0.2",
     "aurelia-logging-console": "^1.0.0",
     "aurelia-materialize-bridge": "^0.13.0",
