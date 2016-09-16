@@ -12,8 +12,4 @@ declare module 'protractor' {
     // this should eventually be defined externally:
     switchTo(): any;
   }
-
-  interface ProtractorBy {
-    valueBind(bindTarget: string): Locator;
-  }
 }
