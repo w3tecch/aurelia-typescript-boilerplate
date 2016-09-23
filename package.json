@@ -1,7 +1,7 @@
 {
   "name": "aila-prototype-admin",
   "title": "AILA Proto-Admin",
-  "version": "0.2.1",
+  "version": "0.2.3",
   "main": "dist/app.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test ./node_modules/karma/bin/karma start test/karma.conf.js",
