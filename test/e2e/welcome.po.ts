@@ -1,4 +1,4 @@
-import {browser, element, by, By, $, $$, ExpectedConditions} from 'protractor/globals';
+import {element, by} from 'protractor';
 
 export class PageObject_Welcome {
   getGreeting() {

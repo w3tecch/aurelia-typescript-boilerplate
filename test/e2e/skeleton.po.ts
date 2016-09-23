@@ -1,4 +1,4 @@
-import {browser, element, by, By, $, $$, ExpectedConditions} from 'protractor/globals';
+import {browser, element, by} from 'protractor';
 
 export class PageObject_Skeleton {
 
