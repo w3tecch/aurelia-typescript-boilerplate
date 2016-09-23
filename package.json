@@ -2,6 +2,7 @@
   "name": "aila-prototype-admin",
   "title": "AILA Proto-Admin",
   "version": "0.2.3",
+  "description": "A starter kit for building a standard navigation-style app with Aurelia, typescript and webpack.",
   "main": "dist/app.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test ./node_modules/karma/bin/karma start test/karma.conf.js",
@@ -37,8 +38,30 @@
     "webpack-dev-server": "cross-env ./node_modules/.bin/webpack-dev-server",
     "cordova:init": "node ./config/init-cordova.js"
   },
-  "author": "gerhard.hirschfeld@swisscom.com",
-  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/w3tecch/aurelia-ts-boilerplate.git"
+  },
+  "keywords": [
+    "aurelia",
+    "boilterplate",
+    "typescript",
+    "webpack"
+  ],
+  "license": "MIT",
+  "author": "w3tec <info@w3tec.ch> (http://w3tec.ch/)",
+  "contributors": [
+    {
+      "name": "Gery Hirschfeld <gery.hirschfeld@w3tec.ch> (https://github.com/hirsch88)"
+    },
+    {
+      "name": "David Weber <david.weber@w3tec.ch> (https://github.com/dweber019)"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/w3tecch/aurelia-ts-boilerplate/issues"
+  },
+  "homepage": "https://github.com/w3tecch/aurelia-ts-boilerplate#readme",
   "aurelia": {
     "build": {
       "resources": [
