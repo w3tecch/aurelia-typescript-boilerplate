@@ -1,0 +1,4 @@
+{
+  "API_URL": "http://localhost:9004",
+  "LOG_LEVEL": "debug"
+}

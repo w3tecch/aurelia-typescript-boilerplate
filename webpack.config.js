@@ -187,12 +187,12 @@ switch (ENV) {
     break;
 
   default:
+  case 'local':
   case 'development':
-    process.env.NODE_ENV = 'development';
     config = generateConfig(
       baseConfig,
 
-      require('@easy-webpack/config-env-development')(),
+      require('@easy-webpack/config-env-development')({ devtool: 'inline-source-map' }),
 
       require('@easy-webpack/config-aurelia')
         ({ root: rootDir, src: srcDir, title: title, baseUrl: baseUrl }),
