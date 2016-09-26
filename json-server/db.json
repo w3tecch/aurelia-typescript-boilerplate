@@ -1,0 +1,62 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "firstName": "Tiresias",
+      "lastName": "Bichsel",
+      "email": "tiresias.bichsel@swisscom.com",
+      "roles": [
+        {
+          "id": "3",
+          "name": "admin"
+        },
+        {
+          "id": "2",
+          "name": "super_user"
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "firstName": "Anius",
+      "lastName": "Caspari",
+      "email": "anius.caspari@swisscom.com",
+      "roles": [
+        {
+          "id": "1",
+          "name": "hr_admin"
+        },
+        {
+          "id": "2",
+          "name": "super_user"
+        }
+      ]
+    },
+    {
+      "id": "3",
+      "firstName": "Melampus",
+      "lastName": "Ramseier",
+      "email": "melampus.ramseier@swisscom.com",
+      "roles": [
+        {
+          "id": "3",
+          "name": "admin"
+        }
+      ]
+    }
+  ],
+  "roles": [
+    {
+      "id": "1",
+      "name": "hr_admin"
+    },
+    {
+      "id": "2",
+      "name": "super_user"
+    },
+    {
+      "id": "3",
+      "name": "admin"
+    }
+  ]
+}
