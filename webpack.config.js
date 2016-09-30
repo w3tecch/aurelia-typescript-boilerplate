@@ -138,7 +138,9 @@ switch (ENV) {
       /*require('@easy-webpack/config-uglify')
         ({ debug: false }), Can be enabled when https://github.com/easy-webpack/config-uglify/pull/4 is merged*/
 
-      require('./config/config-banner')(banner)
+      require('./config/config-banner')(banner),
+
+      require('./config/config-gzip')()
     );
     break;
 
