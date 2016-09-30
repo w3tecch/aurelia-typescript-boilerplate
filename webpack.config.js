@@ -32,7 +32,6 @@ const coreBundles = {
     'aurelia-pal',
     'aurelia-pal-browser',
     'regenerator-runtime',
-    'bluebird',
     'intl'
   ],
   // these will be included in the 'aurelia' bundle (except for the above bootstrap packages)
@@ -120,7 +119,6 @@ switch (ENV) {
 
       require('./config/config-globals.js')(),
       require('@easy-webpack/config-fonts-and-images')(),
-      require('@easy-webpack/config-global-bluebird')(),
       require('@easy-webpack/config-global-jquery')(),
       require('@easy-webpack/config-global-regenerator')(),
       require('@easy-webpack/config-generate-index-html')
@@ -169,7 +167,6 @@ switch (ENV) {
         (metadata.title, { contentImage: path.resolve('src/assets/images/favicon.ico') }),
 
       require('@easy-webpack/config-fonts-and-images')(),
-      require('@easy-webpack/config-global-bluebird')(),
       require('@easy-webpack/config-global-jquery')(),
       require('@easy-webpack/config-global-regenerator')(),
       require('@easy-webpack/config-generate-index-html')
@@ -215,7 +212,6 @@ switch (ENV) {
 
       require('./config/config-globals.js')(),
       require('@easy-webpack/config-fonts-and-images')(),
-      require('@easy-webpack/config-global-bluebird')(),
       require('@easy-webpack/config-global-jquery')(),
       require('@easy-webpack/config-global-regenerator')(),
       require('@easy-webpack/config-generate-index-html')
