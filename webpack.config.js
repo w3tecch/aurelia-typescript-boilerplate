@@ -228,7 +228,9 @@ switch (ENV) {
       require('@easy-webpack/config-common-chunks-simple')
         ({ appChunkName: 'app', firstChunk: 'aurelia-bootstrap' }),
 
-      require('./config/config-node.js')()
+      require('./config/config-node.js')(),
+
+      require('./config/config-dashboard.js')()
     );
     break;
 }
