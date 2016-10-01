@@ -135,8 +135,8 @@ switch (ENV) {
       require('./config/config-favicon.js')
         (metadata.title,  path.resolve('src/assets/images/favicon.ico')),
 
-      /*require('@easy-webpack/config-uglify')
-        ({ debug: false }), Can be enabled when https://github.com/easy-webpack/config-uglify/pull/4 is merged*/
+      require('@easy-webpack/config-uglify')
+        ({ mangle: false }),
 
       require('./config/config-banner')(banner),
 

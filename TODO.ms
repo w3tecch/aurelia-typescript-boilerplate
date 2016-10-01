@@ -16,3 +16,4 @@
 [ ] Add cordova docu and helpers and stuff
 [X] Add travis
 [ ] Add greenkeeper
+[ ] polyfill ES6 promises
