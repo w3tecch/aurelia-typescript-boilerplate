@@ -59,12 +59,16 @@ const coreBundles = {
     'aurelia-templating-binding',
     'aurelia-templating-router',
     'aurelia-templating-resources'
+  ],
+  materialize: [
+    'materialize-css'
   ]
 };
 
 const baseConfig = {
   entry: {
     'app': [/* this is filled by the aurelia-webpack-plugin */],
+    'materialize': coreBundles.materialize,
     'aurelia-bootstrap': coreBundles.bootstrap,
     'aurelia': coreBundles.aurelia.filter(pkg => coreBundles.bootstrap.indexOf(pkg) === -1),
   },
@@ -136,7 +140,7 @@ switch (ENV) {
         (metadata.title,  path.resolve('src/assets/images/favicon.ico')),
 
       require('@easy-webpack/config-uglify')
-        ({ mangle: false }),
+        ({ exclude: [/materialize/i], mangle: { except: ['$super', '$', 'jQuery', 'exports', 'require', 'Aurelia', 'Materialize'] } }),
 
       require('./config/config-banner')(banner),
 

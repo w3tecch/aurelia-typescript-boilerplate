@@ -20,7 +20,6 @@ import '../styles/main.scss';
  * Third Party Libraries
  */
 import 'jquery';
-import 'materialize-css';
 
 /**
  * Aurelia
