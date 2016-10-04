@@ -16,15 +16,10 @@ const AppConfig: AppConfig.IAppConfig = {
  */
 import '../styles/main.scss';
 
-// comment out if you don't want a Promise polyfill (remove also from webpack.config.js)
-import * as Bluebird from 'bluebird';
-Bluebird.config({ warnings: false });
-
 /**
  * Third Party Libraries
  */
 import 'jquery';
-import 'materialize-css';
 
 /**
  * Aurelia

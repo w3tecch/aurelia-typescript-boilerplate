@@ -16,3 +16,4 @@
 [ ] Add cordova docu and helpers and stuff
 [X] Add travis
 [ ] Add greenkeeper
+[X] polyfill ES6 promises for tests => replaced phantom with firefox

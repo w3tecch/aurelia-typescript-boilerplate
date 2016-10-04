@@ -32,7 +32,6 @@ const coreBundles = {
     'aurelia-pal',
     'aurelia-pal-browser',
     'regenerator-runtime',
-    'bluebird',
     'intl'
   ],
   // these will be included in the 'aurelia' bundle (except for the above bootstrap packages)
@@ -60,12 +59,16 @@ const coreBundles = {
     'aurelia-templating-binding',
     'aurelia-templating-router',
     'aurelia-templating-resources'
+  ],
+  materialize: [
+    'materialize-css'
   ]
 };
 
 const baseConfig = {
   entry: {
     'app': [/* this is filled by the aurelia-webpack-plugin */],
+    'materialize': coreBundles.materialize,
     'aurelia-bootstrap': coreBundles.bootstrap,
     'aurelia': coreBundles.aurelia.filter(pkg => coreBundles.bootstrap.indexOf(pkg) === -1),
   },
@@ -120,7 +123,6 @@ switch (ENV) {
 
       require('./config/config-globals.js')(),
       require('@easy-webpack/config-fonts-and-images')(),
-      require('@easy-webpack/config-global-bluebird')(),
       require('@easy-webpack/config-global-jquery')(),
       require('@easy-webpack/config-global-regenerator')(),
       require('@easy-webpack/config-generate-index-html')
@@ -137,10 +139,12 @@ switch (ENV) {
       require('./config/config-favicon.js')
         (metadata.title,  path.resolve('src/assets/images/favicon.ico')),
 
-      /*require('@easy-webpack/config-uglify')
-        ({ debug: false }), Can be enabled when https://github.com/easy-webpack/config-uglify/pull/4 is merged*/
+      require('@easy-webpack/config-uglify')
+        ({ exclude: [/materialize/i], mangle: { except: ['$super', '$', 'jQuery', 'exports', 'require', 'Aurelia', 'Materialize'] } }),
 
-      require('./config/config-banner')(banner)
+      require('./config/config-banner')(banner),
+
+      require('./config/config-gzip')()
     );
     break;
 
@@ -169,7 +173,6 @@ switch (ENV) {
         (metadata.title, { contentImage: path.resolve('src/assets/images/favicon.ico') }),
 
       require('@easy-webpack/config-fonts-and-images')(),
-      require('@easy-webpack/config-global-bluebird')(),
       require('@easy-webpack/config-global-jquery')(),
       require('@easy-webpack/config-global-regenerator')(),
       require('@easy-webpack/config-generate-index-html')
@@ -215,7 +218,6 @@ switch (ENV) {
 
       require('./config/config-globals.js')(),
       require('@easy-webpack/config-fonts-and-images')(),
-      require('@easy-webpack/config-global-bluebird')(),
       require('@easy-webpack/config-global-jquery')(),
       require('@easy-webpack/config-global-regenerator')(),
       require('@easy-webpack/config-generate-index-html')
@@ -231,7 +233,9 @@ switch (ENV) {
       require('@easy-webpack/config-common-chunks-simple')
         ({ appChunkName: 'app', firstChunk: 'aurelia-bootstrap' }),
 
-      require('./config/config-node.js')()
+      require('./config/config-node.js')(),
+
+      require('./config/config-dashboard.js')()
     );
     break;
 }
