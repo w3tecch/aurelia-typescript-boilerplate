@@ -2,7 +2,7 @@ addons:
   firefox: latest
 language: node_js
 node_js:
-  - "6.7.0"
+  - "5.9.0"
 before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
