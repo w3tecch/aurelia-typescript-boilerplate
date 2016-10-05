@@ -16,7 +16,8 @@ module.exports = function(config) {
      *
      * available frameworks: https://npmjs.org/browse/keyword/karma-adapter
      */
-    frameworks: ['jasmine'],
+    // frameworks: ['jasmine'],
+    frameworks: ['mocha', 'chai', 'sinon'],
 
     // list of files to exclude
     exclude: [ ],
@@ -81,7 +82,7 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
 
     /*
      * start these browsers
@@ -96,7 +97,7 @@ module.exports = function(config) {
      * Continuous Integration mode
      * if true, Karma captures browsers, runs the tests and exits
      */
-    singleRun: true
+    singleRun: false
   });
 
 };

@@ -235,7 +235,7 @@ So make sure you run for example ```npm run build``` first before runing/buildin
 - [X] Add travis
 - [ ] Add greenkeeper
 - [X] polyfill ES6 promises for tests => replaced phantom with firefox
-- [ ] Add mocha chai sinon
+- [X] Add mocha chai sinon
 - [ ] Add coverage
 - [ ] Add electron
 - [ ] Update the plugin boilerplate
