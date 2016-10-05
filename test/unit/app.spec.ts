@@ -1,6 +1,6 @@
-import './setup';
+import {expect} from './setup';
 import {App} from '../../src/app/app';
-import { I18N } from 'aurelia-i18n';
+import {I18N} from 'aurelia-i18n';
 import {BindingSignaler} from 'aurelia-templating-resources';
 import {EventAggregator} from 'aurelia-event-aggregator';
 import EnglishTranslation from './../../src/assets/i18n/en';
@@ -47,22 +47,40 @@ describe('the App module', () => {
   });
 
   it('contains a router property', () => {
-    expect(sut.router).toBeDefined();
+    expect(sut.router).to.exist;
   });
 
   it('configures the router title', () => {
-    expect(sut.router.title).toEqual(EnglishTranslation.translation.SITE_TITLE);
+    expect(sut.router.title).to.equal(EnglishTranslation.translation.SITE_TITLE);
   });
 
   it('should have a welcome route', () => {
-    expect(sut.router.routes).toContain({ route: ['', 'welcome'], name: 'welcome',  moduleId: './modules/welcome/welcome', nav: true, title: EnglishTranslation.translation.WELCOME.TITLE });
+    expect(sut.router.routes).to.contain({
+      route: ['', 'welcome'],
+      name: 'welcome',
+      moduleId: './modules/welcome/welcome',
+      nav: true, title:
+      EnglishTranslation.translation.WELCOME.TITLE
+    });
   });
 
   it('should have a users route', () => {
-    expect(sut.router.routes).toContain({ route: 'users', name: 'users', moduleId: './modules/users/users', nav: true, title: EnglishTranslation.translation.GIT_USERS.TITLE });
+    expect(sut.router.routes).to.contain({
+      route: 'users',
+      name: 'users',
+      moduleId: './modules/users/users',
+      nav: true,
+      title: EnglishTranslation.translation.GIT_USERS.TITLE
+    });
   });
 
   it('should have a child router route', () => {
-    expect(sut.router.routes).toContain({ route: 'child-router', name: 'child-router', moduleId: './modules/child-router/child-router', nav: true, title: EnglishTranslation.translation.CHILD_ROUTER.TITLE });
+    expect(sut.router.routes).to.contain({
+      route: 'child-router',
+      name: 'child-router',
+      moduleId: './modules/child-router/child-router',
+      nav: true,
+      title: EnglishTranslation.translation.CHILD_ROUTER.TITLE
+    });
   });
 });

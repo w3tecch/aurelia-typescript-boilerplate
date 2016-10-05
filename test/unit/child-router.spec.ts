@@ -1,14 +1,14 @@
-import './setup';
+import {expect} from './setup';
 import {ChildRouter} from '../../src/app/modules/child-router/child-router';
 
 class RouterStub {
-  routes;
+  public routes;
 
-  configure(handler) {
+  public configure(handler): void {
     handler(this);
   }
 
-  map(routes) {
+  public map(routes): void {
     this.routes = routes;
   }
 }
@@ -24,22 +24,40 @@ describe('the Child Router module', () => {
   });
 
   it('contains a router property', () => {
-    expect(sut.router).toBeDefined();
+    expect(sut.router).ok;
   });
 
   it('configures the heading', () => {
-    expect(sut.heading).toEqual('Child Router');
+    expect(sut.heading).to.equal('Child Router');
   });
 
   it('should have a welcome route', () => {
-    expect(sut.router.routes).toContain({ route: ['', 'welcome'], name: 'welcome',  moduleId: './../welcome/welcome', nav: true, title: 'Welcome' });
+    expect(sut.router.routes).to.contain({
+      route: ['', 'welcome'],
+      name: 'welcome',
+      moduleId: './../welcome/welcome',
+      nav: true,
+      title: 'Welcome'
+    });
   });
 
   it('should have a users route', () => {
-    expect(sut.router.routes).toContain({ route: 'users', name: 'users', moduleId: './../users/users', nav: true, title: 'Github Users' });
+    expect(sut.router.routes).to.contain({
+      route: 'users',
+      name: 'users',
+      moduleId: './../users/users',
+      nav: true,
+      title: 'Github Users'
+    });
   });
 
   it('should have a child router route', () => {
-    expect(sut.router.routes).toContain({ route: 'child-router', name: 'child-router', moduleId: './../child-router/child-router', nav: true, title: 'Child Router' });
+    expect(sut.router.routes).to.contain({
+      route: 'child-router',
+      name: 'child-router',
+      moduleId: './../child-router/child-router',
+      nav: true,
+      title: 'Child Router'
+    });
   });
 });
