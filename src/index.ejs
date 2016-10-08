@@ -9,8 +9,14 @@
   <meta name="description" content="<%= htmlWebpackPlugin.options.description %>">
   <meta name="version" content="<%= htmlWebpackPlugin.options.version %>">
   <meta name="author" content="<%= htmlWebpackPlugin.options.author %>">
+
+  <% if (htmlWebpackPlugin.options.platform === 'mobile') { %>
+  <!-- Cordova -->
+  <script src="cordova.js"></script>
+  <% } %>
+  <% if (htmlWebpackPlugin.options.platform === 'web') { %>
   <base href="<%= htmlWebpackPlugin.options.baseUrl %>">
-  <!-- imported CSS are concatenated and added automatically -->
+  <% } %>
 </head>
 
 <body aurelia-app="main">
