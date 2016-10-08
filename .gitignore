@@ -3,6 +3,7 @@
 # Logs #
 logs
 *.log
+*.log*
 
 # Coverage directory used by tools like istanbul #
 /test/coverage
