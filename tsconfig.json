@@ -5,8 +5,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
-    "sourceMap": true,
-    "allowJs": true
+    "sourceMap": true
   },
   "awesomeTypescriptLoaderOptions": {
     "doTypeCheck": true,
