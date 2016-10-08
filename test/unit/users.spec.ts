@@ -1,5 +1,5 @@
 import { HttpClient } from 'aurelia-fetch-client';
-import './setup';
+import '../lib/setup';
 import { Users } from '../../src/app/modules/users/users';
 
 class HttpStub extends HttpClient {

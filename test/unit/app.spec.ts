@@ -1,4 +1,4 @@
-import './setup';
+import '../lib/setup';
 import { App } from '../../src/app/app';
 
 class RouterStub {

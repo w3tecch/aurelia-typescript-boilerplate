@@ -1,4 +1,4 @@
-import './setup';
+import '../lib/setup';
 import { ChildRouter } from '../../src/app/modules/child-router/child-router';
 
 class RouterStub {
