@@ -232,6 +232,8 @@ So make sure you run for example ```npm run build``` first before runing/buildin
 - [X] Animation
 - [X] refactor webpack config
 - [ ] Layout Wrapper
+- [ ] add i18n
+- [ ] add materialize.css
 - [ ] Add all important libs like moment, lodash ...
 - [ ] Add cordova
 - [ ] Add travis
