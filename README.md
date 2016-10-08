@@ -9,7 +9,6 @@
 
 ## Technologies
 [aurelia](http://www.aurelia.io/)
-
 ## Getting started
 
 Before you start, make sure you have a recent version of [NodeJS](http://nodejs.org/) environment *>=4.0* with NPM 3.
@@ -139,7 +138,7 @@ Please see https://github.com/aurelia/webpack-plugin for more information.
 To run the unit tests:
 
 ```shell
-npm run test
+npm test
 ```
 
 ## Running The E2E Tests
@@ -218,25 +217,25 @@ So make sure you run for example ```npm run build``` first before runing/buildin
 
 # ToDo's
 
-- [X] Add materialize-css
-- [X] Make materialize-css sass configurable with variables and color plattern
-- [X] Add google design icons with npm
-- [X] Add config mgmt
+- [X] Add typings
+- [X] Remove bluebird
+- [X] Update app structure
+- [X] Add bootstrap sass
+- [X] Add sass ignore for unit tests
+- [X] Add linter
+- [X] Add env mgmt
 - [X] Add logging system
 - [X] Animation
-- [X] Layout Wrapper
-- [X] Remove Bootstrap
-- [X] Add bootstrap manual to the readme
-- [X] Add all important libs like moment, lodash ...
-- [ ] Add custome attribute example
-- [ ] Add service example
-- [X] Add cordova
-- [ ] Add cordova docu and helpers and stuff
-- [X] Add travis
+- [X] refactor webpack config
+- [ ] remove e2e
+- [ ] Layout Wrapper
+- [ ] Add all important libs like moment, lodash ...
+- [ ] Add cordova
+- [ ] Add travis
 - [ ] Add greenkeeper
-- [X] polyfill ES6 promises for tests => replaced phantom with firefox
-- [X] Add mocha chai sinon
-- [ ] Add coverage
+- [ ] polyfill ES6 promises for tests => replaced phantom with firefox
 - [ ] Add electron
-- [ ] Update the plugin boilerplate
-- [ ] Update the node boilerplate
+- [ ] Add wallaby.js
+- [ ] Add typedocs
+- [ ] VSC frontend debugging https://github.com/AngularClass/angular2-webpack-starter/blob/master/.vscode/launch.json
+- [ ] VSC add tasks https://code.visualstudio.com/docs/editor/tasks

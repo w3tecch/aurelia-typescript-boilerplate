@@ -1,18 +1,12 @@
 import {PageObject_Welcome} from './welcome.po';
 import {PageObject_Skeleton} from './skeleton.po';
-import {browser} from 'protractor';
+import {browser, element, by, By, $, $$, ExpectedConditions} from 'protractor/globals';
 
-describe('aurelia skeleton app', function () {
+describe('aurelia skeleton app', function() {
   let po_welcome: PageObject_Welcome;
   let po_skeleton: PageObject_Skeleton;
 
-  beforeAll(() => {
-    const width = 1500;
-    const height = 800;
-    browser.driver.manage().window().setSize(width, height);
-  });
-
-  beforeEach(() => {
+  beforeEach( () => {
     po_skeleton = new PageObject_Skeleton();
     po_welcome = new PageObject_Welcome();
 
@@ -20,11 +14,11 @@ describe('aurelia skeleton app', function () {
   });
 
   it('should load the page and display the initial page title', () => {
-    expect(po_skeleton.getCurrentPageTitle()).toBe('Welcome | Aurelia TS Boilerplate');
+    expect(po_skeleton.getCurrentPageTitle()).toBe('Welcome | Aurelia');
   });
 
   it('should display greeting', () => {
-    expect(po_welcome.getGreeting()).toContain('Welcome to the Aurelia Navigation App');
+    expect(po_welcome.getGreeting()).toBe('Welcome to the Aurelia Navigation App');
   });
 
   it('should automatically write down the fullname', () => {
@@ -37,8 +31,12 @@ describe('aurelia skeleton app', function () {
     expect(po_welcome.getFullname()).toBe('ROB EISENBERG');
   });
 
+  it('should show alert message when clicking submit button', () => {
+    expect(po_welcome.openAlertDialog()).toBe(true);
+  });
+
   it('should navigate to users page', () => {
-    po_skeleton.navigateTo('/users');
-    expect(po_skeleton.getCurrentPageTitle()).toBe('Github Users | Aurelia TS Boilerplate');
+    po_skeleton.navigateTo('#/users');
+    expect(po_skeleton.getCurrentPageTitle()).toBe('Github Users | Aurelia');
   });
 });
