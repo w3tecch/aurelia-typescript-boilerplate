@@ -16,8 +16,7 @@ module.exports = function(config) {
      *
      * available frameworks: https://npmjs.org/browse/keyword/karma-adapter
      */
-    // frameworks: ['jasmine'],
-    frameworks: ['mocha', 'chai', 'sinon'],
+    frameworks: ['jasmine'],
 
     // list of files to exclude
     exclude: [ ],
@@ -38,25 +37,25 @@ module.exports = function(config) {
     preprocessors: {
       'spec-bundle.js': ['coverage', 'webpack', 'sourcemap']
     },
-
+    
     webpack: require('../webpack.config'),
 
     coverageReporter: {
       reporters: [{
         type: 'json',
-        subdir: '.',
+        subdir: '.', 
         file: 'coverage-final.json'
       }]
     },
 
-    /*remapIstanbulReporter: {
+    remapIstanbulReporter: {
       src: path.join(__dirname, 'coverage/coverage-final.json'),
       reports: {
         html: path.join(__dirname, 'coverage/')
       },
       timeoutNotCreated: 1000,
       timeoutNoMoreFiles: 1000
-    },*/
+    },
 
     // Webpack please don't spam the console when running in karma!
     webpackServer: { noInfo: true },
@@ -67,7 +66,7 @@ module.exports = function(config) {
      * possible values: 'dots', 'progress'
      * available reporters: https://npmjs.org/browse/keyword/karma-reporter
      */
-    reporters: [ 'mocha', 'coverage' ], //, 'karma-remap-istanbul' ],
+    reporters: [ 'mocha', 'coverage', 'karma-remap-istanbul' ],
 
     // web server port
     port: 9876,
@@ -82,14 +81,14 @@ module.exports = function(config) {
     logLevel: config.LOG_INFO,
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
+    autoWatch: false,
 
     /*
      * start these browsers
      * available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
      */
     browsers: [
-      'Firefox',
+      'Chrome',
       // TODO: https://www.npmjs.com/package/karma-electron
     ],
 
@@ -97,7 +96,7 @@ module.exports = function(config) {
      * Continuous Integration mode
      * if true, Karma captures browsers, runs the tests and exits
      */
-    singleRun: false
+    singleRun: true
   });
 
 };

@@ -9,19 +9,19 @@ const faviconsWebpackPlugin = require('favicons-webpack-plugin');
 /**
  * Favicon config
  */
-const configFavicon = function (appName, icon, icons) {
-  return {
+const configFavicon = function (options) {
+	return {
 		plugins: [
 			new faviconsWebpackPlugin({
 				// Your source logo
-				logo: icon || 'favicon.png',
+				logo: options.logo || 'favicon.png',
 				// Generate a cache file with control hashes and
 				// don't rebuild the favicons until those hashes change
 				persistentCache: true,
 				// Inject the html into the html-webpack-plugin
 				inject: true,
 				// favicon app title (see https://github.com/haydenbleasel/favicons#usage)
-				title: appName,
+				title: options.title,
 				// which icons should be generated (see https://github.com/haydenbleasel/favicons#usage)
 				icons: Object.assign({
 					android: true,
@@ -34,9 +34,9 @@ const configFavicon = function (appName, icon, icons) {
 					twitter: false,
 					yandex: false,
 					windows: false
-				}, icons)
+				}, options.icons)
 			})
 		]
-		};
+	};
 };
 module.exports = configFavicon;

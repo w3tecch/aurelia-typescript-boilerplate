@@ -9,11 +9,11 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 /**
  * Notifier config
  */
-const configNotifier = function (title, options) {
+const configNotifier = function (options) {
   return {
 		plugins: [
 			new WebpackNotifierPlugin(Object.assign({
-				title: title || 'Webpack'
+				title: options.title || 'Webpack'
 			}, options))
 		]
 		};
