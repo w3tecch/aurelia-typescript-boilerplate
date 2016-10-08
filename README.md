@@ -236,7 +236,7 @@ So make sure you run for example ```npm run build``` first before runing/buildin
 - [ ] add materialize.css
 - [ ] Add all important libs like moment, lodash ...
 - [ ] Add cordova
-- [ ] Add travis
+- [X] Add travis
 - [ ] Add greenkeeper
 - [ ] polyfill ES6 promises for tests => replaced phantom with firefox
 - [ ] Add electron
