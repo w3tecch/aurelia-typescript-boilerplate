@@ -38,7 +38,7 @@ module.exports = function(config) {
       'spec-bundle.js': ['coverage', 'webpack', 'sourcemap']
     },
 
-    webpack: require('../webpack.config'),
+    webpack: require('../webpack.config')(),
 
     coverageReporter: {
       reporters: [{
