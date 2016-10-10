@@ -5,10 +5,10 @@ declare namespace AppConfig {
 	}
 
 	export interface IAppConfig {
-		NAME?: string;
-    VERSION?: string;
-    ENV?: string;
-    PLATFORM?: string;
-    CONFIG?: IAppConfigEnv;
+		NAME: string;
+    VERSION: string;
+    ENV: string;
+    PLATFORM: string;
+    CONFIG: IAppConfigEnv;
 	}
 }
