@@ -2369,6 +2369,11 @@
       "from": "fresh@0.3.0",
       "resolved": "https://registry.npmjs.org/fresh/-/fresh-0.3.0.tgz"
     },
+    "fs": {
+      "version": "0.0.1-security",
+      "from": "fs@0.0.1-security",
+      "resolved": "https://registry.npmjs.org/fs/-/fs-0.0.1-security.tgz"
+    },
     "fs-extra": {
       "version": "0.26.7",
       "from": "fs-extra@>=0.26.4 <0.27.0",
@@ -3396,11 +3401,6 @@
       "from": "i18next@>=3.4.1 <4.0.0",
       "resolved": "https://registry.npmjs.org/i18next/-/i18next-3.4.3.tgz"
     },
-    "i18next-xhr-backend": {
-      "version": "1.2.0",
-      "from": "i18next-xhr-backend@>=1.2.0 <2.0.0",
-      "resolved": "https://registry.npmjs.org/i18next-xhr-backend/-/i18next-xhr-backend-1.2.0.tgz"
-    },
     "iconv-lite": {
       "version": "0.4.13",
       "from": "iconv-lite@>=0.4.13 <0.5.0",
@@ -4311,6 +4311,11 @@
       "version": "1.0.0",
       "from": "ncname@>=1.0.0 <1.1.0",
       "resolved": "https://registry.npmjs.org/ncname/-/ncname-1.0.0.tgz"
+    },
+    "ncp": {
+      "version": "2.0.0",
+      "from": "ncp@>=2.0.0 <3.0.0",
+      "resolved": "https://registry.npmjs.org/ncp/-/ncp-2.0.0.tgz"
     },
     "negotiator": {
       "version": "0.4.9",

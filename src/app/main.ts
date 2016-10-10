@@ -21,7 +21,11 @@ import '../scss/main.scss';
  */
 import { Aurelia, LogManager } from 'aurelia-framework';
 import { ConsoleAppender } from 'aurelia-logging-console';
-import XHR from 'i18next-xhr-backend';
+
+/**
+ * Locals i18n imports
+ */
+import i18nEnglish from './../locales/en.json';
 
 /**
  * Aurelia configruation
@@ -44,14 +48,13 @@ export async function configure(aurelia: Aurelia): Promise<void> {
      * See: https://github.com/aurelia/i18n
      */
     .plugin('aurelia-i18n', (instance) => {
-      // register backend plugin
-      instance.i18next.use(XHR);
-
       // adapt options to your needs (see http://i18next.com/docs/options/)
       // make sure to return the promise of the setup method, in order to guarantee proper loading
       return instance.setup({
-        backend: {                                  // <-- configure backend settings
-          loadPath: './locales/{{lng}}.json', // <-- XHR settings for where to get the files from
+        resources: {
+          en: {
+            translation:  i18nEnglish
+          }
         },
         lng: 'en',
         attributes: ['translate', 'i18n'],

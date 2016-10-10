@@ -180,6 +180,7 @@ module.exports = function (envArguments) {
         require('@easy-webpack/config-html')(),
         require('@easy-webpack/config-sass')(configSass(false)),
         require('@easy-webpack/config-fonts-and-images')(),
+        require('@easy-webpack/config-json')(),
         require('@easy-webpack/config-global-jquery')(),
         require('@easy-webpack/config-global-regenerator')(),
         require('@easy-webpack/config-generate-index-html')(configGenerateIndex(true)),
