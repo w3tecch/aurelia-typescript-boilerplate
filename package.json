@@ -33,7 +33,10 @@
     "webpack": "cross-env ./node_modules/.bin/webpack",
     "webpack-dev-server": "cross-env ./node_modules/.bin/webpack-dev-server",
     "server:coverage": "http-server ./test/coverage --cors",
-    "cordova:init": "node ./config/init-cordova.js"
+    "mobile:setup": "node ./config/setup-mobile.js",
+    "mobile:build": "npm run build:dev -- --env.platform mobile",
+    "mobile:release": "npm run build:prod -- --env.platform mobile"
+
   },
   "repository": {
     "type": "git",

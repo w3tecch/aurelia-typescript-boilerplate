@@ -1,20 +1,12 @@
 ﻿/**
- * Gets and defines the environment configruation
- */
-declare var NAME: string;
-declare var VERSION: string;
-declare var CONFIG: AppConfig.IAppConfigEnv;
-
-const AppConfig: AppConfig.IAppConfig = {
-  NAME: NAME,
-  VERSION: VERSION,
-  CONFIG: CONFIG
-};
-
-/**
  * Import the main sass file for all the styles
  */
 import '../scss/main.scss';
+
+/**
+ * App configuration import
+ */
+import AppConfig from './app-config';
 
 /**
  * Aurelia imports
