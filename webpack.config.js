@@ -15,7 +15,7 @@ module.exports = function (envArguments) {
   const ENV = process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() || 'development';
   const pkg = require(path.join(process.cwd(), 'package.json'));
   let PLATFORM = 'web';
-  let TARGET = 'development';
+  let TARGET = ENV;
   if (envArguments) {
     PLATFORM = envArguments.platform || PLATFORM;
     TARGET = envArguments.target || TARGET;

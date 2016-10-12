@@ -1,7 +1,6 @@
 "use strict";
 
 const webpack = require('webpack');
-const minimist = require('minimist')(process.argv.slice(2));
 
 /**
  * Environment Config
@@ -15,12 +14,11 @@ const configEnv = function (options) {
 };
 
 function getDefinitions(env, name, version, platform) {
-  const environment = minimist.env || env;
   return {
     NAME: JSON.stringify(name),
     VERSION: JSON.stringify(version),
     PLATFORM: JSON.stringify(platform),
-    CONFIG: JSON.stringify(require(process.cwd() + `/environment/${environment}.json`))
+    CONFIG: JSON.stringify(require(process.cwd() + `/environment/${env}.json`))
 	};
 
 }
