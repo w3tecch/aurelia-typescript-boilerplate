@@ -3,11 +3,13 @@
 [![devDependency Status](https://david-dm.org/w3tecch/aurelia-ts-boilerplate/dev-status.svg)](https://david-dm.org/w3tecch/aurelia-ts-boilerplate#info=devDependencies)
 
 ## Prerequisites
+
 1. Install [NodeJS](https://nodejs.org/en/)
 2. Open your Terminal and navigate to the project folder
 3. To get all app prerequisites run ```$ npm install```
 
 ## Technologies
+
 [aurelia](http://www.aurelia.io/)
 
 ## Getting started
@@ -139,7 +141,7 @@ Please see https://github.com/aurelia/webpack-plugin for more information.
 To run the unit tests:
 
 ```shell
-npm run test
+npm test
 ```
 
 ## Running The E2E Tests
@@ -169,14 +171,14 @@ Integration tests are performed with [Protractor](http://angular.github.io/protr
 
 ## Environment confugration
 There is a configuration management in place. Three standart environments are already set (devlopment, test and production).
-You can also add more environments with ```--env <env-name>``` but there is a catch: You have to add ```--``` for each npm command you
+You can also add more environments with ```--env.target <env-name>``` but there is a catch: You have to add ```--``` for each npm command you
 run throw so if your like to set the evnirnment for ```npm start``` you have to do this like so:
 
   ```shell
-  npm start -- -- --env <json-file-name-without-extension>
+  npm start -- -- --env.target <json-file-name-without-extension>
   ```
 
-This because ```npm start``` runs ```npm run server:dev``` and then the target command, so we have to to pass the ```--env``` by providing two times ```--```.
+This because ```npm start``` runs ```npm run server:dev``` and then the target command, so we have to to pass the ```--env.target``` by providing two times ```--```.
 You can find the configurations in ```<root>/environment```.
 
 ## HTML5 pushState routing
@@ -189,28 +191,38 @@ extra confuration to enable this.
 Initiate cordova with the following commands:
 ```shell
 npm install -g cordova
-npm run cordova:init
-```
-
-Finally add the following code just before the ```</body>``` closing tag:
-```
-<!-- Cordova -->
-<script src="cordova.js"></script>
-```
-
-Cordova has a issue in the way they serve the source code files to the WebView in the platforms. So we have to remove/alter the following code
-to make sure everything works in cordova.
-
-Remove the following line in src/index.ejs
-```
-12: <base href="<%= htmlWebpackPlugin.options.baseUrl %>">
-```
-
-Remove the following line in src/app/app.ts
-```
-8: config.options.pushState = true;
+npm run mobile:setup
 ```
 
 ### Run and build
 Cordova takes the ```www``` folder source to create the Cordova app. This ```www``` folder is a symlink to the ```dist``` folder.
 So make sure you run for example ```npm run build``` first before runing/buildinga Cordova app.
+
+
+
+# ToDo's
+
+- [X] Add typings
+- [X] Remove bluebird
+- [X] Update app structure
+- [X] Add bootstrap sass
+- [X] Add sass ignore for unit tests
+- [X] Add linter
+- [X] Add env mgmt
+- [X] Add logging system
+- [X] Animation
+- [X] refactor webpack config
+- [ ] Layout Wrapper
+- [X] add i18n
+- [ ] add materialize.css
+- [ ] Add all important libs like moment, lodash ...
+- [X] Add cordova
+- [X] Add travis
+- [ ] Add greenkeeper
+- [X] polyfill ES6 promises for tests => replaced phantom with firefox
+- [ ] Add electron
+- [ ] Add wallaby.js
+- [ ] Add typedocs
+- [ ] VSC frontend debugging https://github.com/AngularClass/angular2-webpack-starter/blob/master/.vscode/launch.json
+- [ ] VSC add tasks https://code.visualstudio.com/docs/editor/tasks
+

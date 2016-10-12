@@ -1,16 +1,16 @@
 <template>
-  <section class="au-animate pages">
-    <h2>${heading}</h2>
 
-    <div class="row">
-      <div class="col s6 m3" repeat.for="user of users">
+  <section class="au-animate">
+    <h2>${heading}</h2>
+    <div class="row au-stagger">
+      <div class="col-sm-6 col-md-3 card-container au-animate" repeat.for="user of users">
         <div class="card">
-          <div class="card-image">
-            <img src.bind="user.avatar_url" crossorigin ref="image" />
-            <span class="card-title">${user.login}</span>
+          <div class="avatar">
+            <img src.bind="user.avatar_url" crossorigin ref="image"/>
           </div>
-          <div class="card-content">
-            <p><a target="_blank" href.bind="user.html_url">Contact</a></p>
+          <div class="content">
+            <p class="name">${user.login}</p>
+            <p><a target="_blank" class="btn btn-default" href.bind="user.html_url">Contact</a></p>
           </div>
         </div>
       </div>

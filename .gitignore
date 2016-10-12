@@ -1,19 +1,36 @@
-logs/*
-!.gitkeep
-node_modules/
-bower_components/
+# @w3tec
+
+# Logs #
+logs
+*.log
+*.log*
+
+# Coverage directory used by tools like istanbul #
+/test/coverage
+
+# Node Files #
+/node_modules
+/bower_components
+npm-debug.log
+
+# OS generated files #
+.DS_Store
+Thumbs.db
+
+# Typing #
+/typings/
+
+# Dist #
+/dist
+
+# Cordova #
+cordova/plugins
+cordova/platforms
 www/
 plugins/
 platforms/
-dist/
-build/
-docs/
-out/
-coverage/
-tmp
-.DS_Store
-.idea
+
+# IDE #
+.idea/
+*.swp
 .awcache
-npm-debug.log
-npm-debug.log*
-/typings

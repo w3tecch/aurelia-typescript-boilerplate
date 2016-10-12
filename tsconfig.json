@@ -10,22 +10,12 @@
   "awesomeTypescriptLoaderOptions": {
     "doTypeCheck": true,
     "forkChecker": true,
-    "resolveGlobs": true,
     "useBabel": true,
     "useCache": true,
     "babelOptions": {
-      "presets": [
-        "es2015-loose-native-modules"
-      ]
+      "presets": ["es2015-loose-native-modules"]
     }
   },
-  "filesGlob": [
-    "./src/**/*.ts",
-    "./test/**/*.ts",
-    "!./node_modules/**/*.ts",
-    "typings-custom/*.ts",
-    "typings/index.d.ts"
-  ],
   "exclude": [
     "node_modules",
     "dist",

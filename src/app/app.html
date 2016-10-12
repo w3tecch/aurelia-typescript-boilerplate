@@ -1,15 +1,9 @@
 <template>
+  <require from="./resources/templates/nav-bar.html"></require>
 
-  <header>
-    <nav-bar router.bind="router"></nav-bar>
-  </header>
+  <nav-bar router.bind="router"></nav-bar>
 
-  <main>
-    <div class="container">
-      <router-view swap-order="after"></router-view>
-    </div>
-  </main>
-
-  <footer-bar></footer-bar>
-
+  <div class="page-host">
+    <router-view></router-view>
+  </div>
 </template>
