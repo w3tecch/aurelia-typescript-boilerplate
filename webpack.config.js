@@ -254,7 +254,12 @@ module.exports = function (envArguments) {
         require('./config/config-globals.js')(),
         require('./config/config-favicon.js')(configFavicon),
         require('./config/config-notifier.js')(configNotifier),
-        require('./config/config-aurelia-linter.js')()
+        require('./config/config-aurelia-linter.js')
+        ({
+          failOnHint: false,
+          typeChecking: true,
+          sourceDir: srcDir
+        })
       );
       break;
   }

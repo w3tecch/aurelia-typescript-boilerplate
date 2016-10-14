@@ -2,9 +2,27 @@ import { inject } from 'aurelia-framework';
 import { Router, RouterConfiguration } from 'aurelia-router';
 import { I18N } from 'aurelia-i18n';
 
+export interface Address {
+  address: string;
+  postcode: Address;
+}
+
+export interface Role {
+  isAdmin: boolean;
+}
+
+export interface Person {
+  name: string;
+  address: Address;
+  age: number;
+  role: Role;
+}
+
 @inject(I18N, 'AppConfig')
 export class App {
   public router: Router;
+
+  public person: Person;
 
   constructor(
     private i18n: I18N,
