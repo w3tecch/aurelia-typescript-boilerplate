@@ -27,7 +27,6 @@ export async function configure(aurelia: Aurelia): Promise<void> {
   LogManager.setLevel(LogManager.logLevel[(<AppConfig.IAppConfig>AppConfig).CONFIG.LOG_LEVEL]);
   aurelia.use
     .standardConfiguration()
-    .developmentLogging()
 		/**
 		 * Adds the app config to the framework's dependency injection container.
 		 */
