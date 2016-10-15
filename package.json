@@ -36,7 +36,6 @@
     "mobile:setup": "node ./config/setup-mobile.js",
     "mobile:build": "npm run build:dev -- --env.platform mobile",
     "mobile:release": "npm run build:prod -- --env.platform mobile"
-
   },
   "repository": {
     "type": "git",
@@ -112,6 +111,7 @@
     "@easy-webpack/config-typescript": "2.1.3",
     "@easy-webpack/config-uglify": "2.2.0",
     "@easy-webpack/core": "1.3.2",
+    "aurelia-template-lint-loader": "1.0.0",
     "aurelia-tools": "0.2.4",
     "babel-plugin-transform-decorators-legacy": "1.3.4",
     "babel-preset-es2015": "6.16.0",

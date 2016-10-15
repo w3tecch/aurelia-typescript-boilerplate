@@ -90,7 +90,7 @@ module.exports = function (envArguments) {
 
   const baseConfig = {
     entry: {
-      'app': [ /* this is filled by the aurelia-webpack-plugin */ ],
+      'app': [ /* this is filled by the aurelia-webpack-plugin */],
       'theme': coreBundles.theme,
       'aurelia-bootstrap': coreBundles.bootstrap,
       'aurelia': coreBundles.aurelia.filter(pkg => coreBundles.bootstrap.indexOf(pkg) === -1)
@@ -161,6 +161,12 @@ module.exports = function (envArguments) {
     }]
   };
 
+  const aureliaTemplateLint = {
+    failOnHint: false,
+    typeChecking: true,
+    sourceDir: srcDir
+  }
+
   // advanced configuration:
   switch (ENV) {
     /**
@@ -170,9 +176,9 @@ module.exports = function (envArguments) {
       config = generateConfig(
         baseConfig,
         require('@easy-webpack/config-env-production')
-        ({
-          compress: true
-        }),
+          ({
+            compress: true
+          }),
         require('@easy-webpack/config-common-chunks-simple')(configCommonChunks),
         require('@easy-webpack/config-aurelia')(configAurelia),
         require('@easy-webpack/config-tslint')(),
@@ -186,9 +192,10 @@ module.exports = function (envArguments) {
         require('@easy-webpack/config-generate-index-html')(configGenerateIndex(true)),
         require('@easy-webpack/config-copy-files')(copyLocales),
         require('@easy-webpack/config-uglify')
-        ({
-          debug: false
-        }),
+          ({
+            debug: false
+          }),
+        require('./config/config-aurelia-linter.js')(aureliaTemplateLint),
         require('./config/config-globals.js')(),
         require('./config/config-favicon.js')(configFavicon),
         require('./config/config-environment.js')(configEnvironment),
@@ -197,28 +204,28 @@ module.exports = function (envArguments) {
         require('./config/config-gzip')()
       );
       break;
-      /**
-       * TEST
-       */
+    /**
+     * TEST
+     */
     case 'test':
       config = generateConfig(
         baseConfig,
         require('@easy-webpack/config-env-development')
-        ({
-          devtool: 'inline-source-map'
-        }),
+          ({
+            devtool: 'inline-source-map'
+          }),
         require('@easy-webpack/config-aurelia')(configAurelia),
         // require('@easy-webpack/config-tslint')(),
         require('@easy-webpack/config-typescript')
-        ({
-          options: {
-            doTypeCheck: false,
-            compilerOptions: {
-              sourceMap: false,
-              inlineSourceMap: true
+          ({
+            options: {
+              doTypeCheck: false,
+              compilerOptions: {
+                sourceMap: false,
+                inlineSourceMap: true
+              }
             }
-          }
-        }),
+          }),
         require('@easy-webpack/config-json')(),
         require('@easy-webpack/config-global-jquery')(),
         require('@easy-webpack/config-global-regenerator')(),
@@ -229,9 +236,9 @@ module.exports = function (envArguments) {
       );
       break;
 
-      /**
-       * DEVELOPMENT
-       */
+    /**
+     * DEVELOPMENT
+     */
     default:
     case 'development':
       process.env.NODE_ENV = 'development';
@@ -250,6 +257,7 @@ module.exports = function (envArguments) {
         require('@easy-webpack/config-global-regenerator')(),
         require('@easy-webpack/config-generate-index-html')(configGenerateIndex(false)),
         require('@easy-webpack/config-copy-files')(copyLocales),
+        require('./config/config-aurelia-linter.js')(aureliaTemplateLint),
         require('./config/config-environment.js')(configEnvironment),
         require('./config/config-globals.js')(),
         require('./config/config-favicon.js')(configFavicon),

@@ -1,6 +1,6 @@
 {
   "name": "aurelia-ts-boilerplate",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "dependencies": {
     "@easy-webpack/assign": {
       "version": "0.9.12",
@@ -111,6 +111,16 @@
       "version": "1.3.2",
       "from": "@easy-webpack/core@1.3.2",
       "resolved": "https://registry.npmjs.org/@easy-webpack/core/-/core-1.3.2.tgz"
+    },
+    "@types/node": {
+      "version": "6.0.45",
+      "from": "@types/node@>=6.0.37 <7.0.0",
+      "resolved": "https://registry.npmjs.org/@types/node/-/node-6.0.45.tgz"
+    },
+    "@types/parse5": {
+      "version": "0.0.30",
+      "from": "@types/parse5@0.0.30",
+      "resolved": "https://registry.npmjs.org/@types/parse5/-/parse5-0.0.30.tgz"
     },
     "abab": {
       "version": "1.0.3",
@@ -223,6 +233,11 @@
       "version": "1.0.0",
       "from": "array-differ@>=1.0.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/array-differ/-/array-differ-1.0.0.tgz"
+    },
+    "array-equal": {
+      "version": "1.0.0",
+      "from": "array-equal@>=1.0.0 <2.0.0",
+      "resolved": "https://registry.npmjs.org/array-equal/-/array-equal-1.0.0.tgz"
     },
     "array-find-index": {
       "version": "1.0.2",
@@ -399,6 +414,23 @@
       "from": "aurelia-pal-browser@>=1.0.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/aurelia-pal-browser/-/aurelia-pal-browser-1.0.0.tgz"
     },
+    "aurelia-pal-nodejs": {
+      "version": "1.0.0",
+      "from": "aurelia-pal-nodejs@>=1.0.0-alpha.4 <2.0.0",
+      "resolved": "https://registry.npmjs.org/aurelia-pal-nodejs/-/aurelia-pal-nodejs-1.0.0.tgz",
+      "dependencies": {
+        "jsdom": {
+          "version": "9.6.0",
+          "from": "jsdom@>=9.2.1 <10.0.0",
+          "resolved": "https://registry.npmjs.org/jsdom/-/jsdom-9.6.0.tgz"
+        },
+        "webidl-conversions": {
+          "version": "3.0.1",
+          "from": "webidl-conversions@>=3.0.1 <4.0.0",
+          "resolved": "https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz"
+        }
+      }
+    },
     "aurelia-path": {
       "version": "1.1.1",
       "from": "aurelia-path@>=1.0.0 <2.0.0",
@@ -423,6 +455,28 @@
       "version": "1.1.0",
       "from": "aurelia-task-queue@>=1.1.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/aurelia-task-queue/-/aurelia-task-queue-1.1.0.tgz"
+    },
+    "aurelia-template-lint": {
+      "version": "0.9.15",
+      "from": "aurelia-template-lint@latest",
+      "resolved": "https://registry.npmjs.org/aurelia-template-lint/-/aurelia-template-lint-0.9.15.tgz",
+      "dependencies": {
+        "glob": {
+          "version": "7.0.6",
+          "from": "glob@>=7.0.0 <7.1.0",
+          "resolved": "https://registry.npmjs.org/glob/-/glob-7.0.6.tgz"
+        },
+        "parse5": {
+          "version": "2.2.2",
+          "from": "parse5@>=2.2.0 <2.3.0",
+          "resolved": "https://registry.npmjs.org/parse5/-/parse5-2.2.2.tgz"
+        }
+      }
+    },
+    "aurelia-template-lint-loader": {
+      "version": "1.0.0",
+      "from": "aurelia-template-lint-loader@1.0.0",
+      "resolved": "https://registry.npmjs.org/aurelia-template-lint-loader/-/aurelia-template-lint-loader-1.0.0.tgz"
     },
     "aurelia-templating": {
       "version": "1.1.1",
@@ -3922,7 +3976,7 @@
     },
     "loader-utils": {
       "version": "0.2.16",
-      "from": "loader-utils@>=0.2.15 <0.3.0",
+      "from": "loader-utils@latest",
       "resolved": "https://registry.npmjs.org/loader-utils/-/loader-utils-0.2.16.tgz"
     },
     "lodash": {
@@ -4494,7 +4548,7 @@
     },
     "object-assign": {
       "version": "4.1.0",
-      "from": "object-assign@>=4.0.1 <5.0.0",
+      "from": "object-assign@latest",
       "resolved": "https://registry.npmjs.org/object-assign/-/object-assign-4.1.0.tgz"
     },
     "object-component": {
@@ -5929,6 +5983,18 @@
         }
       }
     },
+    "template-lint": {
+      "version": "0.8.10",
+      "from": "template-lint@>=0.8.0 <0.9.0",
+      "resolved": "https://registry.npmjs.org/template-lint/-/template-lint-0.8.10.tgz",
+      "dependencies": {
+        "parse5": {
+          "version": "2.2.2",
+          "from": "parse5@2.2.x",
+          "resolved": "https://registry.npmjs.org/parse5/-/parse5-2.2.2.tgz"
+        }
+      }
+    },
     "throttleit": {
       "version": "1.0.0",
       "from": "throttleit@>=1.0.0 <2.0.0",
@@ -6894,6 +6960,18 @@
       "version": "1.0.0",
       "from": "whatwg-fetch@>=0.10.0",
       "resolved": "https://registry.npmjs.org/whatwg-fetch/-/whatwg-fetch-1.0.0.tgz"
+    },
+    "whatwg-url": {
+      "version": "3.0.0",
+      "from": "whatwg-url@>=3.0.0 <4.0.0",
+      "resolved": "https://registry.npmjs.org/whatwg-url/-/whatwg-url-3.0.0.tgz",
+      "dependencies": {
+        "webidl-conversions": {
+          "version": "3.0.1",
+          "from": "webidl-conversions@^3.0.0",
+          "resolved": "https://registry.npmjs.org/webidl-conversions/-/webidl-conversions-3.0.1.tgz"
+        }
+      }
     },
     "whatwg-url-compat": {
       "version": "0.6.5",
