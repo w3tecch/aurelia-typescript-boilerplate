@@ -59,6 +59,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
 		 */
     .feature('resources/attributes')
     .feature('resources/elements')
+    .feature('resources/templates')
     ;
 
   await aurelia.start();

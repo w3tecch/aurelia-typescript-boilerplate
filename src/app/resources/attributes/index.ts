@@ -1,4 +1,6 @@
 export function configure(aurelia): void {
-	// aurelia
-	// 	.globalResources('./custom-attribute');
+	aurelia
+		.globalResources([
+      './red-square/red-square.attribute'
+    ]);
 };
