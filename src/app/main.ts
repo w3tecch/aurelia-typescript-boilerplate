@@ -60,6 +60,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .feature('resources/attributes')
     .feature('resources/elements')
     .feature('resources/templates')
+    .feature('resources/converters')
     ;
 
   await aurelia.start();

@@ -88,7 +88,8 @@
     "bootstrap-sass": "^3.3.7",
     "font-awesome": "^4.6.3",
     "isomorphic-fetch": "^2.2.1",
-    "jquery": "^3.1.1"
+    "jquery": "^3.1.1",
+    "moment": "^2.15.1"
   },
   "devDependencies": {
     "@easy-webpack/config-aurelia": "2.2.0",

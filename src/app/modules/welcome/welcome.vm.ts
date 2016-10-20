@@ -5,11 +5,13 @@ import { AppConfig } from './../../services/app-config.service';
 
 @autoinject
 export class Welcome {
+  private logger: Logger;
+
 	public heading: string = 'Welcome to the Aurelia Navigation App';
 	public firstName: string = 'John';
 	public lastName: string = 'Doe';
 	public previousValue: string = this.fullName;
-	private logger: Logger;
+  public currentDate: Date = new Date();
 
 	constructor(
     private appConfig: AppConfig
