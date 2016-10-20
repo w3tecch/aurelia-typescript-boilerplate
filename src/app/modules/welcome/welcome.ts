@@ -1,8 +1,9 @@
-import { inject } from 'aurelia-framework';
+import { autoinject } from 'aurelia-framework';
 import { LogManager } from 'aurelia-framework';
 import { Logger } from 'aurelia-logging';
+import { AppConfig } from './../../services/app-config.service';
 
-@inject('AppConfig')
+@autoinject
 export class Welcome {
 	public heading: string = 'Welcome to the Aurelia Navigation App';
 	public firstName: string = 'John';
@@ -10,9 +11,15 @@ export class Welcome {
 	public previousValue: string = this.fullName;
 	private logger: Logger;
 
-	constructor(private appConfig: AppConfig.IAppConfig) {
+	constructor(
+    private appConfig: AppConfig
+  ) {
 		this.logger = LogManager.getLogger('Welcome VM');
-		this.logger.info('appConfig', appConfig);
+		this.logger.info('appConfig => name:', appConfig.getName());
+		this.logger.info('appConfig => version:', appConfig.getVersion());
+		this.logger.info('appConfig => env:', appConfig.getEnv());
+		this.logger.info('appConfig => platform:', appConfig.getPlatform());
+		this.logger.info('appConfig => config:', appConfig.getConfig());
 	}
 
 	//Getters can't be directly observed, so they must be dirty checked.

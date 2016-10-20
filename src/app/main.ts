@@ -6,7 +6,8 @@ import '../scss/main.scss';
 /**
  * App configuration import
  */
-import AppConfig from './app-config';
+import { AppConfig } from './services/app-config.service';
+const appConfig = new AppConfig();
 
 /**
  * Aurelia imports
@@ -24,13 +25,9 @@ import i18nEnglish from './../locales/en.json';
  */
 export async function configure(aurelia: Aurelia): Promise<void> {
   LogManager.addAppender(new ConsoleAppender());
-  LogManager.setLevel(LogManager.logLevel[(<AppConfig.IAppConfig>AppConfig).CONFIG.LOG_LEVEL]);
+  LogManager.setLevel(LogManager.logLevel[appConfig.getConfig().LOG_LEVEL]);
   aurelia.use
     .standardConfiguration()
-		/**
-		 * Adds the app config to the framework's dependency injection container.
-		 */
-    .instance('AppConfig', AppConfig)
     /**
      * i18n support
      * adapt options to your needs (see http://i18next.com/docs/options/)
