@@ -21,21 +21,21 @@ export class App {
       {
         route: ['', 'welcome'],
         name: 'welcome',
-        moduleId: './modules/welcome/welcome',
+        moduleId: './modules/welcome/welcome.vm',
         nav: true,
         title: 'Welcome'
       },
       {
         route: 'users',
         name: 'users',
-        moduleId: './modules/users/users',
+        moduleId: './modules/users/users.vm',
         nav: true,
         title: 'Github Users'
       },
       {
         route: 'child-router',
         name: 'child-router',
-        moduleId: './modules/child-router/child-router',
+        moduleId: './modules/child-router/child-router.vm',
         nav: true,
         title: 'Child Router'
       }
