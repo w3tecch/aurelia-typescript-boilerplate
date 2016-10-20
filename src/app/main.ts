@@ -45,9 +45,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
           }
         },
         lng: 'en',
-        attributes: ['translate', 'i18n'],
-        fallbackLng: 'en',
-        debug: false
+        fallbackLng: 'en'
       });
     })
     // Uncomment the line below to enable animation.
