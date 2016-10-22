@@ -1,40 +1,41 @@
-import { inject } from 'aurelia-framework';
+import { autoinject } from 'aurelia-framework';
 import { Router, RouterConfiguration } from 'aurelia-router';
 import { I18N } from 'aurelia-i18n';
+import { AppConfigService } from './services/app-config.service';
 
-@inject(I18N, 'AppConfig')
-export class App {
+@autoinject
+export class AppViewModel {
   public router: Router;
 
   constructor(
     private i18n: I18N,
-    private appConfig: AppConfig.IAppConfig
+    private appConfigService: AppConfigService
   ) { }
 
   public configureRouter(config: RouterConfiguration, router: Router): void {
     config.title = this.i18n.tr('TITLE');
-    if (this.appConfig.PLATFORM === 'web') {
+    if (this.appConfigService.getPlatform() === 'web') {
       config.options.pushState = true;
     }
     config.map([
       {
         route: ['', 'welcome'],
         name: 'welcome',
-        moduleId: './modules/welcome/welcome',
+        moduleId: './modules/welcome/welcome.vm',
         nav: true,
         title: 'Welcome'
       },
       {
         route: 'users',
         name: 'users',
-        moduleId: './modules/users/users',
+        moduleId: './modules/users/users.vm',
         nav: true,
         title: 'Github Users'
       },
       {
         route: 'child-router',
         name: 'child-router',
-        moduleId: './modules/child-router/child-router',
+        moduleId: './modules/child-router/child-router.vm',
         nav: true,
         title: 'Child Router'
       }

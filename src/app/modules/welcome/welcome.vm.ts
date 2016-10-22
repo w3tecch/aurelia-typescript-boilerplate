@@ -1,18 +1,27 @@
-import { inject } from 'aurelia-framework';
+import { autoinject } from 'aurelia-framework';
 import { LogManager } from 'aurelia-framework';
 import { Logger } from 'aurelia-logging';
+import { AppConfigService } from './../../services/app-config.service';
 
-@inject('AppConfig')
+@autoinject
 export class Welcome {
+  private logger: Logger;
+
 	public heading: string = 'Welcome to the Aurelia Navigation App';
 	public firstName: string = 'John';
 	public lastName: string = 'Doe';
 	public previousValue: string = this.fullName;
-	private logger: Logger;
+  public currentDate: Date = new Date();
 
-	constructor(private appConfig: AppConfig.IAppConfig) {
+	constructor(
+    private appConfigService: AppConfigService
+  ) {
 		this.logger = LogManager.getLogger('Welcome VM');
-		this.logger.info('appConfig', appConfig);
+		this.logger.info('appConfig => name:', appConfigService.getName());
+		this.logger.info('appConfig => version:', appConfigService.getVersion());
+		this.logger.info('appConfig => env:', appConfigService.getEnv());
+		this.logger.info('appConfig => platform:', appConfigService.getPlatform());
+		this.logger.info('appConfig => config:', appConfigService.getConfig());
 	}
 
 	//Getters can't be directly observed, so they must be dirty checked.
