@@ -95,7 +95,6 @@
     "@easy-webpack/config-aurelia": "2.2.0",
     "@easy-webpack/config-babel": "2.0.3",
     "@easy-webpack/config-common-chunks-simple": "2.0.1",
-    "@easy-webpack/config-copy-files": "1.0.0",
     "@easy-webpack/config-env-development": "2.1.1",
     "@easy-webpack/config-env-production": "2.1.0",
     "@easy-webpack/config-external-source-maps": "2.0.1",

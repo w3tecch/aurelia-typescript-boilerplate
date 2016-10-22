@@ -154,13 +154,6 @@ module.exports = function (envArguments) {
     license: pkg.license
   };
 
-  const copyLocales = {
-    patterns: [{
-      from: 'src/locales',
-      to: 'locales'
-    }]
-  };
-
   const aureliaTemplateLint = {
     failOnHint: false,
     typeChecking: true,
@@ -190,7 +183,6 @@ module.exports = function (envArguments) {
         require('@easy-webpack/config-global-jquery')(),
         require('@easy-webpack/config-global-regenerator')(),
         require('@easy-webpack/config-generate-index-html')(configGenerateIndex(true)),
-        require('@easy-webpack/config-copy-files')(copyLocales),
         require('@easy-webpack/config-uglify')
           ({
             debug: false
@@ -256,7 +248,6 @@ module.exports = function (envArguments) {
         require('@easy-webpack/config-global-jquery')(),
         require('@easy-webpack/config-global-regenerator')(),
         require('@easy-webpack/config-generate-index-html')(configGenerateIndex(false)),
-        require('@easy-webpack/config-copy-files')(copyLocales),
         require('./config/config-aurelia-linter.js')(aureliaTemplateLint),
         require('./config/config-environment.js')(configEnvironment),
         require('./config/config-globals.js')(),
