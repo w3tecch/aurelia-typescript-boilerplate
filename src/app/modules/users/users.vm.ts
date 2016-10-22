@@ -1,34 +1,17 @@
-import { lazy } from 'aurelia-framework';
-import { HttpClient } from 'aurelia-fetch-client';
+import { autoinject } from 'aurelia-framework';
+import { UserService } from './../../services/user.service';
+import { UserModel } from './../../models/user.model';
 
-// polyfill fetch client conditionally
-const fetch = !self.fetch ? System.import('isomorphic-fetch') : Promise.resolve(self.fetch);
-
-interface IUser {
-	avatar_url: string;
-	login: string;
-	html_url: string;
-}
-
-export class Users {
+@autoinject
+export class UsersViewModel {
 	public heading: string = 'Github Users';
-	public users: Array<IUser> = [];
-	public http: HttpClient;
+	public users: Array<UserModel> = [];
 
-	constructor( @lazy(HttpClient) private getHttpClient: () => HttpClient) { }
+	constructor(
+    private userService: UserService
+  ) { }
 
 	public async activate(): Promise<void> {
-		// ensure fetch is polyfilled before we create the http client
-		await fetch;
-		const http = this.http = this.getHttpClient();
-
-		http.configure(config => {
-			config
-				.useStandardConfiguration()
-				.withBaseUrl('https://api.github.com/');
-		});
-
-		const response = await http.fetch('users');
-		this.users = await response.json();
+		this.users = await this.userService.getUsers();
 	}
 }

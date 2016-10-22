@@ -12,7 +12,7 @@ export interface IAppConfigEnv {
   LOG_LEVEL: string;
 }
 
-export class AppConfig {
+export class AppConfigService {
   private name: string;
   private version: string;
   private env: string;

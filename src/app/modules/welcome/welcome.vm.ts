@@ -1,7 +1,7 @@
 import { autoinject } from 'aurelia-framework';
 import { LogManager } from 'aurelia-framework';
 import { Logger } from 'aurelia-logging';
-import { AppConfig } from './../../services/app-config.service';
+import { AppConfigService } from './../../services/app-config.service';
 
 @autoinject
 export class Welcome {
@@ -14,14 +14,14 @@ export class Welcome {
   public currentDate: Date = new Date();
 
 	constructor(
-    private appConfig: AppConfig
+    private appConfigService: AppConfigService
   ) {
 		this.logger = LogManager.getLogger('Welcome VM');
-		this.logger.info('appConfig => name:', appConfig.getName());
-		this.logger.info('appConfig => version:', appConfig.getVersion());
-		this.logger.info('appConfig => env:', appConfig.getEnv());
-		this.logger.info('appConfig => platform:', appConfig.getPlatform());
-		this.logger.info('appConfig => config:', appConfig.getConfig());
+		this.logger.info('appConfig => name:', appConfigService.getName());
+		this.logger.info('appConfig => version:', appConfigService.getVersion());
+		this.logger.info('appConfig => env:', appConfigService.getEnv());
+		this.logger.info('appConfig => platform:', appConfigService.getPlatform());
+		this.logger.info('appConfig => config:', appConfigService.getConfig());
 	}
 
 	//Getters can't be directly observed, so they must be dirty checked.

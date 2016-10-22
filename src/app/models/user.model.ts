@@ -1,11 +1,20 @@
 
 export class UserModel {
   constructor(
-    public firstname: string,
-    public lastname: string
+    public avatarUrl: string,
+    public login: string,
+    public htmlUrl: string
   ) { }
 
-  public getFullname(): string {
-    return `${this.firstname} ${this.lastname}`;
+  public getLogin(): string {
+    return this.login;
+  }
+
+  public getAvatarUrl(): string {
+    return this.avatarUrl;
+  }
+
+  public getHtmlUrl(): string {
+    return this.htmlUrl;
   }
 }

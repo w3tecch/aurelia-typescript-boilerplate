@@ -6,8 +6,8 @@ import '../scss/main.scss';
 /**
  * App configuration import
  */
-import { AppConfig } from './services/app-config.service';
-const appConfig = new AppConfig();
+import { AppConfigService } from './services/app-config.service';
+const appConfigService = new AppConfigService();
 
 /**
  * Aurelia imports
@@ -21,11 +21,16 @@ import { ConsoleAppender } from 'aurelia-logging-console';
 import i18nEnglish from './../locales/en.json';
 
 /**
+ * Polyfill fetch
+ */
+import 'isomorphic-fetch';
+
+/**
  * Aurelia configruation
  */
 export async function configure(aurelia: Aurelia): Promise<void> {
   LogManager.addAppender(new ConsoleAppender());
-  LogManager.setLevel(LogManager.logLevel[appConfig.getConfig().LOG_LEVEL]);
+  LogManager.setLevel(LogManager.logLevel[appConfigService.getConfig().LOG_LEVEL]);
   aurelia.use
     .standardConfiguration()
     /**
@@ -64,7 +69,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     ;
 
   await aurelia.start();
-  aurelia.setRoot('app');
+  aurelia.setRoot('app.vm');
 
   // if you would like your website to work offline (Service Worker),
   // install and enable the @easy-webpack/config-offline package in webpack.config.js and uncomment the following code:

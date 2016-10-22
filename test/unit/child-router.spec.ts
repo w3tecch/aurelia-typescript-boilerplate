@@ -1,5 +1,5 @@
 import '../lib/setup';
-import { ChildRouter } from '../../src/app/modules/child-router/child-router';
+import { ChildRouterViewModel } from '../../src/app/modules/child-router/child-router.vm';
 
 class RouterStub {
 	public routes;
@@ -19,7 +19,7 @@ describe('the Child Router module', () => {
 
 	beforeEach(() => {
 		mockedRouter = new RouterStub();
-		sut = new ChildRouter();
+		sut = new ChildRouterViewModel();
 		sut.configureRouter(mockedRouter, mockedRouter);
 	});
 
@@ -35,7 +35,7 @@ describe('the Child Router module', () => {
 		expect(sut.router.routes).toContain({
 			route: ['', 'welcome'],
 			name: 'welcome',
-			moduleId: './../welcome/welcome',
+			moduleId: './../welcome/welcome.vm',
 			nav: true,
 			title: 'Welcome'
 		});
@@ -45,7 +45,7 @@ describe('the Child Router module', () => {
 		expect(sut.router.routes).toContain({
 			route: 'users',
 			name: 'users',
-			moduleId: './../users/users',
+			moduleId: './../users/users.vm',
 			nav: true,
 			title: 'Github Users'
 		});
@@ -55,7 +55,7 @@ describe('the Child Router module', () => {
 		expect(sut.router.routes).toContain({
 			route: 'child-router',
 			name: 'child-router',
-			moduleId: './../child-router/child-router',
+			moduleId: './../child-router/child-router.vm',
 			nav: true,
 			title: 'Child Router'
 		});

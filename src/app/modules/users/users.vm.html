@@ -6,11 +6,11 @@
       <div class="col-sm-6 col-md-3 card-container au-animate" repeat.for="user of users">
         <div class="card">
           <div class="avatar">
-            <img src.bind="user.avatar_url" crossorigin ref="image"/>
+            <img src.bind="user.getAvatarUrl()" crossorigin ref="image"/>
           </div>
           <div class="content">
-            <p class="name">${user.login}</p>
-            <p><a target="_blank" class="btn btn-default" href.bind="user.html_url">Contact</a></p>
+            <p class="name">${user.getLogin()}</p>
+            <p><a target="_blank" class="btn btn-default" href.bind="user.getHtmlUrl()">Contact</a></p>
           </div>
         </div>
       </div>

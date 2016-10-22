@@ -1,6 +1,6 @@
 import { Router, RouterConfiguration } from 'aurelia-router';
 
-export class ChildRouter {
+export class ChildRouterViewModel {
 
 	public router: Router;
 	public heading = 'Child Router';

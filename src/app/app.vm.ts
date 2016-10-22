@@ -1,20 +1,20 @@
 import { autoinject } from 'aurelia-framework';
 import { Router, RouterConfiguration } from 'aurelia-router';
 import { I18N } from 'aurelia-i18n';
-import { AppConfig } from './services/app-config.service';
+import { AppConfigService } from './services/app-config.service';
 
 @autoinject
-export class App {
+export class AppViewModel {
   public router: Router;
 
   constructor(
     private i18n: I18N,
-    private appConfig: AppConfig
+    private appConfigService: AppConfigService
   ) { }
 
   public configureRouter(config: RouterConfiguration, router: Router): void {
     config.title = this.i18n.tr('TITLE');
-    if (this.appConfig.getPlatform() === 'web') {
+    if (this.appConfigService.getPlatform() === 'web') {
       config.options.pushState = true;
     }
     config.map([
