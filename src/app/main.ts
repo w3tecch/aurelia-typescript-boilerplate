@@ -31,6 +31,7 @@ import 'isomorphic-fetch';
 export async function configure(aurelia: Aurelia): Promise<void> {
   LogManager.addAppender(new ConsoleAppender());
   LogManager.setLevel(LogManager.logLevel[appConfigService.getConfig().LOG_LEVEL]);
+
   aurelia.use
     .standardConfiguration()
     /**
