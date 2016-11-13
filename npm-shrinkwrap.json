@@ -588,11 +588,6 @@
       "from": "aurelia-templating-router@>=1.0.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/aurelia-templating-router/-/aurelia-templating-router-1.0.0.tgz"
     },
-    "aurelia-tools": {
-      "version": "0.2.4",
-      "from": "aurelia-tools@0.2.4",
-      "resolved": "https://registry.npmjs.org/aurelia-tools/-/aurelia-tools-0.2.4.tgz"
-    },
     "aurelia-webpack-plugin": {
       "version": "1.1.0",
       "from": "aurelia-webpack-plugin@>=1.1.0 <2.0.0",
@@ -1373,21 +1368,6 @@
       "version": "1.8.5",
       "from": "braces@>=1.8.2 <2.0.0",
       "resolved": "https://registry.npmjs.org/braces/-/braces-1.8.5.tgz"
-    },
-    "breeze-dag": {
-      "version": "0.1.0",
-      "from": "breeze-dag@>=0.1.0 <0.2.0",
-      "resolved": "https://registry.npmjs.org/breeze-dag/-/breeze-dag-0.1.0.tgz"
-    },
-    "breeze-nexttick": {
-      "version": "0.2.1",
-      "from": "breeze-nexttick@*",
-      "resolved": "https://registry.npmjs.org/breeze-nexttick/-/breeze-nexttick-0.2.1.tgz"
-    },
-    "breeze-queue": {
-      "version": "0.1.0",
-      "from": "breeze-queue@>=0.1.0 <0.2.0",
-      "resolved": "https://registry.npmjs.org/breeze-queue/-/breeze-queue-0.1.0.tgz"
     },
     "brorand": {
       "version": "1.0.6",
@@ -3314,11 +3294,6 @@
       "version": "1.1.0",
       "from": "function-bind@>=1.1.0 <2.0.0",
       "resolved": "https://registry.npmjs.org/function-bind/-/function-bind-1.1.0.tgz"
-    },
-    "gaia-tsort": {
-      "version": "0.1.0",
-      "from": "gaia-tsort@*",
-      "resolved": "https://registry.npmjs.org/gaia-tsort/-/gaia-tsort-0.1.0.tgz"
     },
     "gauge": {
       "version": "2.6.0",
