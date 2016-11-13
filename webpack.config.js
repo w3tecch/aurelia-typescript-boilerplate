@@ -9,6 +9,7 @@ const generateConfig = easyWebpack.default;
 const get = easyWebpack.get;
 const path = require('path');
 const chalk = require('chalk');
+const webpack = require('webpack');
 
 module.exports = function (envArguments) {
   let config;
@@ -239,7 +240,7 @@ module.exports = function (envArguments) {
         require('@easy-webpack/config-env-development')(),
         require('@easy-webpack/config-common-chunks-simple')(configCommonChunks),
         require('@easy-webpack/config-aurelia')(configAurelia),
-        require('@easy-webpack/config-tslint')(),
+        require('@easy-webpack/config-tslint')(), // This works with PR https://github.com/easy-webpack/config-tslint/pull/3
         require('@easy-webpack/config-typescript')(),
         require('@easy-webpack/config-html')(),
         require('@easy-webpack/config-json')(),
@@ -252,8 +253,24 @@ module.exports = function (envArguments) {
         require('./config/config-environment.js')(configEnvironment),
         require('./config/config-globals.js')(),
         require('./config/config-favicon.js')(configFavicon),
-        require('./config/config-notifier.js')(configNotifier)
+        require('./config/config-notifier.js')(configNotifier),
+        {
+          plugins: [
+            new webpack.LoaderOptionsPlugin({ // try to load meta data for easy-webpack/aurelia
+              options: {
+                metadata: {
+                  title: configAurelia.title,
+                  baseUrl: configAurelia.baseUrl,
+                  root: configAurelia.root,
+                  src: configAurelia.src,
+                },
+              }
+            })
+          ]
+        }
       );
+      delete config['metadata']; // remove meta data, added by easy-webpack/core, as it's not allowed by webpack >=2.1.0-beta.23'
+      console.log(config);
       break;
   }
 
