@@ -90,7 +90,7 @@ module.exports = function (envArguments) {
 
   const baseConfig = {
     entry: {
-      'app': ['bubu' /* this is filled by the aurelia-webpack-plugin */],
+      'app': [/* this is filled by the aurelia-webpack-plugin */],
       'theme': coreBundles.theme,
       'aurelia-bootstrap': coreBundles.bootstrap,
       'aurelia': coreBundles.aurelia.filter(pkg => coreBundles.bootstrap.indexOf(pkg) === -1)
@@ -181,6 +181,7 @@ module.exports = function (envArguments) {
      * PRODUCTION
      */
     case 'production':
+    // https://github.com/webpack/webpack/issues/3123
       config = generateConfig(
         baseConfig,
         require('@easy-webpack/config-env-production')
