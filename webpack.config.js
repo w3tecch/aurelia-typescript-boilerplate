@@ -9,7 +9,6 @@ const generateConfig = easyWebpack.default;
 const get = easyWebpack.get;
 const path = require('path');
 const chalk = require('chalk');
-const webpack = require('webpack');
 
 module.exports = function (envArguments) {
   let config;
@@ -91,7 +90,7 @@ module.exports = function (envArguments) {
 
   const baseConfig = {
     entry: {
-      'app': [ /* this is filled by the aurelia-webpack-plugin */],
+      'app': ['bubu' /* this is filled by the aurelia-webpack-plugin */],
       'theme': coreBundles.theme,
       'aurelia-bootstrap': coreBundles.bootstrap,
       'aurelia': coreBundles.aurelia.filter(pkg => coreBundles.bootstrap.indexOf(pkg) === -1)
@@ -158,7 +157,22 @@ module.exports = function (envArguments) {
   const aureliaTemplateLint = {
     failOnHint: false,
     typeChecking: true,
-    sourceDir: srcDir
+    sourceDir: srcDir,
+    rootDir: rootDir
+  }
+
+  const WebpackOptionLoader = {
+    initalConfig: {
+      sassLoader: {
+        includePaths: [path.join(srcDir, 'scss')]
+      },
+      context: '/'
+    },
+    extraction: [
+      'aureliaTemplateLinter',
+      'tslint',
+      'metadata'
+    ]
   }
 
   // advanced configuration:
@@ -194,8 +208,11 @@ module.exports = function (envArguments) {
         require('./config/config-environment.js')(configEnvironment),
         require('./config/config-notifier.js')(configNotifier),
         require('./config/config-banner')(banner),
-        require('./config/config-gzip')()
+        require('./config/config-gzip')(),
+        require('./config/config-loader-options.js')(WebpackOptionLoader.initalConfig, WebpackOptionLoader.extraction)
       );
+
+      console.log(config.entry['app']);
       break;
     /**
      * TEST
@@ -225,7 +242,8 @@ module.exports = function (envArguments) {
         require('@easy-webpack/config-test-coverage-istanbul')(),
         require('./config/config-environment.js')(configEnvironment),
         require('./config/config-ignore.js')(),
-        require('./config/config-notifier.js')(configNotifier)
+        require('./config/config-notifier.js')(configNotifier),
+        require('./config/config-loader-options.js')(WebpackOptionLoader.initalConfig, WebpackOptionLoader.extraction)
       );
       break;
 
@@ -254,23 +272,8 @@ module.exports = function (envArguments) {
         require('./config/config-globals.js')(),
         require('./config/config-favicon.js')(configFavicon),
         require('./config/config-notifier.js')(configNotifier),
-        {
-          plugins: [
-            new webpack.LoaderOptionsPlugin({ // try to load meta data for easy-webpack/aurelia
-              options: {
-                metadata: {
-                  title: configAurelia.title,
-                  baseUrl: configAurelia.baseUrl,
-                  root: configAurelia.root,
-                  src: configAurelia.src,
-                },
-              }
-            })
-          ]
-        }
+        require('./config/config-loader-options.js')(WebpackOptionLoader.initalConfig, WebpackOptionLoader.extraction)
       );
-      delete config['metadata']; // remove meta data, added by easy-webpack/core, as it's not allowed by webpack >=2.1.0-beta.23'
-      console.log(config);
       break;
   }
 
