@@ -87,7 +87,7 @@ module.exports = function (envArguments): any {
 
   const baseConfig = {
     entry: {
-      'app': [ path.join(srcDir, 'main') /* this is filled by the aurelia-webpack-plugin */],
+      'app': [path.join(srcDir, 'main') /* this is filled by the aurelia-webpack-plugin */],
       'theme': coreBundles.theme,
       'aurelia-bootstrap': coreBundles.bootstrap,
       'aurelia': coreBundles.aurelia.filter(pkg => coreBundles.bootstrap.indexOf(pkg) === -1)
@@ -151,24 +151,28 @@ module.exports = function (envArguments): any {
     license: pkg.license
   };
 
-  const aureliaTemplateLint = { // waiting for https://github.com/easy-webpack/config-env-production/pull/12
-    failOnHint: false,
-    typeChecking: true,
-    sourceDir: srcDir,
-    rootDir: rootDir
+  const aureliaTemplateLint = {
+    aureliaTemplateLinter: {
+      failOnHint: false,
+      typeChecking: true,
+      sourceDir: srcDir,
+      rootDir: rootDir
+    }
   };
 
-  const WebpackOptionLoader = {
-    initalConfig: {
-      sassLoader: {
-        includePaths: [path.join(srcDir, 'scss')]
-      },
-      context: '/'
-    },
-    extraction: [
-      'aureliaTemplateLinter',
-      'metadata'
-    ]
+  const WebpackOptionLoader = (prod = false) => {
+    return {
+      initalConfig: Object.assign({}, {
+        sassLoader: {
+          includePaths: [path.join(srcDir, 'scss')]
+        },
+        context: '/'
+      }, prod && aureliaTemplateLint),
+      extraction: [
+        'aureliaTemplateLinter',
+        'metadata'
+      ]
+    }
   };
 
   // advanced configuration:
@@ -181,7 +185,7 @@ module.exports = function (envArguments): any {
         baseConfig,
         require('@easy-webpack/config-env-production')
           ({
-            compress: true
+            loaderOptions: WebpackOptionLoader(true).initalConfig
           }),
         require('@easy-webpack/config-common-chunks-simple')(configCommonChunks),
         require('@easy-webpack/config-aurelia')(configAurelia),
@@ -197,14 +201,14 @@ module.exports = function (envArguments): any {
           ({
             debug: false
           }),
-        require('./config/config-aurelia-linter.js')(aureliaTemplateLint),
+        require('./config/config-aurelia-linter.js')(aureliaTemplateLint.aureliaTemplateLinter),
         require('./config/config-globals.js')(),
         require('./config/config-favicon.js')(configFavicon),
         require('./config/config-environment.js')(configEnvironment),
         require('./config/config-notifier.js')(configNotifier),
         require('./config/config-banner')(banner),
         require('./config/config-gzip')(),
-        require('./config/config-loader-options.js')(WebpackOptionLoader.initalConfig, WebpackOptionLoader.extraction)
+        require('./config/config-loader-options.js')(WebpackOptionLoader(true).initalConfig, WebpackOptionLoader().extraction)
       );
       break;
     /**
@@ -233,7 +237,7 @@ module.exports = function (envArguments): any {
         require('./config/config-environment.js')(configEnvironment),
         require('./config/config-ignore.js')(),
         require('./config/config-notifier.js')(configNotifier),
-        require('./config/config-loader-options.js')(WebpackOptionLoader.initalConfig, WebpackOptionLoader.extraction)
+        require('./config/config-loader-options.js')(WebpackOptionLoader().initalConfig, WebpackOptionLoader().extraction)
       );
       break;
 
@@ -256,12 +260,12 @@ module.exports = function (envArguments): any {
         require('@easy-webpack/config-fonts-and-images')(),
         require('@easy-webpack/config-global-jquery')(),
         require('@easy-webpack/config-generate-index-html')(configGenerateIndex(false)),
-        require('./config/config-aurelia-linter.js')(aureliaTemplateLint),
+        require('./config/config-aurelia-linter.js')(aureliaTemplateLint.aureliaTemplateLinter),
         require('./config/config-environment.js')(configEnvironment),
         require('./config/config-globals.js')(),
         require('./config/config-favicon.js')(configFavicon),
         require('./config/config-notifier.js')(configNotifier),
-        require('./config/config-loader-options.js')(WebpackOptionLoader.initalConfig, WebpackOptionLoader.extraction)
+        require('./config/config-loader-options.js')(WebpackOptionLoader().initalConfig, WebpackOptionLoader().extraction)
       );
       break;
   }

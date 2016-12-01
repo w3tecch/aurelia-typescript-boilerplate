@@ -96,7 +96,7 @@
     "@easy-webpack/config-babel": "4.0.0",
     "@easy-webpack/config-common-chunks-simple": "2.0.3",
     "@easy-webpack/config-env-development": "2.1.6",
-    "@easy-webpack/config-env-production": "2.2.4",
+    "@easy-webpack/config-env-production": "3.0.0",
     "@easy-webpack/config-external-source-maps": "3.1.0",
     "@easy-webpack/config-fonts-and-images": "2.1.0",
     "@easy-webpack/config-generate-index-html": "2.1.1",
