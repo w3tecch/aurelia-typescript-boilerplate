@@ -1,16 +1,14 @@
-"use strict";
-
 /**
  * To learn more about how to use Easy Webpack
  * Take a look at the README here: https://github.com/easy-webpack/core
- **/
+ */
 const easyWebpack = require('@easy-webpack/core');
 const generateConfig = easyWebpack.default;
-const get = easyWebpack.get;
+const stripMetadata = easyWebpack.stripMetadata;
 const path = require('path');
 const chalk = require('chalk');
 
-module.exports = function (envArguments) {
+module.exports = function (envArguments): any {
   let config;
   const ENV = process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() || 'development';
   const pkg = require(path.join(process.cwd(), 'package.json'));
@@ -54,7 +52,6 @@ module.exports = function (envArguments) {
       'aurelia-polyfills',
       'aurelia-pal',
       'aurelia-pal-browser',
-      'regenerator-runtime',
       'intl'
     ],
     // these will be included in the 'aurelia' bundle (except for the above bootstrap packages)
@@ -86,11 +83,11 @@ module.exports = function (envArguments) {
     theme: [
       'bootstrap-sass'
     ]
-  }
+  };
 
   const baseConfig = {
     entry: {
-      'app': [/* this is filled by the aurelia-webpack-plugin */],
+      'app': [ path.join(srcDir, 'main') /* this is filled by the aurelia-webpack-plugin */],
       'theme': coreBundles.theme,
       'aurelia-bootstrap': coreBundles.bootstrap,
       'aurelia': coreBundles.aurelia.filter(pkg => coreBundles.bootstrap.indexOf(pkg) === -1)
@@ -154,12 +151,12 @@ module.exports = function (envArguments) {
     license: pkg.license
   };
 
-  const aureliaTemplateLint = {
+  const aureliaTemplateLint = { // waiting for https://github.com/easy-webpack/config-env-production/pull/12
     failOnHint: false,
     typeChecking: true,
     sourceDir: srcDir,
     rootDir: rootDir
-  }
+  };
 
   const WebpackOptionLoader = {
     initalConfig: {
@@ -170,10 +167,9 @@ module.exports = function (envArguments) {
     },
     extraction: [
       'aureliaTemplateLinter',
-      'tslint',
       'metadata'
     ]
-  }
+  };
 
   // advanced configuration:
   switch (ENV) {
@@ -181,7 +177,6 @@ module.exports = function (envArguments) {
      * PRODUCTION
      */
     case 'production':
-    // https://github.com/webpack/webpack/issues/3123
       config = generateConfig(
         baseConfig,
         require('@easy-webpack/config-env-production')
@@ -197,7 +192,6 @@ module.exports = function (envArguments) {
         require('@easy-webpack/config-fonts-and-images')(),
         require('@easy-webpack/config-json')(),
         require('@easy-webpack/config-global-jquery')(),
-        require('@easy-webpack/config-global-regenerator')(),
         require('@easy-webpack/config-generate-index-html')(configGenerateIndex(true)),
         require('@easy-webpack/config-uglify')
           ({
@@ -212,8 +206,6 @@ module.exports = function (envArguments) {
         require('./config/config-gzip')(),
         require('./config/config-loader-options.js')(WebpackOptionLoader.initalConfig, WebpackOptionLoader.extraction)
       );
-
-      console.log(config.entry['app']);
       break;
     /**
      * TEST
@@ -226,21 +218,18 @@ module.exports = function (envArguments) {
             devtool: 'inline-source-map'
           }),
         require('@easy-webpack/config-aurelia')(configAurelia),
-        // require('@easy-webpack/config-tslint')(),
         require('@easy-webpack/config-typescript')
           ({
             options: {
               doTypeCheck: false,
-              compilerOptions: {
-                sourceMap: false,
-                inlineSourceMap: true
-              }
+              sourceMap: false,
+              inlineSourceMap: true,
+              inlineSources: true
             }
           }),
         require('@easy-webpack/config-json')(),
         require('@easy-webpack/config-global-jquery')(),
-        require('@easy-webpack/config-global-regenerator')(),
-        require('@easy-webpack/config-test-coverage-istanbul')(),
+        require('@easy-webpack/config-test-coverage-istanbul')({ options: { esModules: true } }),
         require('./config/config-environment.js')(configEnvironment),
         require('./config/config-ignore.js')(),
         require('./config/config-notifier.js')(configNotifier),
@@ -266,7 +255,6 @@ module.exports = function (envArguments) {
         require('@easy-webpack/config-sass')(configSass(true)),
         require('@easy-webpack/config-fonts-and-images')(),
         require('@easy-webpack/config-global-jquery')(),
-        require('@easy-webpack/config-global-regenerator')(),
         require('@easy-webpack/config-generate-index-html')(configGenerateIndex(false)),
         require('./config/config-aurelia-linter.js')(aureliaTemplateLint),
         require('./config/config-environment.js')(configEnvironment),

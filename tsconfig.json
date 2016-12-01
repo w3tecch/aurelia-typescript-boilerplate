@@ -1,20 +1,20 @@
 {
   "compilerOptions": {
-    "target": "es2015",
+    "target": "es5",
     "module": "es2015",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "strictNullChecks": true,
     "moduleResolution": "node",
-    "sourceMap": true
+    "sourceMap": true,
+    "allowJs": true,
+    "lib": [
+      "es2017", "dom"
+    ]
   },
   "awesomeTypescriptLoaderOptions": {
     "doTypeCheck": true,
-    "forkChecker": true,
-    "useBabel": true,
-    "useCache": true,
-    "babelOptions": {
-      "presets": ["es2015-loose-native-modules"]
-    }
+    "forkChecker": true
   },
   "exclude": [
     "node_modules",
