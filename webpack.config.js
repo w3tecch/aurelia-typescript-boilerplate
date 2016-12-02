@@ -161,7 +161,7 @@ module.exports = function (envArguments) {
     }
   };
 
-  const WebpackOptionLoader = (prod = false) => {
+  const WebpackOptionLoader = (prod) => {
     return {
       initalConfig: Object.assign({}, {
         sassLoader: {
