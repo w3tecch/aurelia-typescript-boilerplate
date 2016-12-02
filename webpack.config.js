@@ -266,6 +266,7 @@ module.exports = function (envArguments) {
         require('./config/config-globals.js')(),
         require('./config/config-favicon.js')(configFavicon),
         require('./config/config-notifier.js')(configNotifier),
+        require('./config/config-typedoc.js')(),
         require('./config/config-loader-options.js')(WebpackOptionLoader().initalConfig, WebpackOptionLoader().extraction)
       );
       break;
