@@ -6,7 +6,8 @@ import '../scss/main.scss';
 /**
  * App configuration import
  */
-import AppConfig from './app-config';
+import { AppConfigService } from './services/app-config.service';
+const appConfigService = new AppConfigService();
 
 /**
  * Aurelia imports
@@ -20,18 +21,19 @@ import { ConsoleAppender } from 'aurelia-logging-console';
 import i18nEnglish from './../locales/en.json';
 
 /**
+ * Polyfill fetch
+ */
+import 'isomorphic-fetch';
+
+/**
  * Aurelia configruation
  */
 export async function configure(aurelia: Aurelia): Promise<void> {
   LogManager.addAppender(new ConsoleAppender());
-  LogManager.setLevel(LogManager.logLevel[(<AppConfig.IAppConfig>AppConfig).CONFIG.LOG_LEVEL]);
+  LogManager.setLevel(LogManager.logLevel[appConfigService.getConfig().LOG_LEVEL]);
+
   aurelia.use
     .standardConfiguration()
-    .developmentLogging()
-		/**
-		 * Adds the app config to the framework's dependency injection container.
-		 */
-    .instance('AppConfig', AppConfig)
     /**
      * i18n support
      * adapt options to your needs (see http://i18next.com/docs/options/)
@@ -49,9 +51,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
           }
         },
         lng: 'en',
-        attributes: ['translate', 'i18n'],
-        fallbackLng: 'en',
-        debug: false
+        fallbackLng: 'en'
       });
     })
     // Uncomment the line below to enable animation.
@@ -65,10 +65,12 @@ export async function configure(aurelia: Aurelia): Promise<void> {
 		 */
     .feature('resources/attributes')
     .feature('resources/elements')
+    .feature('resources/templates')
+    .feature('resources/converters')
     ;
 
   await aurelia.start();
-  aurelia.setRoot('app');
+  aurelia.setRoot('app.vm');
 
   // if you would like your website to work offline (Service Worker),
   // install and enable the @easy-webpack/config-offline package in webpack.config.js and uncomment the following code:

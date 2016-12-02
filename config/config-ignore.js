@@ -6,7 +6,7 @@
 const configIgnore = function (options) {
 	return {
 		module: {
-			loaders: [
+			rules: [
 				{ test: /\.html$/, loader: 'ignore-loader' },
 				{ test: /\.ejs$/, loader: 'ignore-loader' },
 				{ test: /\.scss$/, loader: 'ignore-loader' }

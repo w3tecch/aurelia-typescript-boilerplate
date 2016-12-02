@@ -212,14 +212,15 @@ So make sure you run for example ```npm run build``` first before runing/buildin
 - [X] Add logging system
 - [X] Animation
 - [X] refactor webpack config
-- [ ] Layout Wrapper
 - [X] add i18n
-- [ ] add materialize.css
-- [ ] Add all important libs like moment, lodash ...
 - [X] Add cordova
 - [X] Add travis
-- [ ] Add greenkeeper
 - [X] polyfill ES6 promises for tests => replaced phantom with firefox
+- [X] Add style guid
+- [ ] Layout Wrapper
+- [ ] add materialize.css
+- [ ] Add all important libs like moment, lodash ...
+- [ ] Add greenkeeper
 - [ ] Add electron
 - [ ] Add wallaby.js
 - [ ] Add typedocs

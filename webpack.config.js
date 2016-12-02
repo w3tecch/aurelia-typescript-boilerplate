@@ -1,12 +1,11 @@
-"use strict";
-
+'use strict'
 /**
  * To learn more about how to use Easy Webpack
  * Take a look at the README here: https://github.com/easy-webpack/core
- **/
+ */
 const easyWebpack = require('@easy-webpack/core');
 const generateConfig = easyWebpack.default;
-const get = easyWebpack.get;
+const stripMetadata = easyWebpack.stripMetadata;
 const path = require('path');
 const chalk = require('chalk');
 
@@ -54,7 +53,6 @@ module.exports = function (envArguments) {
       'aurelia-polyfills',
       'aurelia-pal',
       'aurelia-pal-browser',
-      'regenerator-runtime',
       'intl'
     ],
     // these will be included in the 'aurelia' bundle (except for the above bootstrap packages)
@@ -86,11 +84,11 @@ module.exports = function (envArguments) {
     theme: [
       'bootstrap-sass'
     ]
-  }
+  };
 
   const baseConfig = {
     entry: {
-      'app': [ /* this is filled by the aurelia-webpack-plugin */ ],
+      'app': [path.join(srcDir, 'main') /* this is filled by the aurelia-webpack-plugin */],
       'theme': coreBundles.theme,
       'aurelia-bootstrap': coreBundles.bootstrap,
       'aurelia': coreBundles.aurelia.filter(pkg => coreBundles.bootstrap.indexOf(pkg) === -1)
@@ -154,11 +152,28 @@ module.exports = function (envArguments) {
     license: pkg.license
   };
 
-  const copyLocales = {
-    patterns: [{
-      from: 'src/locales',
-      to: 'locales'
-    }]
+  const aureliaTemplateLint = {
+    aureliaTemplateLinter: {
+      failOnHint: false,
+      typeChecking: true,
+      sourceDir: srcDir,
+      rootDir: rootDir
+    }
+  };
+
+  const WebpackOptionLoader = (prod) => {
+    return {
+      initalConfig: Object.assign({}, {
+        sassLoader: {
+          includePaths: [path.join(srcDir, 'scss')]
+        },
+        context: '/'
+      }, prod && aureliaTemplateLint),
+      extraction: [
+        'aureliaTemplateLinter',
+        'metadata'
+      ]
+    }
   };
 
   // advanced configuration:
@@ -170,9 +185,9 @@ module.exports = function (envArguments) {
       config = generateConfig(
         baseConfig,
         require('@easy-webpack/config-env-production')
-        ({
-          compress: true
-        }),
+          ({
+            loaderOptions: WebpackOptionLoader(true).initalConfig
+          }),
         require('@easy-webpack/config-common-chunks-simple')(configCommonChunks),
         require('@easy-webpack/config-aurelia')(configAurelia),
         require('@easy-webpack/config-tslint')(),
@@ -182,56 +197,54 @@ module.exports = function (envArguments) {
         require('@easy-webpack/config-fonts-and-images')(),
         require('@easy-webpack/config-json')(),
         require('@easy-webpack/config-global-jquery')(),
-        require('@easy-webpack/config-global-regenerator')(),
         require('@easy-webpack/config-generate-index-html')(configGenerateIndex(true)),
-        require('@easy-webpack/config-copy-files')(copyLocales),
         require('@easy-webpack/config-uglify')
-        ({
-          debug: false
-        }),
+          ({
+            debug: false
+          }),
+        require('./config/config-aurelia-linter.js')(aureliaTemplateLint.aureliaTemplateLinter),
         require('./config/config-globals.js')(),
         require('./config/config-favicon.js')(configFavicon),
         require('./config/config-environment.js')(configEnvironment),
         require('./config/config-notifier.js')(configNotifier),
         require('./config/config-banner')(banner),
-        require('./config/config-gzip')()
+        require('./config/config-gzip')(),
+        require('./config/config-loader-options.js')(WebpackOptionLoader(true).initalConfig, WebpackOptionLoader().extraction)
       );
       break;
-      /**
-       * TEST
-       */
+    /**
+     * TEST
+     */
     case 'test':
       config = generateConfig(
         baseConfig,
         require('@easy-webpack/config-env-development')
-        ({
-          devtool: 'inline-source-map'
-        }),
+          ({
+            devtool: 'inline-source-map'
+          }),
         require('@easy-webpack/config-aurelia')(configAurelia),
-        // require('@easy-webpack/config-tslint')(),
         require('@easy-webpack/config-typescript')
-        ({
-          options: {
-            doTypeCheck: false,
-            compilerOptions: {
+          ({
+            options: {
+              doTypeCheck: false,
               sourceMap: false,
-              inlineSourceMap: true
+              inlineSourceMap: true,
+              inlineSources: true
             }
-          }
-        }),
+          }),
         require('@easy-webpack/config-json')(),
         require('@easy-webpack/config-global-jquery')(),
-        require('@easy-webpack/config-global-regenerator')(),
-        require('@easy-webpack/config-test-coverage-istanbul')(),
+        require('@easy-webpack/config-test-coverage-istanbul')({ options: { esModules: true } }),
         require('./config/config-environment.js')(configEnvironment),
         require('./config/config-ignore.js')(),
-        require('./config/config-notifier.js')(configNotifier)
+        require('./config/config-notifier.js')(configNotifier),
+        require('./config/config-loader-options.js')(WebpackOptionLoader().initalConfig, WebpackOptionLoader().extraction)
       );
       break;
 
-      /**
-       * DEVELOPMENT
-       */
+    /**
+     * DEVELOPMENT
+     */
     default:
     case 'development':
       process.env.NODE_ENV = 'development';
@@ -240,20 +253,20 @@ module.exports = function (envArguments) {
         require('@easy-webpack/config-env-development')(),
         require('@easy-webpack/config-common-chunks-simple')(configCommonChunks),
         require('@easy-webpack/config-aurelia')(configAurelia),
-        require('@easy-webpack/config-tslint')(),
+        require('@easy-webpack/config-tslint')(), // This works with PR https://github.com/easy-webpack/config-tslint/pull/3
         require('@easy-webpack/config-typescript')(),
         require('@easy-webpack/config-html')(),
         require('@easy-webpack/config-json')(),
         require('@easy-webpack/config-sass')(configSass(true)),
         require('@easy-webpack/config-fonts-and-images')(),
         require('@easy-webpack/config-global-jquery')(),
-        require('@easy-webpack/config-global-regenerator')(),
         require('@easy-webpack/config-generate-index-html')(configGenerateIndex(false)),
-        require('@easy-webpack/config-copy-files')(copyLocales),
+        require('./config/config-aurelia-linter.js')(aureliaTemplateLint.aureliaTemplateLinter),
         require('./config/config-environment.js')(configEnvironment),
         require('./config/config-globals.js')(),
         require('./config/config-favicon.js')(configFavicon),
-        require('./config/config-notifier.js')(configNotifier)
+        require('./config/config-notifier.js')(configNotifier),
+        require('./config/config-loader-options.js')(WebpackOptionLoader().initalConfig, WebpackOptionLoader().extraction)
       );
       break;
   }

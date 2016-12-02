@@ -1,10 +1,10 @@
 import '../lib/setup';
-import { App } from '../../src/app/app';
+import { AppViewModel } from '../../src/app/app.vm';
 import { I18N } from 'aurelia-i18n';
-import {BindingSignaler} from 'aurelia-templating-resources';
-import {EventAggregator} from 'aurelia-event-aggregator';
+import { BindingSignaler } from 'aurelia-templating-resources';
+import { EventAggregator } from 'aurelia-event-aggregator';
 import EnglishTranslation from '../../src/locales/en.json';
-import AppConfig from '../../src/app/app-config';
+import { AppConfigService } from '../../src/app/services/app-config.service';
 
 class RouterStub {
 	public routes;
@@ -24,6 +24,7 @@ class RouterStub {
 describe('the App module', () => {
 	let sut;
 	let mockedRouter;
+  let appConfigSub;
 
 	beforeEach(() => {
 		mockedRouter = new RouterStub();
@@ -41,7 +42,9 @@ describe('the App module', () => {
       debug: false
     });
 
-		sut = new App(sut, AppConfig);
+    appConfigSub = new AppConfigService();
+
+		sut = new AppViewModel(sut, appConfigSub);
 		sut.configureRouter(mockedRouter, mockedRouter);
 	});
 
@@ -57,7 +60,7 @@ describe('the App module', () => {
 		expect(sut.router.routes).toContain({
 			route: ['', 'welcome'],
 			name: 'welcome',
-			moduleId: './modules/welcome/welcome',
+			moduleId: './modules/welcome/welcome.vm',
 			nav: true,
 			title: 'Welcome'
 		});
@@ -67,7 +70,7 @@ describe('the App module', () => {
 		expect(sut.router.routes).toContain({
 			route: 'users',
 			name: 'users',
-			moduleId: './modules/users/users',
+			moduleId: './modules/users/users.vm',
 			nav: true,
 			title: 'Github Users'
 		});
@@ -77,7 +80,7 @@ describe('the App module', () => {
 		expect(sut.router.routes).toContain({
 			route: 'child-router',
 			name: 'child-router',
-			moduleId: './modules/child-router/child-router',
+			moduleId: './modules/child-router/child-router.vm',
 			nav: true,
 			title: 'Child Router'
 		});
