@@ -198,6 +198,8 @@ npm run mobile:setup
 Cordova takes the ```www``` folder source to create the Cordova app. This ```www``` folder is a symlink to the ```dist``` folder.
 So make sure you run for example ```npm run build``` first before runing/buildinga Cordova app.
 
+### Typedocs
+The typedoc is generated into ```dist/docs``` and can be served with ```npm run server:docs```.
 
 
 # ToDo's
@@ -218,9 +220,9 @@ So make sure you run for example ```npm run build``` first before runing/buildin
 - [X] Add style guid
 - [X] Add wallaby.js
 - [X] Use karma electorn launcher
+- [X] Add typedocs
 - [ ] Add greenkeeper
 - [ ] Add electron
-- [ ] Add typedocs
 - [ ] VSC frontend debugging https://github.com/AngularClass/angular2-webpack-starter/blob/master/.vscode/launch.json
 - [ ] VSC add tasks https://code.visualstudio.com/docs/editor/tasks
 
