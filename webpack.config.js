@@ -8,7 +8,7 @@ const stripMetadata = easyWebpack.stripMetadata;
 const path = require('path');
 const chalk = require('chalk');
 
-module.exports = function (envArguments): any {
+module.exports = function (envArguments) {
   let config;
   const ENV = process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() || 'development';
   const pkg = require(path.join(process.cwd(), 'package.json'));
