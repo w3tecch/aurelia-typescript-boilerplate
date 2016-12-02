@@ -215,14 +215,11 @@ So make sure you run for example ```npm run build``` first before runing/buildin
 - [X] add i18n
 - [X] Add cordova
 - [X] Add travis
-- [X] polyfill ES6 promises for tests => replaced phantom with firefox
 - [X] Add style guid
-- [ ] Layout Wrapper
-- [ ] add materialize.css
-- [ ] Add all important libs like moment, lodash ...
+- [X] Add wallaby.js
+- [X] Use karma electorn launcher
 - [ ] Add greenkeeper
 - [ ] Add electron
-- [ ] Add wallaby.js
 - [ ] Add typedocs
 - [ ] VSC frontend debugging https://github.com/AngularClass/angular2-webpack-starter/blob/master/.vscode/launch.json
 - [ ] VSC add tasks https://code.visualstudio.com/docs/editor/tasks
