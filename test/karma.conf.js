@@ -88,9 +88,14 @@ module.exports = function(config) {
      * available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
      */
     browsers: [
-      'Firefox',
+      // 'Firefox',
+      'Electron'
       // TODO: https://www.npmjs.com/package/karma-electron
     ],
+
+    client: {
+      useIframe: false
+    },
 
     /*
      * Continuous Integration mode
