@@ -17,7 +17,7 @@ const configNode = function (level) {
 		 * See: https://webpack.github.io/docs/configuration.html#node
 		 */
 		node: {
-			global: 'window',
+			global: true,
 			crypto: 'empty',
 			fs: 'empty',
 			process: true,

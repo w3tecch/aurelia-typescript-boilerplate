@@ -41,6 +41,7 @@ export class Welcome {
 		if (this.fullName !== this.previousValue) {
 			return confirm('Are you sure you want to leave?');
 		}
+    return true;
 	}
 }
 
