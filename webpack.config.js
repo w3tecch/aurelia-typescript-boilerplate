@@ -1,3 +1,4 @@
+'use strict'
 /**
  * To learn more about how to use Easy Webpack
  * Take a look at the README here: https://github.com/easy-webpack/core
