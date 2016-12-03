@@ -199,7 +199,10 @@ Cordova takes the ```www``` folder source to create the Cordova app. This ```www
 So make sure you run for example ```npm run build``` first before runing/buildinga Cordova app.
 
 ### Typedocs
-The typedoc is generated with command ```npm run build:docs``` into directoy ```dist/docs``` and can be served with ```npm run server:docs```.
+Typedoc is generated with command ```npm run build:docs``` into directoy ```docs``` and can be served with ```npm run server:docs```.
+> The typedoc are generated with the development environment
+
+> As side effect a build into ```dist``` is produced as default behavior of webpack.
 
 
 # ToDo's
