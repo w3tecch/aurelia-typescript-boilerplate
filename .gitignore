@@ -23,6 +23,9 @@ Thumbs.db
 # Dist #
 /dist
 
+# Docs #
+/docs
+
 # Cordova #
 cordova/plugins
 cordova/platforms

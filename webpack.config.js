@@ -15,9 +15,11 @@ module.exports = function (envArguments) {
   const pkg = require(path.join(process.cwd(), 'package.json'));
   let PLATFORM = 'web';
   let TARGET = ENV;
+  let DOCS = false;
   if (envArguments) {
     PLATFORM = envArguments.platform || PLATFORM;
     TARGET = envArguments.target || TARGET;
+    DOCS = envArguments.docs || DOCS;
   }
   console.log('');
   console.log(chalk.yellow('➜') + ' ' + chalk.white('NODE_ENV: ') + chalk.green.bold(ENV));
@@ -33,6 +35,7 @@ module.exports = function (envArguments) {
   const rootDir = path.resolve();
   const srcDir = path.resolve('src/app');
   const outDir = path.resolve('dist');
+  const outDirDocs = path.resolve('docs');
   const faviconPath = 'src/assets/images/favicon.ico';
 
   // context to fill the index file
@@ -176,6 +179,16 @@ module.exports = function (envArguments) {
     }
   };
 
+  const typedocsOptions = {
+    run: DOCS,
+    output: outDirDocs,
+    inputs: [
+      path.join(rootDir, 'typings'),
+      path.join(rootDir, 'typings_custom'),
+      srcDir
+    ]
+  };
+
   // advanced configuration:
   switch (ENV) {
     /**
@@ -266,6 +279,7 @@ module.exports = function (envArguments) {
         require('./config/config-globals.js')(),
         require('./config/config-favicon.js')(configFavicon),
         require('./config/config-notifier.js')(configNotifier),
+        require('./config/config-typedoc.js')(typedocsOptions),
         require('./config/config-loader-options.js')(WebpackOptionLoader().initalConfig, WebpackOptionLoader().extraction)
       );
       break;
