@@ -106,7 +106,7 @@
     "@easy-webpack/config-global-jquery": "2.1.1",
     "@easy-webpack/config-html": "3.1.0",
     "@easy-webpack/config-json": "3.1.0",
-    "@easy-webpack/config-sass": "2.0.1",
+    "@easy-webpack/config-sass": "4.0.0",
     "@easy-webpack/config-source-map-support": "1.0.2",
     "@easy-webpack/config-test-coverage-istanbul": "3.2.0",
     "@easy-webpack/config-tslint": "4.0.0",
