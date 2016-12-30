@@ -98,7 +98,8 @@ module.exports = function (envArguments) {
     },
     output: {
       path: outDir,
-    }
+    },
+    externals: [ /cordova(\.js)?$/ ]
   };
 
   const configAurelia = {
