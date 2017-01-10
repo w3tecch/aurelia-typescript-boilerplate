@@ -1,6 +1,8 @@
 import { autoinject } from 'aurelia-framework';
+
 import { LogManager, Logger} from './../../services/logger.service';
 import { AppConfigService } from './../../services/app-config.service';
+import { LanguageService } from './../../services/language.service';
 
 @autoinject
 export class Welcome {
@@ -13,7 +15,8 @@ export class Welcome {
   public currentDate: Date = new Date();
 
 	constructor(
-    private appConfigService: AppConfigService
+    private appConfigService: AppConfigService,
+    private languageService: LanguageService
   ) {
 		this.logger = LogManager.getLogger('Welcome VM');
 		this.logger.info('appConfig => name:', appConfigService.getName());
@@ -43,6 +46,15 @@ export class Welcome {
 		}
     return true;
 	}
+
+  public switchLanguage(): void {
+    const lang = this.languageService.getCurrentLang();
+    if (lang === this.languageService.getSupportedLanguages()[0]) {
+      this.languageService.setLocale(this.languageService.getSupportedLanguages()[1]);
+    } else {
+      this.languageService.setLocale(this.languageService.getSupportedLanguages()[0]);
+    }
+  }
 }
 
 export class UpperValueConverter {

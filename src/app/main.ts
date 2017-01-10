@@ -18,12 +18,14 @@ import { ConsoleAppender } from 'aurelia-logging-console';
 /**
  * Locals i18n imports
  */
-import i18nEnglish from './../locales/en.json';
+import en_USTranslation from './../locales/en_US.json';
+import de_CHTranslation from './../locales/de_CH.json';
 
 /**
- * Polyfill fetch
+ * Third Party Libraries and polyfill
  */
 import 'isomorphic-fetch';
+import LanguageDetector from 'i18next-browser-languagedetector';
 
 /**
  * Aurelia configruation
@@ -42,16 +44,30 @@ export async function configure(aurelia: Aurelia): Promise<void> {
      * See: https://github.com/aurelia/i18n
      */
     .plugin('aurelia-i18n', (instance) => {
+      instance.i18next.use(LanguageDetector);
       // adapt options to your needs (see http://i18next.com/docs/options/)
       // make sure to return the promise of the setup method, in order to guarantee proper loading
       return instance.setup({
         resources: {
-          en: {
-            translation:  i18nEnglish
+          'en-US': {
+            translation: en_USTranslation
+          },
+          'de-CH': {
+            translation: de_CHTranslation
           }
         },
-        lng: 'en',
-        fallbackLng: 'en'
+        fallbackLng: {
+          'de': ['de-CH', 'en-US'],
+          'de-DE': ['de-CH', 'en-US'],
+          'default': ['en-US']
+        },
+        debug: false,
+        detection: {
+          order: ['localStorage', 'navigator'],
+          lookupCookie: 'i18next',
+          lookupLocalStorage: 'i18nextLng',
+          caches: ['localStorage']
+        }
       });
     })
     // Uncomment the line below to enable animation.
