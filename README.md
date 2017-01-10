@@ -226,6 +226,7 @@ Typedoc is generated with command ```npm run build:docs``` into directoy ```docs
 - [X] Add typedocs
 - [ ] Add greenkeeper
 - [ ] Add electron
-- [ ] VSC frontend debugging https://github.com/AngularClass/angular2-webpack-starter/blob/master/.vscode/launch.json
-- [ ] VSC add tasks https://code.visualstudio.com/docs/editor/tasks
-
+- [ ] Add pipline example
+- [ ] Add utility converters https://www.npmjs.com/package/aurelia-utility-converters
+- [ ] Add validation example
+- [ ] Add configure http client example
