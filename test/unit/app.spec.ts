@@ -3,7 +3,7 @@ import { AppViewModel } from '../../src/app/app.vm';
 import { I18N } from 'aurelia-i18n';
 import { BindingSignaler } from 'aurelia-templating-resources';
 import { EventAggregator } from 'aurelia-event-aggregator';
-import EnglishTranslation from '../../src/locales/en.json';
+import EnglishTranslation from '../../src/locales/en_US.json';
 import { AppConfigService } from '../../src/app/services/app-config.service';
 
 class RouterStub {
@@ -19,6 +19,10 @@ class RouterStub {
 	public map(routes): void {
 		this.routes = routes;
 	}
+
+  public mapUnknownRoutes(config): void {
+    this.routes.push(config);
+  }
 }
 
 describe('the App module', () => {
@@ -28,6 +32,8 @@ describe('the App module', () => {
 
 	beforeEach(() => {
 		mockedRouter = new RouterStub();
+
+    const AnyMock: any = undefined;
 
 		// Translation setup
     sut = new I18N(new EventAggregator(), new BindingSignaler());
@@ -44,7 +50,7 @@ describe('the App module', () => {
 
     appConfigSub = new AppConfigService();
 
-    sut = new AppViewModel(sut, appConfigSub, (<any>undefined));
+    sut = new AppViewModel(sut, appConfigSub, AnyMock, AnyMock, AnyMock);
 		sut.configureRouter(mockedRouter, mockedRouter);
 	});
 

@@ -3,6 +3,7 @@
   "dependencies": {},
   "globalDependencies": {
     "cordova": "registry:dt/cordova#0.0.0+20160819210047",
+    "i18next-browser-languagedetector": "registry:dt/i18next-browser-languagedetector#0.0.14+20160811131240",
     "jasmine": "registry:dt/jasmine#2.5.0+20161003201800",
     "jquery": "registry:dt/jquery#1.10.0+20160704162008",
     "lodash": "registry:dt/lodash#4.14.0+20160817155621",
