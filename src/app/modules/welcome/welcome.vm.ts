@@ -1,5 +1,5 @@
 import { autoinject } from 'aurelia-framework';
-import { LogManager, Logger} from './../../services/logging.service';
+import { LogManager, Logger} from './../../services/logger.service';
 import { AppConfigService } from './../../services/app-config.service';
 
 @autoinject

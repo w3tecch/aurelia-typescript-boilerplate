@@ -175,7 +175,7 @@ You can also add more environments with ```--env.target <env-name>``` but there 
 run throw so if your like to set the evnirnment for ```npm start``` you have to do this like so:
 
   ```shell
-  npm start -- -- --env.target <json-file-name-without-extension>
+  npm start -- -- -- --env.target <json-file-name-without-extension>
   ```
 
 This because ```npm start``` runs ```npm run server:dev``` and then the target command, so we have to to pass the ```--env.target``` by providing two times ```--```.

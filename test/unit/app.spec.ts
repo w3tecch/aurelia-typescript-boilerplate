@@ -44,7 +44,7 @@ describe('the App module', () => {
 
     appConfigSub = new AppConfigService();
 
-		sut = new AppViewModel(sut, appConfigSub);
+    sut = new AppViewModel(sut, appConfigSub, (<any>undefined));
 		sut.configureRouter(mockedRouter, mockedRouter);
 	});
 

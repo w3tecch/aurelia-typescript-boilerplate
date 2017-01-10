@@ -2,6 +2,7 @@
   "name": "aurelia-skeleton-navigation-webpack",
   "dependencies": {},
   "globalDependencies": {
+    "cordova": "registry:dt/cordova#0.0.0+20160819210047",
     "jasmine": "registry:dt/jasmine#2.5.0+20161003201800",
     "jquery": "registry:dt/jquery#1.10.0+20160704162008",
     "lodash": "registry:dt/lodash#4.14.0+20160817155621",

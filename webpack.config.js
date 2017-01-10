@@ -13,7 +13,7 @@ module.exports = function (envArguments) {
   let config;
   const ENV = process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() || 'development';
   const pkg = require(path.join(process.cwd(), 'package.json'));
-  let PLATFORM = 'web';
+  let PLATFORM = 'browser';
   let TARGET = ENV;
   let DOCS = false;
   if (envArguments) {
@@ -98,8 +98,7 @@ module.exports = function (envArguments) {
     },
     output: {
       path: outDir,
-    },
-    externals: [ /cordova(\.js)?$/ ]
+    }
   };
 
   const configAurelia = {

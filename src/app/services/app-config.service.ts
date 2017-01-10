@@ -1,3 +1,5 @@
+import { platforms } from './../models/platforms';
+
 /**
  * Gets and defines the environment configruation
  */
@@ -32,4 +34,6 @@ export class AppConfigService {
   public getEnv(): string { return this.env; }
   public getPlatform(): string { return this.platform; }
   public getConfig(): IAppConfigEnv { return this.config; }
+  public platformIsBrowser(): boolean { return this.platform === platforms.BROWSER; }
+  public platformIsMobile(): boolean { return this.platform === platforms.MOBILE; }
 }
