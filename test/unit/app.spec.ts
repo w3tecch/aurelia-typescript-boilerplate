@@ -1,10 +1,13 @@
 import '../lib/setup';
-import { AppViewModel } from '../../src/app/app.vm';
+
 import { I18N } from 'aurelia-i18n';
 import { BindingSignaler } from 'aurelia-templating-resources';
 import { EventAggregator } from 'aurelia-event-aggregator';
-import EnglishTranslation from '../../src/locales/en_US.json';
+import { HttpClient } from 'aurelia-fetch-client';
+
+import { AppViewModel } from '../../src/app/app.vm';
 import { AppConfigService } from '../../src/app/services/app-config.service';
+import EnglishTranslation from '../../src/locales/en_US.json';
 
 class RouterStub {
 	public routes;
@@ -20,9 +23,9 @@ class RouterStub {
 		this.routes = routes;
 	}
 
-  public mapUnknownRoutes(config): void {
-    this.routes.push(config);
-  }
+  public mapUnknownRoutes(route): void { ; }
+
+  public addAuthorizeStep(step): void { ; }
 }
 
 describe('the App module', () => {
@@ -50,7 +53,7 @@ describe('the App module', () => {
 
     appConfigSub = new AppConfigService();
 
-    sut = new AppViewModel(sut, appConfigSub, AnyMock, AnyMock, AnyMock);
+    sut = new AppViewModel(sut, appConfigSub, AnyMock, AnyMock, AnyMock, new HttpClient());
 		sut.configureRouter(mockedRouter, mockedRouter);
 	});
 
