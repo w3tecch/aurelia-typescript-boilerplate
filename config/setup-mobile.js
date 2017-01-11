@@ -12,14 +12,4 @@ const cmd = `cordova create cordova ${pkg.identifier} "${pkg.title}"`;
 // Run command to create cordova in a temporary directory
 exec(cmd, (error) => {
   if (error) throw error;
-
-  // Remove cordovas www folder
-  rimraf(`${root}/cordova/www`, (error) => {
-    if (error) throw error;
-
-    // Create symlink www to point to dist
-    fs.symlink(`${root}/dist`, `${root}/cordova/www`, 'dir', (error) => {
-      if (error) throw error;
-    });
-  });
 });

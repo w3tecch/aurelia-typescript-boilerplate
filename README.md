@@ -170,8 +170,13 @@ npm run mobile:setup
 ```
 
 ### Run and build
-Cordova takes the ```www``` folder source to create the Cordova app. This ```www``` folder is a symlink to the ```dist``` folder.
-So make sure you run for example ```npm run build``` first before runing/buildinga Cordova app.
+Cordova takes the ```www``` folder source to create the Cordova app. This ```www``` folder is a symlink pointing to the ```dist``` folder.
+So make sure you run for example ```npm run build``` first before runing/building a Cordova app.
+
+Sometimes the ```www``` symlink is removed (e.g. git clone). Run this command to fix this:
+``shell
+npm run mobile:link
+```
 
 ### Typedocs
 Typedoc is generated with command ```npm run build:docs``` into directoy ```docs``` and can be served with ```npm run server:docs```.
