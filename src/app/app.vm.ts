@@ -29,6 +29,10 @@ export class AppViewModel {
     this.configureHttpClient();
   }
 
+  public attached(): void {
+    this.configureMoment();
+  }
+
   public configureRouter(config: RouterConfiguration, router: Router): void {
     config.title = this.i18n.tr('TITLE');
     if (this.appConfigService.platformIsBrowser()) {

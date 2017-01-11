@@ -89,6 +89,7 @@
     "aurelia-templating-binding": "^1.2.0",
     "aurelia-templating-resources": "^1.2.0",
     "aurelia-templating-router": "^1.0.0",
+    "aurelia-validation": "^1.0.0-beta.1.0.1",
     "bootstrap-sass": "^3.3.7",
     "font-awesome": "^4.7.0",
     "i18next-browser-languagedetector": "^1.0.1",

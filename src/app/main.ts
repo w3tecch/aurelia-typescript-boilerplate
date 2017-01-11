@@ -70,6 +70,14 @@ export async function configure(aurelia: Aurelia): Promise<void> {
         }
       });
     })
+    /**
+     * Aurelia Validation plugin
+     * See: https://github.com/aurelia/validation
+     *
+     * Configure i18n for aurelia-validation error messages.
+     * See: http://aurelia.io/hub.html#/doc/article/aurelia/validation/latest/validation-basics
+     */
+    .plugin('aurelia-validation')
     // Uncomment the line below to enable animation.
     // .plugin('aurelia-animator-css');
     // if the css animator is enabled, add swap-order="after" to all router-view elements
