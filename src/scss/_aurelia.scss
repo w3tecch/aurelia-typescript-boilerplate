@@ -59,8 +59,8 @@ section {
 
 /* animate page transitions */
 section.au-enter-active {
-  -webkit-animation: fadeInRight 1s;
-  animation: fadeInRight 1s;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
 }
 
 div.au-stagger {
