@@ -29,6 +29,7 @@ Thumbs.db
 # Cordova #
 cordova/plugins
 cordova/platforms
+cordova/www
 www/
 plugins/
 platforms/
