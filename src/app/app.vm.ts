@@ -6,6 +6,7 @@ import { AppConfigService } from './services/app-config.service';
 import { CordovaService } from './services/cordova.service';
 import { EventBusService, EventBusEvents } from './services/event-bus.service';
 import { LanguageService } from './services/language.service';
+import { ExampleStep } from './piplines/example.step';
 
 @inject(I18N, AppConfigService, Lazy.of(CordovaService), EventBusService, LanguageService)
 export class AppViewModel {
@@ -51,6 +52,8 @@ export class AppViewModel {
       }
     ]);
     config.mapUnknownRoutes({ route: '', redirect: '' });
+
+    config.addAuthorizeStep(ExampleStep);
 
     this.router = router;
   }
