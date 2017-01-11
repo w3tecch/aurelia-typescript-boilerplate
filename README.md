@@ -144,38 +144,13 @@ To run the unit tests:
 npm test
 ```
 
-## Running The E2E Tests
-Integration tests are performed with [Protractor](http://angular.github.io/protractor/#/).
-
-1. Place your E2E-Tests into the folder ```test/e2e/src```
-
-2. Run the tests by invoking
-
-  ```shell
-  npm run e2e
-  ```
-
-### Running e2e tests manually
-
-1. Make sure your app runs and is accessible
-
-  ```shell
-  WEBPACK_PORT=19876 npm start
-  ```
-
-3. Once bundle is ready, run the E2E-Tests in another console
-
-  ```shell
-  npm run e2e:start
-  ```
-
 ## Environment confugration
 There is a configuration management in place. Three standart environments are already set (devlopment, test and production).
 You can also add more environments with ```--env.target <env-name>``` but there is a catch: You have to add ```--``` for each npm command you
 run throw so if your like to set the evnirnment for ```npm start``` you have to do this like so:
 
   ```shell
-  npm start -- -- --env.target <json-file-name-without-extension>
+  npm start -- -- -- --env.target <json-file-name-without-extension>
   ```
 
 This because ```npm start``` runs ```npm run server:dev``` and then the target command, so we have to to pass the ```--env.target``` by providing two times ```--```.
@@ -226,6 +201,7 @@ Typedoc is generated with command ```npm run build:docs``` into directoy ```docs
 - [X] Add typedocs
 - [ ] Add greenkeeper
 - [ ] Add electron
-- [ ] VSC frontend debugging https://github.com/AngularClass/angular2-webpack-starter/blob/master/.vscode/launch.json
-- [ ] VSC add tasks https://code.visualstudio.com/docs/editor/tasks
-
+- [X] Add pipline example
+- [X] Add utility converters https://www.npmjs.com/package/aurelia-utility-converters
+- [X] Add validation example
+- [X] Add configure http client example

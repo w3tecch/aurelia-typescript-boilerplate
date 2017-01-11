@@ -22,6 +22,7 @@
     "release",
     "index.js",
     "webpack.config.js",
-    "config"
+    "config",
+    "cordova"
   ]
 }

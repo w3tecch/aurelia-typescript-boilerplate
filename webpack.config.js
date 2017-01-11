@@ -13,7 +13,7 @@ module.exports = function (envArguments) {
   let config;
   const ENV = process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() || 'development';
   const pkg = require(path.join(process.cwd(), 'package.json'));
-  let PLATFORM = 'web';
+  let PLATFORM = 'browser';
   let TARGET = ENV;
   let DOCS = false;
   if (envArguments) {
@@ -82,7 +82,9 @@ module.exports = function (envArguments) {
       'aurelia-templating',
       'aurelia-templating-binding',
       'aurelia-templating-router',
-      'aurelia-templating-resources'
+      'aurelia-templating-resources',
+      'aurelia-validation',
+      'aurelia-animator-css'
     ],
     theme: [
       'bootstrap-sass'
