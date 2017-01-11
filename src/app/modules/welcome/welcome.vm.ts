@@ -13,6 +13,7 @@ export class Welcome {
 	public lastName: string = 'Doe';
 	public previousValue: string = this.fullName;
   public currentDate: Date = new Date();
+  public jsonProperty: Object = { key1: 'value1', key2: 'value2' };
 
 	constructor(
     private appConfigService: AppConfigService,

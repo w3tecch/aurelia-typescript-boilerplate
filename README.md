@@ -201,7 +201,7 @@ Typedoc is generated with command ```npm run build:docs``` into directoy ```docs
 - [X] Add typedocs
 - [ ] Add greenkeeper
 - [ ] Add electron
-- [ ] Add pipline example
-- [ ] Add utility converters https://www.npmjs.com/package/aurelia-utility-converters
+- [X] Add pipline example
+- [X] Add utility converters https://www.npmjs.com/package/aurelia-utility-converters
 - [ ] Add validation example
 - [ ] Add configure http client example
