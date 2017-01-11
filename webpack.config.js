@@ -82,7 +82,8 @@ module.exports = function (envArguments) {
       'aurelia-templating',
       'aurelia-templating-binding',
       'aurelia-templating-router',
-      'aurelia-templating-resources'
+      'aurelia-templating-resources',
+      'aurelia-validation'
     ],
     theme: [
       'bootstrap-sass'

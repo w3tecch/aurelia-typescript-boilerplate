@@ -1,14 +1,20 @@
 import { Lazy, inject } from 'aurelia-framework';
 import { Router, RouterConfiguration } from 'aurelia-router';
 import { I18N } from 'aurelia-i18n';
+import { HttpClient } from 'aurelia-fetch-client';
 
+import { LogManager, Logger} from './services/logger.service';
 import { AppConfigService } from './services/app-config.service';
 import { CordovaService } from './services/cordova.service';
 import { EventBusService, EventBusEvents } from './services/event-bus.service';
 import { LanguageService } from './services/language.service';
+import { ExampleStep } from './piplines/example.step';
 
-@inject(I18N, AppConfigService, Lazy.of(CordovaService), EventBusService, LanguageService)
+@inject(I18N, AppConfigService, Lazy.of(CordovaService), EventBusService, LanguageService, HttpClient)
 export class AppViewModel {
+
+  private logger: Logger;
+
   public router: Router;
 
   constructor(
@@ -17,7 +23,15 @@ export class AppViewModel {
     private cordovaServiceFn: () => CordovaService,
     private eventBusService: EventBusService,
     private languageService: LanguageService,
-  ) { }
+    private httpClient: HttpClient
+  ) {
+    this.logger = LogManager.getLogger('AppViewModel');
+    this.configureHttpClient();
+  }
+
+  public attached(): void {
+    this.configureMoment();
+  }
 
   public configureRouter(config: RouterConfiguration, router: Router): void {
     config.title = this.i18n.tr('TITLE');
@@ -52,6 +66,8 @@ export class AppViewModel {
     ]);
     config.mapUnknownRoutes({ route: '', redirect: '' });
 
+    config.addAuthorizeStep(ExampleStep);
+
     this.router = router;
   }
 
@@ -59,5 +75,18 @@ export class AppViewModel {
     const locale = this.languageService.getCurrentLocale();
     moment.locale(locale);
     this.eventBusService.addSubscription(EventBusEvents.IDS.i18n.locale.changed, (a) => moment.locale(a.newValue));
+  }
+
+  private configureHttpClient(): void {
+    this.httpClient.configure(config => {
+      config
+        .useStandardConfiguration()
+        .withInterceptor({
+          request: (request: Request) => {
+            this.logger.debug('Request interceptor hit: ', request.url);
+            return request;
+          }
+        });
+    });
   }
 }
