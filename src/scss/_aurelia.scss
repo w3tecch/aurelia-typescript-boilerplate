@@ -59,8 +59,12 @@ section {
 
 /* animate page transitions */
 section.au-enter-active {
-  -webkit-animation: fadeIn 1s;
-  animation: fadeIn 1s;
+  -webkit-animation: fadeIn 0.5s;
+  animation: fadeIn 0.5s;
+}
+section.au-leave-active {
+  -webkit-animation: fadeOut 0.5s;
+  animation: fadeOut 0.5s;
 }
 
 div.au-stagger {
@@ -128,19 +132,6 @@ div.au-stagger {
 }
 
 /* animation definitions */
-@-webkit-keyframes fadeInRight {
-  0% {
-    opacity: 0;
-    -webkit-transform: translate3d(100%, 0, 0);
-    transform: translate3d(100%, 0, 0)
-  }
-  100% {
-    opacity: 1;
-    -webkit-transform: none;
-    transform: none
-  }
-}
-
 @keyframes fadeInRight {
   0% {
     opacity: 0;
@@ -156,7 +147,7 @@ div.au-stagger {
   }
 }
 
-@-webkit-keyframes fadeIn {
+@keyframes fadeIn {
   0% {
     opacity: 0;
   }
@@ -165,11 +156,21 @@ div.au-stagger {
   }
 }
 
-@keyframes fadeIn {
+@keyframes fadeOut {
   0% {
-    opacity: 0;
+    opacity: 1;
   }
   100% {
-    opacity: 1;
+    opacity: 0;
+  }
+}
+
+// Use swap-order "with"
+@keyframes slideRightIn {
+  0% {
+    transform: translate(-100%, 0);
+  }
+  100% {
+    transform: translate(0, 0);
   }
 }
