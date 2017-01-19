@@ -59,12 +59,12 @@ section {
 
 /* animate page transitions */
 section.au-enter-active {
-  -webkit-animation: fadeIn 0.5s;
-  animation: fadeIn 0.5s;
+  -webkit-animation: fadeIn 0.3s;
+  animation: fadeIn 0.3s;
 }
 section.au-leave-active {
-  -webkit-animation: fadeOut 0.5s;
-  animation: fadeOut 0.5s;
+  -webkit-animation: fadeOut 0.3s;
+  animation: fadeOut 0.3s;
 }
 
 div.au-stagger {
@@ -78,8 +78,8 @@ div.au-stagger {
 }
 
 .card-container.au-enter-active {
-  -webkit-animation: fadeIn 2s;
-  animation: fadeIn 2s;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
 }
 
 .card {
