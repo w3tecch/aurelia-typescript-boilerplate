@@ -33,7 +33,7 @@
     "server:dev:hmr": "npm run server:dev -- --hot",
     "server:prod": "http-server dist --cors",
     "server:docs": "http-server docs --cors",
-    "lint": "lint:app && lint:test",
+    "lint": "npm run lint:app && npm run lint:test",
     "lint:app": "tslint -c ./tslint.json './src/app/**/*.ts'",
     "lint:test": "tslint -c ./tslint.json './test/unit/**/*.ts'",
     "webpack": "cross-env TS_NODE_PROJECT=tsconfig.tsnode.json TS_NODE_FAST=true ./node_modules/.bin/webpack",
