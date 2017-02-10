@@ -19,7 +19,7 @@ Before you start, make sure you have a recent version of [NodeJS](http://nodejs.
 From the project folder, execute the following commands:
 
 ```shell
-npm install
+npm run install:dev
 ```
 
 This will install all required dependencies, including a local version of Webpack that is going to

@@ -1,4 +1,5 @@
-﻿/**
+﻿
+/**
  * Import the main sass file for all the styles
  */
 import '../scss/main.scss';

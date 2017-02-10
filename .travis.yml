@@ -7,13 +7,13 @@ before_install:
   - "export DISPLAY=:99.0"
   - "sh -e /etc/init.d/xvfb start"
 install:
-  - npm install
-  - npm install -g typings
-before_script:
-  - typings install
+  - npm run install:dev
 script:
+  - npm run lint
   - npm test
   - npm run build:prod
+  - npm run build:docs
+  - npm run mobile:setup
 notifications:
   email: false
   hipchat: 861e4f14f03ed33d069f1083a6c9f5@2679708
