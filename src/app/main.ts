@@ -94,6 +94,14 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .feature('resources/converters')
     ;
 
+  /**
+   * If we are on Cordova we have to wait until the device is ready.
+   * Removing this could cause breaking Cordova Plugins
+   */
+  await new Promise(resolve => appConfigService.platformIsMobile()
+    ? document.addEventListener('deviceready', () => resolve(), false)
+    : resolve());
+
   await aurelia.start();
   aurelia.setRoot('app.vm');
 
