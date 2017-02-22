@@ -110,7 +110,6 @@ export class Md5ValueConverter {
   }
 
   private md51(s): any[] {
-    let txt = '';
     let n = s.length,
       state = [1732584193, -271733879, -1732584194, 271733878], i;
     for (i = 64; i <= s.length; i += 64) {

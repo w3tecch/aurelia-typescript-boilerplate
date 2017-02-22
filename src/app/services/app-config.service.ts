@@ -10,7 +10,8 @@ declare var PLATFORM: string;
 declare var CONFIG: IAppConfigEnv;
 
 export interface IAppConfigEnv {
-  API_URL: string;
+  API_MAIN_URL: string;
+  API_UAM_URL: string;
   LOG_LEVEL: string;
 }
 
