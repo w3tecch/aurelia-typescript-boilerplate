@@ -24,9 +24,11 @@ class RouterStub {
     this.routes = routes;
   }
 
-  public mapUnknownRoutes(route): void { ; }
+  // tslint:disable-next-line
+  public mapUnknownRoutes(route): void { route; }
 
-  public addAuthorizeStep(step): void { ; }
+  // tslint:disable-next-line
+  public addAuthorizeStep(step): void { step; }
 }
 
 describe('the App module', () => {
