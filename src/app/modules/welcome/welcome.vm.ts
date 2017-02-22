@@ -24,11 +24,11 @@ export class Welcome {
     validationControllerFactory: ValidationControllerFactory
   ) {
 		this.logger = LogManager.getLogger('Welcome VM');
-		this.logger.info('appConfig => name:', appConfigService.getName());
-		this.logger.info('appConfig => version:', appConfigService.getVersion());
-		this.logger.info('appConfig => env:', appConfigService.getEnv());
-		this.logger.info('appConfig => platform:', appConfigService.getPlatform());
-		this.logger.info('appConfig => config:', appConfigService.getConfig());
+		this.logger.info('appConfig => name:', this.appConfigService.getName());
+		this.logger.info('appConfig => version:', this.appConfigService.getVersion());
+		this.logger.info('appConfig => env:', this.appConfigService.getEnv());
+		this.logger.info('appConfig => platform:', this.appConfigService.getPlatform());
+		this.logger.info('appConfig => config:', this.appConfigService.getConfig());
 
     this.vController = validationControllerFactory.createForCurrentScope();
     this.vController.validateTrigger = validateTrigger.manual;
