@@ -95,7 +95,7 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
         // exposes jQuery globally as $ and as jQuery:
         { test: require.resolve('jquery'), loader: 'expose-loader?$!expose-loader?jQuery' },
         // embed small images and fonts as Data Urls and larger ones as files:
-        { test: /\.(png|gif|jpg|cur)$/i, use: [ 'url-loader?limit=8192', 'img-loader' ] },
+        { test: /\.(png|gif|jpg|cur)$/i, use: ['url-loader?limit=8192', 'img-loader'] },
         { test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff2' } },
         { test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff' } },
         // load these fonts normally, as files:
