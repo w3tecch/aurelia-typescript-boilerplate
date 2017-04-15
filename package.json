@@ -101,6 +101,7 @@
     "aurelia-validation": "^1.0.0",
     "bluebird": "^3.5.0",
     "bootstrap-sass": "^3.3.7",
+    "favicons-webpack-plugin": "^0.0.7",
     "font-awesome": "^4.7.0",
     "i18next-browser-languagedetector": "^1.0.1",
     "isomorphic-fetch": "^2.2.1",
