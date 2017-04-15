@@ -23,11 +23,11 @@ export class AppConfigService {
   private config: IAppConfigEnv;
 
   constructor() {
-    this.name = 'NAME';
-    this.version = 'VERSION';
-    this.env = 'ENV';
-    this.platform = 'PLATFORM';
-    this.config = 'CONFIG';
+    this.name = NAME;
+    this.version = VERSION;
+    this.env = ENV;
+    this.platform = PLATFORM;
+    this.config = CONFIG;
   }
 
   public getName(): string { return this.name; }
