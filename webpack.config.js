@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const WebpackNotifierPlugin = require('webpack-notifier');
 const { AureliaPlugin } = require('aurelia-webpack-plugin');
 const { optimize: { CommonsChunkPlugin }, ProvidePlugin } = require('webpack')
 const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loader');
@@ -14,7 +15,6 @@ const when = (condition, config, negativeConfig) =>
   condition ? ensureArray(config) : ensureArray(negativeConfig)
 
 // primary config:
-const title = 'Aurelia Navigation Skeleton';
 const outDir = path.resolve(__dirname, 'dist');
 const srcDir = path.resolve(__dirname, 'src/app');
 const nodeModulesDir = path.resolve(__dirname, 'node_modules');
@@ -93,7 +93,7 @@ module.exports = ({ production, server, extractCss, coverage } = {}) => ({
     ]
   },
   plugins: [
-    new AureliaPlugin({ root: '', src: './src/app', title: 'Aurelia', baseUrl: '/' }),
+    new AureliaPlugin({ root: '', src: './src/app', title: pkg.title, baseUrl: '/' }),
     new ProvidePlugin({
       'Promise': 'bluebird',
       '$': 'jquery',
@@ -109,8 +109,7 @@ module.exports = ({ production, server, extractCss, coverage } = {}) => ({
         collapseWhitespace: true
       } : undefined,
       metadata: {
-        // available in index.ejs //
-        title, server, baseUrl
+        title: pkg.title, server, baseUrl, description: pkg.description, version: pkg.version, author: pkg.author
       },
     }),
     ...when(extractCss, new ExtractTextPlugin({
@@ -130,6 +129,10 @@ module.exports = ({ production, server, extractCss, coverage } = {}) => ({
       inject: true,
       title: pkg.title,
       icons: { android: true, appleIcon: true, appleStartup: true, coast: false, favicons: true, firefox: true, opengraph: false, twitter: false, yandex: false, windows: false }
+    }),
+    new WebpackNotifierPlugin({
+      title: pkg.title,
+      contentImage: path.resolve('icon.png')
     })
   ],
 })
