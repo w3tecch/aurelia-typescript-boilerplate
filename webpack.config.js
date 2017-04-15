@@ -4,6 +4,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
+const CompressionPlugin = require("compression-webpack-plugin");
 const { AureliaPlugin } = require('aurelia-webpack-plugin');
 const { optimize: { CommonsChunkPlugin }, ProvidePlugin, BannerPlugin } = require('webpack')
 const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loader');
@@ -129,6 +130,13 @@ module.exports = ({ production, server, extractCss, coverage } = {}) => ({
       ' @author         ' + pkg.author + '\n' +
       ' @license        ' + pkg.license + '\n'
     )),
+    ...when(production, new CompressionPlugin({
+      asset: "[path].gz[query]",
+      algorithm: "gzip",
+      test: /\.js$|\.html$/,
+      threshold: 10240,
+      minRatio: 0.8
+    })),
 
     new FaviconsWebpackPlugin({
       logo: path.resolve('icon.png'),
