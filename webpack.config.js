@@ -63,6 +63,7 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
     },
     devServer: {
       contentBase: baseUrl,
+      historyApiFallback: true
     },
     module: {
       rules: [
