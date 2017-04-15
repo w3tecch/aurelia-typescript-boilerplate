@@ -5,7 +5,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const { AureliaPlugin } = require('aurelia-webpack-plugin');
-const { optimize: { CommonsChunkPlugin }, ProvidePlugin } = require('webpack')
+const { optimize: { CommonsChunkPlugin }, ProvidePlugin, BannerPlugin } = require('webpack')
 const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loader');
 const pkg = require('./package.json');
 
@@ -122,6 +122,13 @@ module.exports = ({ production, server, extractCss, coverage } = {}) => ({
     ...when(production, new CopyWebpackPlugin([
       { from: 'static/favicon.ico', to: 'favicon.ico' }
     ])),
+    ...when(production, new BannerPlugin(
+      ' @name           ' + pkg.title + '\n' +
+      ' @description    ' + pkg.description + '\n\n' +
+      ' @version        ' + pkg.version + '\n' +
+      ' @author         ' + pkg.author + '\n' +
+      ' @license        ' + pkg.license + '\n'
+    )),
 
     new FaviconsWebpackPlugin({
       logo: path.resolve('icon.png'),

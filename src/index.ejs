@@ -3,34 +3,34 @@
 
 <head>
   <title>
-    <%= htmlWebpackPlugin.metadata.title %>
+    <%= htmlWebpackPlugin.options.metadata.title %>
   </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="msapplication-tap-highlight" content="no" />
-  <meta name="description" content="<%= htmlWebpackPlugin.metadata.description %>">
-  <meta name="version" content="<%= htmlWebpackPlugin.metadata.version %>">
-  <meta name="author" content="<%= htmlWebpackPlugin.metadata.author %>">
+  <meta name="description" content="<%= htmlWebpackPlugin.options.metadata.description %>">
+  <meta name="version" content="<%= htmlWebpackPlugin.options.metadata.version %>">
+  <meta name="author" content="<%= htmlWebpackPlugin.options.metadata.author %>">
 
   <% if (htmlWebpackPlugin.options.platform === 'browser') { %>
-    <base href="<%= htmlWebpackPlugin.metadata.baseUrl %>">
+    <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
   <% } %>
 </head>
 
 <body>
   <div aurelia-app="main">
     <div class="splash">
-      <div class="message"><%- htmlWebpackPlugin.metadata.title %></div>
+      <div class="message"><%- htmlWebpackPlugin.options.metadata.title %></div>
       <i class="fa fa-spinner fa-spin"></i>
     </div>
   </div>
 
-  <% if (htmlWebpackPlugin.metadata.platform === 'mobile') { %>
+  <% if (htmlWebpackPlugin.options.metadata.platform === 'mobile') { %>
     <!-- Cordova -->
     <script src="cordova.js"></script>
   <% } %>
 
-  <% if (htmlWebpackPlugin.metadata.ENV === 'development') { %>
+  <% if (htmlWebpackPlugin.options.metadata.ENV === 'development') { %>
     <!-- Webpack Dev Server reload -->
     <script src="/webpack-dev-server.js"></script>
     <% } %>
