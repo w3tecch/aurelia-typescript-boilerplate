@@ -32,6 +32,11 @@ class RouterStub {
   public addAuthorizeStep(step): void { step; }
 }
 
+class AppConfigStub {
+  public platformIsBrowser(): boolean { return true; }
+  public platformIsMobile(): boolean { return false; }
+}
+
 describe('the App module', () => {
   let sut;
   let mockedRouter;
@@ -58,7 +63,7 @@ describe('the App module', () => {
       debug: false
     });
 
-    appConfigSub = new AppConfigService();
+    appConfigSub = new AppConfigStub();
 
     sut = new AppViewModel(i18nMock, appConfigSub, AnyMock, AnyMock, AnyMock, new HttpClient());
     sut.configureRouter(mockedRouter, mockedRouter);
