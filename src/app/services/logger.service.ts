@@ -4,4 +4,4 @@ import { Logger } from 'aurelia-logging';
 export {
   LogManager,
   Logger
-}
+};

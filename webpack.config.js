@@ -50,6 +50,9 @@ module.exports = ({ production, server, extractCss, coverage } = {}) => ({
   },
   module: {
     rules: [
+      {
+        test: /\.ts$/, enforce: 'pre', loader: 'tslint-loader'
+      },
       // CSS required in JS/TS files should use the style-loader that auto-injects it into the website
       // only when the issuer is a .js/.ts file, so the loaders are not applied inside html templates
       {

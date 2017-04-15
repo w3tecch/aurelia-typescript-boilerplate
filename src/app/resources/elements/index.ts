@@ -5,4 +5,4 @@ export function configure(aurelia): void {
 		.globalResources([
       PLATFORM.moduleName('./show-name/show-name.element')
     ]);
-};
+}

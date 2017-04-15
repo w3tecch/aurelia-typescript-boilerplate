@@ -10,4 +10,4 @@ export function configure(aurelia): void {
       PLATFORM.moduleName('./md5.converter'),
       PLATFORM.moduleName('./sort.converter'),
     ]);
-};
+}
