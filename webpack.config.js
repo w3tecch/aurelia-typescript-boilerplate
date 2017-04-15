@@ -14,7 +14,7 @@ const when = (condition, config, negativeConfig) =>
 // primary config:
 const title = 'Aurelia Navigation Skeleton';
 const outDir = path.resolve(__dirname, 'dist');
-const srcDir = path.resolve(__dirname, 'src');
+const srcDir = path.resolve(__dirname, 'src/app');
 const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 const baseUrl = '/';
 
@@ -22,18 +22,21 @@ const cssRules = [
   { loader: 'css-loader' },
   {
     loader: 'postcss-loader',
-    options: { plugins: () => [require('autoprefixer')({ browsers: ['last 2 versions'] })]}
+    options: { plugins: () => [require('autoprefixer')({ browsers: ['last 2 versions'] })] }
+  },
+  {
+    loader: "sass-loader"
   }
 ]
 
-module.exports = ({production, server, extractCss, coverage} = {}) => ({
+module.exports = ({ production, server, extractCss, coverage } = {}) => ({
   resolve: {
     extensions: ['.ts', '.js'],
     modules: [srcDir, 'node_modules'],
   },
   entry: {
     app: ['aurelia-bootstrapper'],
-    vendor: ['bluebird', 'jquery', 'bootstrap'],
+    vendor: ['bluebird', 'jquery', 'bootstrap-sass'],
   },
   output: {
     path: outDir,
@@ -50,8 +53,8 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
       // CSS required in JS/TS files should use the style-loader that auto-injects it into the website
       // only when the issuer is a .js/.ts file, so the loaders are not applied inside html templates
       {
-        test: /\.css$/i,
-        issuer: [{ not: [{ test: /\.html$/i }] }],
+        test: /\.scss$/i,
+        // issuer: [{ not: [{ test: /\.html$/i }] }],
         use: extractCss ? ExtractTextPlugin.extract({
           fallback: 'style-loader',
           use: cssRules,
@@ -85,7 +88,7 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
     ]
   },
   plugins: [
-    new AureliaPlugin(),
+    new AureliaPlugin({ root: '', src: './src/app', title: 'Aurelia', baseUrl: '/' }),
     new ProvidePlugin({
       'Promise': 'bluebird',
       '$': 'jquery',
@@ -95,7 +98,7 @@ module.exports = ({production, server, extractCss, coverage} = {}) => ({
     new TsConfigPathsPlugin(),
     new CheckerPlugin(),
     new HtmlWebpackPlugin({
-      template: 'index.ejs',
+      template: './src/index.ejs',
       minify: production ? {
         removeComments: true,
         collapseWhitespace: true

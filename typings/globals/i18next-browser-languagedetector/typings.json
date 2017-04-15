@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/4840e09c78040de72cf3f64e9f80403a794f75c8/i18next-browser-languagedetector/index.d.ts",
+    "raw": "registry:dt/i18next-browser-languagedetector#0.0.14+20160811131240",
+    "typings": "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/4840e09c78040de72cf3f64e9f80403a794f75c8/i18next-browser-languagedetector/index.d.ts"
+  }
+}

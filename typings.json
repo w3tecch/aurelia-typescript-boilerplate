@@ -1,0 +1,11 @@
+{
+  "name": "aurelia-skeleton-navigation-webpack",
+  "dependencies": {},
+  "globalDependencies": {
+    "cordova": "registry:dt/cordova#0.0.0+20160819210047",
+    "i18next-browser-languagedetector": "registry:dt/i18next-browser-languagedetector#0.0.14+20160811131240",
+    "jquery": "registry:dt/jquery#1.10.0+20160704162008",
+    "moment": "registry:dt/moment#2.8.0+20160316155526",
+    "moment-node": "registry:dt/moment-node#2.11.1+20160511043338"
+  }
+}
