@@ -70,6 +70,22 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
         {
           test: /\.ts$/, enforce: 'pre', loader: 'tslint-loader'
         },
+        {
+          test: /\.html$/i,
+          enforce: 'pre',
+          include: [srcDir],
+          use: [{
+            loader: 'aurelia-template-lint-webpack-loader',
+            options: {
+              emitErrors: production,
+              failOnHint: production,
+              typeChecking: true,
+              reflectionOpts: {
+                sourceFileGlob: './src/app/**/*.ts'
+              }
+            }
+          }]
+        },
         // CSS required in JS/TS files should use the style-loader that auto-injects it into the website
         // only when the issuer is a .js/.ts file, so the loaders are not applied inside html templates
         {
