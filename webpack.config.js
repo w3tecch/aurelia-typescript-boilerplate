@@ -103,7 +103,14 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
           // because Aurelia would try to require it again in runtime
           use: cssRules,
         },
-        { test: /\.html$/i, loader: 'html-loader' },
+        {
+          test: /\.html$/i, use: [{
+            loader: 'html-loader',
+            options: {
+              minimize: production
+            }
+          }]
+        },
         { test: /\.ts$/i, loader: 'awesome-typescript-loader', exclude: nodeModulesDir },
         { test: /\.json$/i, loader: 'json-loader' },
         // use Bluebird as the global Promise implementation:
@@ -167,7 +174,6 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
         threshold: 10240,
         minRatio: 0.8
       })),
-
       new FaviconsWebpackPlugin({
         logo: path.resolve('icon.png'),
         persistentCache: true,
