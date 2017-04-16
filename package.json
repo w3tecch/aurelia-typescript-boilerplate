@@ -69,7 +69,7 @@
     "aurelia-loader-nodejs": "^1.0.1",
     "aurelia-pal-nodejs": "1.0.0-beta.1.0.0",
     "aurelia-protractor-plugin": "^1.0.1",
-    "aurelia-template-lint-webpack-loader": "^1.0.2",
+    "aurelia-template-lint-webpack-loader": "^1.0.3",
     "aurelia-testing": "^1.0.0-beta.3.0.1",
     "aurelia-webpack-plugin": "^2.0.0-rc.2",
     "autoprefixer": "^6.7.7",
