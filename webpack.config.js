@@ -147,7 +147,7 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
           collapseWhitespace: true
         } : undefined,
         metadata: {
-          title: pkg.title, server, baseUrl, description: pkg.description, version: pkg.version, author: pkg.author
+          title: pkg.title, server, baseUrl, description: pkg.description, version: pkg.version, author: pkg.author, platform: PLATFORM, ENV
         },
       }),
       ...when(extractCss, new ExtractTextPlugin({

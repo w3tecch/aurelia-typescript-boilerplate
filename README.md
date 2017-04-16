@@ -1,4 +1,6 @@
-# aurelia-skeleton-webpack
+[![Build Status](https://api.travis-ci.org/w3tecch/aurelia-ts-boilerplate.svg?branch=master)](https://travis-ci.org/w3tecch/aurelia-ts-boilerplate)
+[![Dependency Status](https://david-dm.org/w3tecch/aurelia-ts-boilerplate.svg)](https://david-dm.org/w3tecch/aurelia-ts-boilerplate)
+[![devDependency Status](https://david-dm.org/w3tecch/aurelia-ts-boilerplate/dev-status.svg)](https://david-dm.org/w3tecch/aurelia-ts-boilerplate#info=devDependencies)
 
 ## Getting started
 
@@ -10,8 +12,13 @@ From the project folder, execute the following commands:
 npm install # or: yarn install
 ```
 
+Don't forget to install the typings:
+```shell
+npm run install:typings
+```
+
 This will install all required dependencies, including a local version of Webpack that is going to
-build and bundle the app. There is no need to install Webpack globally. 
+build and bundle the app. There is no need to install Webpack globally.
 
 To run the app execute the following command:
 
@@ -44,7 +51,7 @@ To build an optimized, minified production bundle (output to /dist) execute:
 npm start -- build
 ```
 
-To build 
+To build
 
 To test either the development or production build execute:
 
@@ -117,3 +124,56 @@ To run all the unit test suites and the E2E tests, you may simply run:
 ```shell
 npm start -- test.all
 ```
+
+## App confugration
+There is an app configuration management in place. Two standart environments are already set (devlopment and production).
+You can for example build the production with:
+
+```shell
+npm start -- webpack.build.production
+```
+
+If you like to add an additional configuaration you have to do the following two steps:
+1. Add the configuration json to ```app/config```, example preprod.json
+2. Add the corresponding command to ```package-script.js``` and pass the right argument like ```--env.config=preprod```
+
+Example for path ```webpack.build.preprod```:
+```javascript
+preprod: {
+  inlineCss: series(
+    'nps webpack.build.before',
+    'webpack --progress -p --env.production --env.config=preprod'
+  ),
+  default: series(
+    'nps webpack.build.before',
+    'webpack --progress -p --env.production --env.extractCss --env.config=preprod'
+  ),
+  serve: series.nps(
+    'webpack.build.production',
+    'serve'
+  ),
+}
+```
+
+## HTML5 pushState routing
+By default pushState, also known as html5 routing, is enabled. The Webpack server is already configured to handle this but many webserver need
+extra confuration to enable this.
+
+## Cordova - Mobile Development
+
+### Installation
+Initiate cordova with the following commands:
+```shell
+npm install -g cordova
+npm start -- mobile.setup
+```
+
+### Run and build
+Cordova takes the ```www``` folder source to create the Cordova app. This ```www``` folder is a symlink pointing to the ```dist``` folder.
+So make sure you run for example ```npm start -- build``` first before runing/building a Cordova app.
+
+Sometimes the ```www``` symlink is removed (e.g. git clone). Run this command to fix this:
+```shell
+npm start -- mobile.link
+```
+
