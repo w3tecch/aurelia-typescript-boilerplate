@@ -1,6 +1,6 @@
-[![Build Status](https://api.travis-ci.org/w3tecch/aurelia-ts-boilerplate.svg?branch=master)](https://travis-ci.org/w3tecch/aurelia-ts-boilerplate)
-[![Dependency Status](https://david-dm.org/w3tecch/aurelia-ts-boilerplate.svg)](https://david-dm.org/w3tecch/aurelia-ts-boilerplate)
-[![devDependency Status](https://david-dm.org/w3tecch/aurelia-ts-boilerplate/dev-status.svg)](https://david-dm.org/w3tecch/aurelia-ts-boilerplate#info=devDependencies)
+[![Build Status](https://api.travis-ci.org/w3tecch/aurelia-typescript-boilerplate.svg?branch=master)](https://travis-ci.org/w3tecch/aurelia-typescript-boilerplate)
+[![Dependency Status](https://david-dm.org/w3tecch/aurelia-typescript-boilerplate.svg)](https://david-dm.org/w3tecch/aurelia-typescript-boilerplate)
+[![devDependency Status](https://david-dm.org/w3tecch/aurelia-typescript-boilerplate/dev-status.svg)](https://david-dm.org/w3tecch/aurelia-typescript-boilerplate#info=devDependencies)
 
 ## Getting started
 
