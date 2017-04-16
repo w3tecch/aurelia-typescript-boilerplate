@@ -1,15 +1,35 @@
 {
-  "name": "skeleton-typescript-webpack",
-  "version": "1.0.0",
-  "title": "Aurelia Navigation Skeleton",
+  "name": "aurelia-typescript-boilerplate",
+  "version": "4.0.0",
+  "title": "Aurelia Typescript Boilerplate",
   "description": "A starter kit for building a standard navigation-style app with Aurelia and Webpack.",
   "main": "dist/app.bundle.js",
+  "identifier": "ch.w3tec.app",
   "repository": {
-    "url": "git+ssh://git@github.com/aurelia/skeleton-navigation.git",
-    "type": "git"
+    "type": "git",
+    "url": "git+ssh://git@github.com/w3tecch/aurelia-typescript-boilerplate.git"
   },
-  "author": "Bazyli Brzóska <bazyli.brzoska@gmail.com> (https://invent.life/)",
-  "license": "CC0-1.0",
+  "author": "w3tec <info@w3tec.ch> (http://w3tec.ch/)",
+  "contributors": [
+    {
+      "name": "Gery Hirschfeld <gery.hirschfeld@w3tec.ch> (https://github.com/hirsch88)"
+    },
+    {
+      "name": "David Weber <david.weber@w3tec.ch> (https://github.com/dweber019)"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/w3tecch/aurelia-typescript-boilerplate/issues"
+  },
+  "homepage": "https://github.com/w3tecch/aurelia-typescript-boilerplate#readme",
+  "license": "MIT",
+  "keywords": [
+    "aurelia",
+    "skeleton",
+    "boilterplate",
+    "typescript",
+    "webpack"
+  ],
   "engines": {
     "node": ">= 6.0.0"
   },
