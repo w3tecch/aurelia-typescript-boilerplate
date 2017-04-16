@@ -1,20 +1,18 @@
 module.exports = function (wallaby) {
   return {
-    // set `load: false` to all source files and tests processed by webpack
-    // (except external files),
-    // as they should not be loaded in browser,
-    // their wrapped versions will be loaded instead
     files: [
-      { pattern: 'src/app/**/*.ts', load: false }
+      'tsconfig.json',
+      'src/app/**/*.ts',
+      'src/**/*.json',
     ],
 
     tests: [
-      { pattern: 'test/jest-unit/**/*.test.ts', load: false }
+      'test/jest-unit/**/*.test.ts'
     ],
 
     compilers: {
       '**/*.ts': wallaby.compilers.typeScript({
-        typescript: require('typescript')
+        module: 'commonjs'
       })
     },
 
