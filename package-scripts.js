@@ -53,11 +53,11 @@ module.exports = {
         development: {
           default: series(
             'nps webpack.build.before',
-            'webpack --progress -d'
+            'webpack --progress -d --env.config=development'
           ),
           extractCss: series(
             'nps webpack.build.before',
-            'webpack --progress -d --env.extractCss'
+            'webpack --progress -d --env.extractCss, --env.config=development'
           ),
           serve: series.nps(
             'webpack.build.development',
@@ -67,11 +67,11 @@ module.exports = {
         production: {
           inlineCss: series(
             'nps webpack.build.before',
-            'webpack --progress -p --env.production'
+            'webpack --progress -p --env.production --env.config=production'
           ),
           default: series(
             'nps webpack.build.before',
-            'webpack --progress -p --env.production --env.extractCss'
+            'webpack --progress -p --env.production --env.extractCss --env.config=production'
           ),
           serve: series.nps(
             'webpack.build.production',
@@ -86,5 +86,40 @@ module.exports = {
       },
     },
     serve: 'http-server dist --cors',
+    mobile: {
+      default: 'nps mobile.build',
+      link: 'node ./scripts/mobile-link.js',
+      setup: series(
+        'node ./scripts/mobile-setup.js',
+        'nps mobile.link'
+      ),
+      build: {
+        default: 'nps mobile.build.development',
+        before: 'nps mobile.cordova.clean',
+        after: series(
+          'nps mobile.link',
+          'nps mobile.cordova.prepare',
+          'nps mobile.cordova.build'
+        ),
+        development: series(
+          'nps mobile.build.before',
+          'nps "webpack.build.development --env.platform=mobile"',
+          'nps mobile.build.after'
+        ),
+        production: series(
+          'nps mobile.build.before',
+          'nps "webpack.build.production --env.platform=mobile"',
+          'nps mobile.build.after'
+        ),
+      },
+      cordova: {
+        prepare: 'cd ./cordova && ./../node_modules/.bin/cordova prepare',
+        build: 'cd ./cordova && ./../node_modules/.bin/cordova build',
+        clean: series(
+          rimraf('./cordova/plaforms'),
+          rimraf('./cordova/plugins')
+        )
+      }
+    }
   },
 }

@@ -5,3 +5,48 @@ yarn-error.log
 /dist
 /test/*coverage
 /.chrome
+
+# Logs #
+logs
+*.log
+*.log*
+
+# Node Files #
+/node_modules
+/bower_components
+npm-debug.log
+
+# OS generated files #
+.DS_Store
+Thumbs.db
+
+# Node Files #
+/node_modules
+/bower_components
+npm-debug.log
+
+# OS generated files #
+.DS_Store
+Thumbs.db
+
+# Typing #
+/typings/
+
+# Dist #
+/dist
+
+# Docs #
+/docs
+
+# Cordova #
+cordova/plugins
+cordova/platforms
+cordova/www
+www/
+plugins/
+platforms/
+
+# IDE #
+.idea/
+*.swp
+.awcache
