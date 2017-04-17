@@ -97,6 +97,7 @@
     "karma-jasmine": "^1.0.2",
     "karma-mocha-reporter": "^2.2.0",
     "karma-webpack": "^2.0.3",
+    "loader-utils": "^1.1.0",
     "ncp": "^2.0.0",
     "node-sass": "^4.5.2",
     "nps": "^5.0.5",
