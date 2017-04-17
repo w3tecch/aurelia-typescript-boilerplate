@@ -10,13 +10,13 @@ describe('WelcomeComponent', () => {
         '../../src/app/modules/welcome/welcome.vm',
         '../../src/app/resources/converters/date-format.converter'
       ])
-      .inView('<welcome></welcome>');
-    await component.create(bootstrap);
+      .inView('<welcome-view-model></welcome-view-model>');
+      await component.create(bootstrap);
   });
 
   xit('should render correctly', () => {
     expect(document.body.outerHTML).toMatchSnapshot();
-  })
+  });
 
   xit('should render first name', () => {
     const nameElement = document.querySelector('#fn') as HTMLInputElement;
