@@ -15,13 +15,50 @@
   <% if (htmlWebpackPlugin.options.platform === 'browser') { %>
     <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
   <% } %>
+
+  <style>
+    .splash {
+      text-align: center;
+      margin: 10% 0 0 0;
+    }
+
+    .splash .message {
+      font-size: 72px;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    .sk-three-bounce {
+      margin: 40px auto;
+    }
+
+    .sk-three-bounce .sk-child {
+      width: 30px;
+      height: 30px;
+      background-color: #333;
+      border-radius: 100%;
+      display: inline-block;
+      animation: sk-three-bounce 1.4s ease-in-out 0s infinite both;
+    }
+
+    .sk-three-bounce .sk-bounce1 { animation-delay: -0.32s; }
+    .sk-three-bounce .sk-bounce2 { animation-delay: -0.16s; }
+
+    @keyframes sk-three-bounce {
+      0%, 80%, 100% { transform: scale(0); }
+      40% { transform: scale(1); }
+    }
+  </style>
 </head>
 
 <body>
   <div aurelia-app="main">
     <div class="splash">
       <div class="message"><%- htmlWebpackPlugin.options.metadata.title %></div>
-      <i class="fa fa-spinner fa-spin"></i>
+      <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+      </div>
     </div>
   </div>
 
