@@ -1,6 +1,8 @@
+import { PLATFORM } from 'aurelia-framework';
+
 export function configure(aurelia): void {
   aurelia
 	  .globalResources([
-      './nav-bar/nav-bar.html'
+      PLATFORM.moduleName('./nav-bar/nav-bar.html')
     ]);
-};
+}

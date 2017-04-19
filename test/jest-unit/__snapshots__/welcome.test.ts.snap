@@ -1,0 +1,47 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WelcomeComponent should render correctly 1`] = `
+"<body><div><welcome class=\\"au-target\\" au-target-id=\\"13\\">
+  <section class=\\"au-animate\\">
+    <h1 t=\\"TITLE\\"></h1>
+    <h2>Welcome to the Aurelia Navigation App</h2>
+    <form role=\\"form\\" submit.delegate=\\"submit()\\" class=\\"au-target\\" au-target-id=\\"2\\">
+      <div class=\\"form-group\\">
+        <label for=\\"fn\\">First Name</label>
+        <input type=\\"text\\" value.bind=\\"firstName\\" class=\\"form-control au-target\\" id=\\"fn\\" placeholder=\\"first name\\" au-target-id=\\"3\\">
+      </div>
+      <div class=\\"form-group\\">
+        <label for=\\"ln\\">Last Name</label>
+        <input type=\\"text\\" value.bind=\\"lastName\\" class=\\"form-control au-target\\" id=\\"ln\\" placeholder=\\"last name\\" au-target-id=\\"4\\">
+      </div>
+      <div class=\\"form-group\\">
+        <label>Full Name</label>
+        <p class=\\"help-block\\">JOHN DOE</p>
+      </div>
+      <button type=\\"submit\\" class=\\"btn btn-default\\">Submit</button>
+    </form>
+
+    <show-name some-text.bind=\\"firstName\\" class=\\"au-target\\" au-target-id=\\"6\\"></show-name>
+
+    <h3>Custom global attribute</h3>
+    <div red-square=\\"\\"></div>
+
+    <h3>Global value converter</h3>
+    <p>Saturday, April 15, 2017 11:27 AM</p>
+
+    <h3>Switch Language</h3>
+    <button click.delegate=\\"switchLanguage()\\" class=\\"btn btn-primary au-target\\" au-target-id=\\"8\\">Click me!</button>
+    <br><br>
+    <p>Everything is: <span t=\\"TR_ATTR\\"></span></p>
+    <p> </p>
+
+    <h3>Converter utility</h3>
+    <p> </p>
+    <p>Available converters are: filter, json, limit, md5 and sort</p>
+
+    <h3>Validation</h3>
+    <p> </p>
+    <button class=\\"btn btn-primary au-target\\" click.delegate=\\"validateFirstName()\\" au-target-id=\\"12\\">validate</button>
+  </section>
+</welcome></div></body>"
+`;

@@ -13,7 +13,7 @@ const appConfigService = new AppConfigService();
 /**
  * Aurelia imports
  */
-import { Aurelia, LogManager } from 'aurelia-framework';
+import { Aurelia, LogManager, PLATFORM } from 'aurelia-framework';
 import { ConsoleAppender } from 'aurelia-logging-console';
 
 /**
@@ -27,6 +27,10 @@ import de_CHTranslation from './../locales/de_CH.json';
  */
 import 'isomorphic-fetch';
 import LanguageDetector from 'i18next-browser-languagedetector';
+
+import * as Bluebird from 'bluebird';
+// remove out if you don't want a Promise polyfill (remove also from webpack.config.js)
+Bluebird.config({ warnings: { wForgottenReturn: false } });
 
 /**
  * Aurelia configruation
@@ -44,7 +48,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
      *
      * See: https://github.com/aurelia/i18n
      */
-    .plugin('aurelia-i18n', (instance) => {
+    .plugin(PLATFORM.moduleName('aurelia-i18n'), (instance) => {
       instance.i18next.use(LanguageDetector);
       // adapt options to your needs (see http://i18next.com/docs/options/)
       // make sure to return the promise of the setup method, in order to guarantee proper loading
@@ -78,9 +82,9 @@ export async function configure(aurelia: Aurelia): Promise<void> {
      * Configure i18n for aurelia-validation error messages.
      * See: http://aurelia.io/hub.html#/doc/article/aurelia/validation/latest/validation-basics
      */
-    .plugin('aurelia-validation')
+    .plugin(PLATFORM.moduleName('aurelia-validation'))
     // Uncomment the line below to enable animation.
-    .plugin('aurelia-animator-css')
+    .plugin(PLATFORM.moduleName('aurelia-animator-css'))
     // if the css animator is enabled, add swap-order="after" to all router-view elements
 
     // Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
@@ -88,10 +92,10 @@ export async function configure(aurelia: Aurelia): Promise<void> {
 		/**
 		 * Features
 		 */
-    .feature('resources/attributes')
-    .feature('resources/elements')
-    .feature('resources/templates')
-    .feature('resources/converters')
+    .feature(PLATFORM.moduleName('resources/attributes/index'))
+    .feature(PLATFORM.moduleName('resources/elements/index'))
+    .feature(PLATFORM.moduleName('resources/templates/index'))
+    .feature(PLATFORM.moduleName('resources/converters/index'))
     ;
 
   /**
@@ -103,7 +107,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     : resolve());
 
   await aurelia.start();
-  aurelia.setRoot('app.vm');
+  await aurelia.setRoot(PLATFORM.moduleName('app.vm'));
 
   // if you would like your website to work offline (Service Worker),
   // install and enable the @easy-webpack/config-offline package in webpack.config.js and uncomment the following code:

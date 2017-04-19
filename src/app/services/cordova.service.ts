@@ -22,13 +22,13 @@ export class CordovaService {
     document.addEventListener('resume', this.onResume.bind(this), false);
 
     this.logger.debug('Cordova platform:', window.cordova.platformId);
-  };
+  }
 
   private onPause(): void {
     this.logger.debug('Cordova onPause');
-  };
+  }
 
   private onResume(): void {
     this.logger.debug('Cordova onResume');
-  };
+  }
 }

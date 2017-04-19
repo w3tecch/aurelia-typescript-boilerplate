@@ -1,12 +1,24 @@
-# @w3tec
+node_modules
+.DS_STORE
+npm-debug.log*
+yarn-error.log
+/dist
+/test/*coverage
+/.chrome
 
 # Logs #
 logs
 *.log
 *.log*
 
-# Coverage directory used by tools like istanbul #
-/test/coverage
+# Node Files #
+/node_modules
+/bower_components
+npm-debug.log
+
+# OS generated files #
+.DS_Store
+Thumbs.db
 
 # Node Files #
 /node_modules

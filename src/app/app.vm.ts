@@ -1,7 +1,8 @@
-import { Lazy, inject } from 'aurelia-framework';
+import { Lazy, inject, PLATFORM } from 'aurelia-framework';
 import { Router, RouterConfiguration } from 'aurelia-router';
 import { I18N } from 'aurelia-i18n';
 import { HttpClient } from 'aurelia-fetch-client';
+import * as moment from 'moment';
 
 import { LogManager, Logger} from './services/logger.service';
 import { AppConfigService } from './services/app-config.service';
@@ -45,21 +46,21 @@ export class AppViewModel {
       {
         route: ['', 'welcome'],
         name: 'welcome',
-        moduleId: './modules/welcome/welcome.vm',
+        moduleId: PLATFORM.moduleName('./modules/welcome/welcome.vm'),
         nav: true,
         title: 'Welcome'
       },
       {
         route: 'users',
         name: 'users',
-        moduleId: './modules/users/users.vm',
+        moduleId: PLATFORM.moduleName('./modules/users/users.vm'),
         nav: true,
         title: 'Github Users'
       },
       {
         route: 'child-router',
         name: 'child-router',
-        moduleId: './modules/child-router/child-router.vm',
+        moduleId: PLATFORM.moduleName('./modules/child-router/child-router.vm'),
         nav: true,
         title: 'Child Router'
       }

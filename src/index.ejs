@@ -3,34 +3,71 @@
 
 <head>
   <title>
-    <%= htmlWebpackPlugin.options.title %>
+    <%= htmlWebpackPlugin.options.metadata.title %>
   </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="msapplication-tap-highlight" content="no" />
-  <meta name="description" content="<%= htmlWebpackPlugin.options.description %>">
-  <meta name="version" content="<%= htmlWebpackPlugin.options.version %>">
-  <meta name="author" content="<%= htmlWebpackPlugin.options.author %>">
+  <meta name="description" content="<%= htmlWebpackPlugin.options.metadata.description %>">
+  <meta name="version" content="<%= htmlWebpackPlugin.options.metadata.version %>">
+  <meta name="author" content="<%= htmlWebpackPlugin.options.metadata.author %>">
 
   <% if (htmlWebpackPlugin.options.platform === 'browser') { %>
-    <base href="<%= htmlWebpackPlugin.options.baseUrl %>">
+    <base href="<%= htmlWebpackPlugin.options.metadata.baseUrl %>">
   <% } %>
+
+  <style>
+    .splash {
+      text-align: center;
+      margin: 10% 0 0 0;
+    }
+
+    .splash .message {
+      font-size: 72px;
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    }
+
+    .sk-three-bounce {
+      margin: 40px auto;
+    }
+
+    .sk-three-bounce .sk-child {
+      width: 30px;
+      height: 30px;
+      background-color: #333;
+      border-radius: 100%;
+      display: inline-block;
+      animation: sk-three-bounce 1.4s ease-in-out 0s infinite both;
+    }
+
+    .sk-three-bounce .sk-bounce1 { animation-delay: -0.32s; }
+    .sk-three-bounce .sk-bounce2 { animation-delay: -0.16s; }
+
+    @keyframes sk-three-bounce {
+      0%, 80%, 100% { transform: scale(0); }
+      40% { transform: scale(1); }
+    }
+  </style>
 </head>
 
 <body>
   <div aurelia-app="main">
     <div class="splash">
-      <div class="message"><%- htmlWebpackPlugin.options.title %></div>
-      <i class="fa fa-spinner fa-spin"></i>
+      <div class="message"><%- htmlWebpackPlugin.options.metadata.title %></div>
+      <div class="sk-three-bounce">
+        <div class="sk-child sk-bounce1"></div>
+        <div class="sk-child sk-bounce2"></div>
+        <div class="sk-child sk-bounce3"></div>
+      </div>
     </div>
   </div>
 
-  <% if (htmlWebpackPlugin.options.platform === 'mobile') { %>
+  <% if (htmlWebpackPlugin.options.metadata.platform === 'mobile') { %>
     <!-- Cordova -->
     <script src="cordova.js"></script>
   <% } %>
 
-  <% if (htmlWebpackPlugin.options.ENV === 'development') { %>
+  <% if (htmlWebpackPlugin.options.metadata.ENV === 'development') { %>
     <!-- Webpack Dev Server reload -->
     <script src="/webpack-dev-server.js"></script>
     <% } %>
