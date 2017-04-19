@@ -74,7 +74,7 @@ describe('the App module', () => {
   });
 
   it('configures the router title', () => {
-    expect(sut.router.title).toEqual('Transaltion Title');
+    expect(sut.router.title).toEqual('Translation Title');
   });
 
   it('should have a welcome route', () => {
