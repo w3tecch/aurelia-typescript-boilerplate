@@ -1,29 +1,31 @@
+import { promise as wdpromise } from 'selenium-webdriver';
 import {browser, element, by, By, $, $$, ExpectedConditions} from 'aurelia-protractor-plugin/protractor';
 
 export class PageObject_Welcome {
-  getGreeting() {
+
+  public getGreeting(): wdpromise.Promise<string> {
     return element(by.tagName('h2')).getText();
   }
 
-  setFirstname(value) {
+  public setFirstname(value): wdpromise.Promise<void> {
     let firstName = element(by.valueBind('firstName'));
     return firstName.clear().then(() => firstName.sendKeys(value));
   }
 
-  setLastname(value) {
+  public setLastname(value): wdpromise.Promise<void> {
     let lastName = element(by.valueBind('lastName'));
     return lastName.clear().then(() => lastName.sendKeys(value));
   }
 
-  getFullname() {
+  public getFullname(): wdpromise.Promise<string> {
     return element(by.css('.help-block')).getText();
   }
 
-  pressSubmitButton() {
+  public pressSubmitButton(): wdpromise.Promise<void> {
     return element(by.css('button[type="submit"]')).click();
   }
 
-  openAlertDialog() {
+  public openAlertDialog(): wdpromise.Promise<any> {
     return browser.wait(async () => {
       await this.pressSubmitButton();
 
@@ -31,8 +33,8 @@ export class PageObject_Welcome {
 
       return browser.switchTo().alert().then(
         // use alert.accept instead of alert.dismiss which results in a browser crash
-        function(alert) { alert.accept(); return true; },
-        function() { return false; }
+        (alert) => { alert.accept(); return true; },
+        () => false
       );
     });
   }
