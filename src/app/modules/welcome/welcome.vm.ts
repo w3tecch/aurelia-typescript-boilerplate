@@ -6,7 +6,7 @@ import { AppConfigService } from './../../services/app-config.service';
 import { LanguageService } from './../../services/language.service';
 
 @autoinject
-export class Welcome {
+export class WelcomeViewModel {
   private logger: Logger;
   private vController: ValidationController;
 

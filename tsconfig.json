@@ -4,28 +4,18 @@
     "module": "es2015",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "strictNullChecks": true,
     "moduleResolution": "node",
-    "sourceMap": true,
     "allowJs": true,
-    "noUnusedParameters": true,
-    "noUnusedLocals": true,
-    "skipLibCheck": true,
+    "sourceRoot": "src",
+    "compileOnSave": false,
     "lib": [
       "es2017", "dom"
     ]
   },
-  "awesomeTypescriptLoaderOptions": {
-    "doTypeCheck": true,
-    "forkChecker": true
-  },
   "exclude": [
     "node_modules",
     "dist",
-    "release",
-    "index.js",
-    "webpack.config.js",
-    "config",
+    "static",
     "cordova"
   ]
 }

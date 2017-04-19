@@ -1,7 +1,7 @@
-//import * as moment from 'moment'; => not needed as it's global
+import * as moment from 'moment';
 
 export class DateFormatValueConverter {
   public toView(value: Date): string {
-    return moment(value).format('M/D/YYYY h:mm:ss a');
+    return moment(value).format('LLLL');
   }
 }

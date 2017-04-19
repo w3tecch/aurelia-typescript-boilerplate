@@ -1,11 +1,13 @@
+import { PLATFORM } from 'aurelia-framework';
+
 export function configure(aurelia): void {
   aurelia
 	  .globalResources([
-      './date-format.converter',
-      './filter.converter',
-      './json.converter',
-      './limit.converter',
-      './md5.converter',
-      './sort.converter',
+      PLATFORM.moduleName('./date-format.converter'),
+      PLATFORM.moduleName('./filter.converter'),
+      PLATFORM.moduleName('./json.converter'),
+      PLATFORM.moduleName('./limit.converter'),
+      PLATFORM.moduleName('./md5.converter'),
+      PLATFORM.moduleName('./sort.converter'),
     ]);
-};
+}
