@@ -11,7 +11,11 @@
     "importHelpers": true,
     "lib": [
       "es2017", "dom"
-    ]
+    ],
+    // Be strict
+    "alwaysStrict": true,
+    "strict": true,
+    "noImplicitAny": false
   },
   "exclude": [
     "node_modules",
