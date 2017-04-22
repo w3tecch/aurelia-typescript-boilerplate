@@ -170,7 +170,7 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
       ...when(production, new CompressionPlugin({
         asset: "[path].gz[query]",
         algorithm: "gzip",
-        test: /\.js$|\.html$/,
+        test: /\.(js|html|css|eot|svg|ttf|woff2|woff)$/i,
         threshold: 10240,
         minRatio: 0.8
       })),
