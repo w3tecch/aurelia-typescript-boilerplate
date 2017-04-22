@@ -85,7 +85,7 @@ module.exports = {
         hmr: `webpack-dev-server -d --devtool '#source-map' --inline --hot --env.server`
       },
     },
-    serve: 'http-server dist --cors',
+    serve: 'http-server dist --cors --gzip',
     mobile: {
       default: 'nps mobile.build',
       link: 'node ./scripts/mobile-link.js',
