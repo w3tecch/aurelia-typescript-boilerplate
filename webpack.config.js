@@ -35,12 +35,11 @@ const cssRules = [
 
 module.exports = ({ production, server, extractCss, coverage, platform, config } = {}) => {
 
-  const ENV = process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() || 'development';
   const PLATFORM = platform || 'browser';
-  const CONFIG = config || ENV;
+  const CONFIG = config || 'development';
 
   console.log('');
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('NODE_ENV: ') + chalk.green.bold(ENV));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('NODE_ENV: ') + chalk.green.bold(process.env.NODE_ENV));
   console.log(chalk.yellow('➜') + ' ' + chalk.white('CONFIG:   ') + chalk.green.bold(CONFIG));
   console.log(chalk.yellow('➜') + ' ' + chalk.white('PLATFORM: ') + chalk.green.bold(PLATFORM));
   console.log('');
@@ -147,7 +146,7 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
           collapseWhitespace: true
         } : undefined,
         metadata: {
-          title: pkg.title, server, baseUrl, description: pkg.description, version: pkg.version, author: pkg.author, platform: PLATFORM, ENV
+          title: pkg.title, server, baseUrl, description: pkg.description, version: pkg.version, author: pkg.author, platform: PLATFORM
         },
       }),
       ...when(extractCss, new ExtractTextPlugin({
@@ -189,7 +188,6 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
         NAME: JSON.stringify(pkg.name),
         VERSION: JSON.stringify(pkg.version),
         PLATFORM: JSON.stringify(PLATFORM),
-        ENV: JSON.stringify(ENV),
         CONFIG: JSON.stringify(require(path.resolve('src', 'config', `${CONFIG}.json`)))
       })
     ],
