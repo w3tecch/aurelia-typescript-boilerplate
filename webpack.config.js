@@ -174,13 +174,13 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
         threshold: 10240,
         minRatio: 0.8
       })),
-      new FaviconsWebpackPlugin({
+      ...when(production, new FaviconsWebpackPlugin({
         logo: path.resolve('icon.png'),
         persistentCache: true,
         inject: true,
         title: pkg.title,
         icons: { android: true, appleIcon: true, appleStartup: true, coast: false, favicons: true, firefox: true, opengraph: false, twitter: false, yandex: false, windows: false }
-      }),
+      })),
       new WebpackNotifierPlugin({
         title: pkg.title,
         contentImage: path.resolve('icon.png')
