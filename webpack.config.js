@@ -143,7 +143,8 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
         template: './src/index.ejs',
         minify: production ? {
           removeComments: true,
-          collapseWhitespace: true
+          collapseWhitespace: true,
+          minifyCSS: true
         } : undefined,
         metadata: {
           title: pkg.title, server, baseUrl, description: pkg.description, version: pkg.version, author: pkg.author, platform: PLATFORM
