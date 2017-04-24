@@ -6,6 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const CompressionPlugin = require("compression-webpack-plugin");
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const { AureliaPlugin } = require('aurelia-webpack-plugin');
 const { optimize: { CommonsChunkPlugin }, ProvidePlugin, BannerPlugin, DefinePlugin } = require('webpack')
 const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loader');
@@ -190,7 +191,8 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
         VERSION: JSON.stringify(pkg.version),
         PLATFORM: JSON.stringify(PLATFORM),
         CONFIG: JSON.stringify(require(path.resolve('src', 'config', `${CONFIG}.json`)))
-      })
+      }),
+      new CaseSensitivePathsPlugin()
     ],
   })
 }
