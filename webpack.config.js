@@ -158,9 +158,6 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
       ...when(production, new CommonsChunkPlugin({
         name: ['common']
       })),
-      ...when(production, new CopyWebpackPlugin([
-        { from: 'static/favicon.ico', to: 'favicon.ico' }
-      ])),
       ...when(production, new BannerPlugin(
         ' @name           ' + pkg.title + '\n' +
         ' @description    ' + pkg.description + '\n\n' +
