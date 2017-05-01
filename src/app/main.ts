@@ -1,4 +1,4 @@
-﻿
+﻿/// <reference types="aurelia-loader-webpack/src/webpack-hot-interface"/>
 /**
  * Import the main sass file for all the styles
  */

@@ -62,7 +62,7 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
       chunkFilename: production ? '[name].[chunkhash].chunk.js' : '[name].[hash].chunk.js',
     },
     devServer: {
-      contentBase: baseUrl,
+      contentBase: outDir,
       historyApiFallback: true
     },
     module: {
