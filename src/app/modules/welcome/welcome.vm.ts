@@ -1,9 +1,11 @@
 import { autoinject } from 'aurelia-framework';
 import { ValidationControllerFactory, ValidationController, validateTrigger, ValidationRules } from 'aurelia-validation';
+import { DialogService } from 'aurelia-dialog';
 
 import { LogManager, Logger} from './../../services/logger.service';
 import { AppConfigService } from './../../services/app-config.service';
 import { LanguageService } from './../../services/language.service';
+import { EditPersonCustomElement } from './../../resources/elements/edit-person/edit-person.element';
 
 @autoinject
 export class WelcomeViewModel {
@@ -21,6 +23,7 @@ export class WelcomeViewModel {
 	constructor(
     private appConfigService: AppConfigService,
     private languageService: LanguageService,
+    private dialogService: DialogService,
     validationControllerFactory: ValidationControllerFactory
   ) {
 		this.logger = LogManager.getLogger('Welcome VM');
@@ -48,6 +51,17 @@ export class WelcomeViewModel {
         rules: ValidationRules.ensure('firstName').required().rules
       })
       .then(r => this.validationValid = r.valid);
+  }
+
+  public openDialog(): void {
+    const person = { firstName: 'Wade', middleName: 'Owen', lastName: 'Watts' };
+    this.dialogService.open({ viewModel: EditPersonCustomElement, model: person}).whenClosed(response => {
+      if (!response.wasCancelled) {
+        this.logger.info('Dialog not cancled', response);
+      } else {
+        this.logger.info('Dialog cancled', response);
+      }
+    });
   }
 
 	//Getters can't be directly observed, so they must be dirty checked.

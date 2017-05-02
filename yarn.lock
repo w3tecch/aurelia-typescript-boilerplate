@@ -24,11 +24,7 @@
   version "19.2.2"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-19.2.2.tgz#71f428be2fa6eb9f15bb0abc3cade67905f94839"
 
-"@types/lodash@^4.14.37":
-  version "4.14.62"
-  resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.62.tgz#8674f9861582148a60b7a89cb260f11378d11683"
-
-"@types/lodash@^4.14.63":
+"@types/lodash@^4.14.37", "@types/lodash@^4.14.63":
   version "4.14.63"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.63.tgz#5ac475f55bfdc62bc88c4239dbc482f2f3bead93"
 
@@ -40,13 +36,13 @@
   version "2.0.29"
   resolved "https://registry.yarnpkg.com/@types/minimatch/-/minimatch-2.0.29.tgz#5002e14f75e2d71e564281df0431c8c1b4a2a36a"
 
-"@types/node@*", "@types/node@6.0.*", "@types/node@^6.0.34", "@types/node@^6.0.37", "@types/node@^6.0.46":
-  version "6.0.68"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.68.tgz#0c43b6b8b9445feb86a0fbd3457e3f4bc591e66d"
-
-"@types/node@^7.0.15":
+"@types/node@*", "@types/node@^7.0.15":
   version "7.0.15"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.15.tgz#628429289604c5f7e56c13f3a0422f3e59df1a17"
+
+"@types/node@6.0.*", "@types/node@^6.0.34", "@types/node@^6.0.37", "@types/node@^6.0.46":
+  version "6.0.68"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-6.0.68.tgz#0c43b6b8b9445feb86a0fbd3457e3f4bc591e66d"
 
 "@types/parse5@0.0.30":
   version "0.0.30"
@@ -495,6 +491,16 @@ aurelia-dependency-injection@^1.0.0, aurelia-dependency-injection@^1.2.0, aureli
     aurelia-metadata "^1.0.0"
     aurelia-pal "^1.0.0"
 
+aurelia-dialog@^1.0.0-rc.1.0.2:
+  version "1.0.0-rc.1.0.2"
+  resolved "https://registry.yarnpkg.com/aurelia-dialog/-/aurelia-dialog-1.0.0-rc.1.0.2.tgz#f740b7227f158356c266e344d403ded67241f1f6"
+  dependencies:
+    aurelia-dependency-injection "^1.0.0"
+    aurelia-framework "^1.0.0"
+    aurelia-metadata "^1.0.0"
+    aurelia-pal "^1.0.0"
+    aurelia-templating "^1.0.0"
+
 aurelia-event-aggregator@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/aurelia-event-aggregator/-/aurelia-event-aggregator-1.0.1.tgz#9d7c7c1e1efe1ef3a78785e76abe80601e2d34c8"
@@ -721,20 +727,7 @@ aurelia-templating-router@^1.0.0, aurelia-templating-router@^1.1.0:
     aurelia-router "^1.0.1"
     aurelia-templating "^1.3.0"
 
-aurelia-templating@^1.0.0, aurelia-templating@^1.1.2, aurelia-templating@^1.3.0, aurelia-templating@^1.4.0:
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/aurelia-templating/-/aurelia-templating-1.4.1.tgz#bc8f1972149e20f1034328bf3a42a9698856cbce"
-  dependencies:
-    aurelia-binding "^1.0.0"
-    aurelia-dependency-injection "^1.0.0"
-    aurelia-loader "^1.0.0"
-    aurelia-logging "^1.0.0"
-    aurelia-metadata "^1.0.0"
-    aurelia-pal "^1.0.0"
-    aurelia-path "^1.0.0"
-    aurelia-task-queue "^1.1.0"
-
-aurelia-templating@^1.4.2:
+aurelia-templating@^1.0.0, aurelia-templating@^1.1.2, aurelia-templating@^1.3.0, aurelia-templating@^1.4.0, aurelia-templating@^1.4.2:
   version "1.4.2"
   resolved "https://registry.yarnpkg.com/aurelia-templating/-/aurelia-templating-1.4.2.tgz#479ce47705a095fd636e0975c9cb79cbee7ed7cb"
   dependencies:
@@ -2212,7 +2205,7 @@ cryptiles@2.x.x:
   dependencies:
     boom "2.x.x"
 
-crypto-browserify@3.3.0, crypto-browserify@^3.0.0:
+crypto-browserify@3.3.0:
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/crypto-browserify/-/crypto-browserify-3.3.0.tgz#b9fc75bb4a0ed61dcf1cd5dae96eb30c9c3e506c"
   dependencies:
@@ -2221,7 +2214,7 @@ crypto-browserify@3.3.0, crypto-browserify@^3.0.0:
     ripemd160 "0.2.0"
     sha.js "2.2.6"
 
-crypto-browserify@^3.11.0:
+crypto-browserify@^3.0.0, crypto-browserify@^3.11.0:
   version "3.11.0"
   resolved "https://registry.yarnpkg.com/crypto-browserify/-/crypto-browserify-3.11.0.tgz#3652a0906ab9b2a7e0c3ce66a408e957a2485522"
   dependencies:
@@ -4695,23 +4688,7 @@ isstream@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/isstream/-/isstream-0.1.2.tgz#47e63f7af55afa6f92e1500e690eb8b8529c099a"
 
-istanbul-api@^1.1.0-alpha.1:
-  version "1.1.7"
-  resolved "https://registry.yarnpkg.com/istanbul-api/-/istanbul-api-1.1.7.tgz#f6f37f09f8002b130f891c646b70ee4a8e7345ae"
-  dependencies:
-    async "^2.1.4"
-    fileset "^2.0.2"
-    istanbul-lib-coverage "^1.0.2"
-    istanbul-lib-hook "^1.0.5"
-    istanbul-lib-instrument "^1.7.0"
-    istanbul-lib-report "^1.0.0"
-    istanbul-lib-source-maps "^1.1.1"
-    istanbul-reports "^1.0.2"
-    js-yaml "^3.7.0"
-    mkdirp "^0.5.1"
-    once "^1.4.0"
-
-istanbul-api@^1.1.8:
+istanbul-api@^1.1.0-alpha.1, istanbul-api@^1.1.8:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/istanbul-api/-/istanbul-api-1.1.8.tgz#a844e55c6f9aeee292e7f42942196f60b23dc93e"
   dependencies:
@@ -4744,19 +4721,13 @@ istanbul-lib-coverage@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/istanbul-lib-coverage/-/istanbul-lib-coverage-1.1.0.tgz#caca19decaef3525b5d6331d701f3f3b7ad48528"
 
-istanbul-lib-hook@^1.0.5:
-  version "1.0.5"
-  resolved "https://registry.yarnpkg.com/istanbul-lib-hook/-/istanbul-lib-hook-1.0.5.tgz#6ca3d16d60c5f4082da39f7c5cd38ea8a772b88e"
-  dependencies:
-    append-transform "^0.4.0"
-
 istanbul-lib-hook@^1.0.6:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/istanbul-lib-hook/-/istanbul-lib-hook-1.0.6.tgz#c0866d1e81cf2d5319249510131fc16dee49231f"
   dependencies:
     append-transform "^0.4.0"
 
-istanbul-lib-instrument@^1.1.1, istanbul-lib-instrument@^1.1.3, istanbul-lib-instrument@^1.2.0, istanbul-lib-instrument@^1.6.2, istanbul-lib-instrument@^1.7.0:
+istanbul-lib-instrument@^1.1.1, istanbul-lib-instrument@^1.1.3, istanbul-lib-instrument@^1.2.0:
   version "1.7.0"
   resolved "https://registry.yarnpkg.com/istanbul-lib-instrument/-/istanbul-lib-instrument-1.7.0.tgz#b8e0dc25709bb44e17336ab47b7bb5c97c23f659"
   dependencies:
@@ -4768,7 +4739,7 @@ istanbul-lib-instrument@^1.1.1, istanbul-lib-instrument@^1.1.3, istanbul-lib-ins
     istanbul-lib-coverage "^1.0.2"
     semver "^5.3.0"
 
-istanbul-lib-instrument@^1.7.1:
+istanbul-lib-instrument@^1.6.2, istanbul-lib-instrument@^1.7.1:
   version "1.7.1"
   resolved "https://registry.yarnpkg.com/istanbul-lib-instrument/-/istanbul-lib-instrument-1.7.1.tgz#169e31bc62c778851a99439dd99c3cc12184d360"
   dependencies:
@@ -4780,15 +4751,6 @@ istanbul-lib-instrument@^1.7.1:
     istanbul-lib-coverage "^1.1.0"
     semver "^5.3.0"
 
-istanbul-lib-report@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/istanbul-lib-report/-/istanbul-lib-report-1.0.0.tgz#d83dac7f26566b521585569367fe84ccfc7aaecb"
-  dependencies:
-    istanbul-lib-coverage "^1.0.2"
-    mkdirp "^0.5.1"
-    path-parse "^1.0.5"
-    supports-color "^3.1.2"
-
 istanbul-lib-report@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/istanbul-lib-report/-/istanbul-lib-report-1.1.0.tgz#444c4ecca9afa93cf584f56b10f195bf768c0770"
@@ -4797,15 +4759,6 @@ istanbul-lib-report@^1.1.0:
     mkdirp "^0.5.1"
     path-parse "^1.0.5"
     supports-color "^3.1.2"
-
-istanbul-lib-source-maps@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/istanbul-lib-source-maps/-/istanbul-lib-source-maps-1.1.1.tgz#f8c8c2e8f2160d1d91526d97e5bd63b2079af71c"
-  dependencies:
-    istanbul-lib-coverage "^1.0.2"
-    mkdirp "^0.5.1"
-    rimraf "^2.4.4"
-    source-map "^0.5.3"
 
 istanbul-lib-source-maps@^1.2.0:
   version "1.2.0"
@@ -4816,12 +4769,6 @@ istanbul-lib-source-maps@^1.2.0:
     mkdirp "^0.5.1"
     rimraf "^2.6.1"
     source-map "^0.5.3"
-
-istanbul-reports@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/istanbul-reports/-/istanbul-reports-1.0.2.tgz#4e8366abe6fa746cc1cd6633f108de12cc6ac6fa"
-  dependencies:
-    handlebars "^4.0.3"
 
 istanbul-reports@^1.1.0:
   version "1.1.0"
@@ -8322,13 +8269,7 @@ source-list-map@^1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/source-list-map/-/source-list-map-1.1.1.tgz#1a33ac210ca144d1e561f906ebccab5669ff4cb4"
 
-source-map-support@^0.4.0, source-map-support@^0.4.2, source-map-support@~0.4.0:
-  version "0.4.14"
-  resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.14.tgz#9d4463772598b86271b4f523f6c1f4e02a7d6aef"
-  dependencies:
-    source-map "^0.5.6"
-
-source-map-support@^0.4.15, source-map-support@^0.4.4:
+source-map-support@^0.4.0, source-map-support@^0.4.15, source-map-support@^0.4.2, source-map-support@^0.4.4, source-map-support@~0.4.0:
   version "0.4.15"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.4.15.tgz#03202df65c06d2bd8c7ec2362a193056fef8d3b1"
   dependencies:
@@ -9089,11 +9030,11 @@ typescript@2.0.x:
   version "2.0.10"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.0.10.tgz#ccdd4ed86fd5550a407101a0814012e1b3fac3dd"
 
-typescript@2.2.2, typescript@^2.1.4:
+typescript@2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.2.2.tgz#606022508479b55ffa368b58fee963a03dfd7b0c"
 
-typescript@^2.3.2:
+typescript@^2.1.4, typescript@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-2.3.2.tgz#f0f045e196f69a72f06b25fd3bd39d01c3ce9984"
 

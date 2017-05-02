@@ -87,6 +87,8 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     .plugin(PLATFORM.moduleName('aurelia-animator-css'))
     // if the css animator is enabled, add swap-order="after" to all router-view elements
 
+    .plugin(PLATFORM.moduleName('aurelia-dialog'))
+
     // Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
     // .plugin('aurelia-html-import-template-loader')
 		/**
