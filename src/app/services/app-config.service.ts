@@ -5,11 +5,11 @@ import { platforms } from './../models/platforms';
  */
 declare var NAME: string;
 declare var VERSION: string;
-declare var ENV: string;
 declare var PLATFORM: string;
 declare var CONFIG: IAppConfigEnv;
 
 export interface IAppConfigEnv {
+  NAME: string;
   API_MAIN_URL: string;
   API_UAM_URL: string;
   LOG_LEVEL: string;
@@ -25,7 +25,6 @@ export class AppConfigService {
   constructor() {
     this.name = NAME;
     this.version = VERSION;
-    this.env = ENV;
     this.platform = PLATFORM;
     this.config = CONFIG;
   }

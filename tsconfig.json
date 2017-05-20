@@ -1,16 +1,21 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "es2015",
+    "module": "es6",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "moduleResolution": "node",
     "allowJs": true,
     "sourceRoot": "src",
     "compileOnSave": false,
+    "importHelpers": true,
     "lib": [
       "es2017", "dom"
-    ]
+    ],
+    // Be strict
+    "alwaysStrict": true,
+    "strict": true,
+    "noImplicitAny": false
   },
   "exclude": [
     "node_modules",

@@ -4,6 +4,7 @@ npm-debug.log*
 yarn-error.log
 /dist
 /test/*coverage
+/test/coverage*
 /.chrome
 
 # Logs #

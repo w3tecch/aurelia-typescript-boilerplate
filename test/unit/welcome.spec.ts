@@ -14,9 +14,11 @@ describe('WelcomeComponent', () => {
       await component.create(bootstrap);
   });
 
+ if (jest) {
   xit('should render correctly', () => {
     expect(document.body.outerHTML).toMatchSnapshot();
   });
+ }
 
   xit('should render first name', () => {
     const nameElement = document.querySelector('#fn') as HTMLInputElement;

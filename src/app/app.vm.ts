@@ -46,21 +46,21 @@ export class AppViewModel {
       {
         route: ['', 'welcome'],
         name: 'welcome',
-        moduleId: PLATFORM.moduleName('./modules/welcome/welcome.vm'),
+        moduleId: PLATFORM.moduleName('./modules/welcome/welcome.vm', 'welcome'),
         nav: true,
         title: 'Welcome'
       },
       {
         route: 'users',
         name: 'users',
-        moduleId: PLATFORM.moduleName('./modules/users/users.vm'),
+        moduleId: PLATFORM.moduleName('./modules/users/users.vm', 'users'),
         nav: true,
         title: 'Github Users'
       },
       {
         route: 'child-router',
         name: 'child-router',
-        moduleId: PLATFORM.moduleName('./modules/child-router/child-router.vm'),
+        moduleId: PLATFORM.moduleName('./modules/child-router/child-router.vm', 'child-router'),
         nav: true,
         title: 'Child Router'
       }

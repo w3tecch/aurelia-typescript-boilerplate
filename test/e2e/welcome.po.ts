@@ -1,41 +1,50 @@
-import { promise as wdpromise } from 'selenium-webdriver';
 import {browser, element, by, By, $, $$, ExpectedConditions} from 'aurelia-protractor-plugin/protractor';
 
 export class PageObject_Welcome {
-
-  public getGreeting(): wdpromise.Promise<string> {
+  getGreeting() {
     return element(by.tagName('h2')).getText();
   }
 
-  public setFirstname(value): wdpromise.Promise<void> {
-    let firstName = element(by.valueBind('firstName'));
+  getFirstnameElement() {
+    return element(by.valueBind('firstName'));
+  }
+
+  setFirstname(value) {
+    const firstName = this.getFirstnameElement();
     return firstName.clear().then(() => firstName.sendKeys(value));
   }
 
-  public setLastname(value): wdpromise.Promise<void> {
-    let lastName = element(by.valueBind('lastName'));
+  getLastnameElement() {
+    return element(by.valueBind('lastName'));
+  }
+
+  setLastname(value) {
+    const lastName = this.getLastnameElement();
     return lastName.clear().then(() => lastName.sendKeys(value));
   }
 
-  public getFullname(): wdpromise.Promise<string> {
-    return element(by.css('.help-block')).getText();
+  getFullnameElement() {
+    return element(by.css('.help-block'));
   }
 
-  public pressSubmitButton(): wdpromise.Promise<void> {
+  getFullname() {
+    return this.getFullnameElement().getText();
+  }
+
+  pressSubmitButton() {
     return element(by.css('button[type="submit"]')).click();
   }
 
-  public openAlertDialog(): wdpromise.Promise<any> {
-    return browser.wait(async () => {
-      await this.pressSubmitButton();
+  async openAlertDialog() {
+    await this.pressSubmitButton();
 
-      await browser.wait(ExpectedConditions.alertIsPresent(), 5000);
+    await browser.wait(ExpectedConditions.alertIsPresent(), 5000);
 
-      return browser.switchTo().alert().then(
-        // use alert.accept instead of alert.dismiss which results in a browser crash
-        (alert) => { alert.accept(); return true; },
-        () => false
-      );
-    });
+    try {
+      await browser.switchTo().alert().accept();
+      return true;
+    } catch (e) {
+      return false;
+    }
   }
 }

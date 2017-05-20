@@ -1,5 +1,3 @@
-jest.autoMockOff();
-
 import { PLATFORM } from 'aurelia-framework';
 import { I18N } from 'aurelia-i18n';
 import { BindingSignaler } from 'aurelia-templating-resources';

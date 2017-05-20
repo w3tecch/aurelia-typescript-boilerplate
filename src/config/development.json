@@ -1,4 +1,5 @@
 {
+  "NAME": "Development",
   "API_MAIN_URL": "https://api",
   "API_UAM_URL": "https://api",
   "LOG_LEVEL": "debug"

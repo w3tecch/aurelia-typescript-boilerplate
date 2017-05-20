@@ -1,4 +1,4 @@
-﻿
+﻿/// <reference types="aurelia-loader-webpack/src/webpack-hot-interface"/>
 /**
  * Import the main sass file for all the styles
  */
@@ -86,6 +86,13 @@ export async function configure(aurelia: Aurelia): Promise<void> {
     // Uncomment the line below to enable animation.
     .plugin(PLATFORM.moduleName('aurelia-animator-css'))
     // if the css animator is enabled, add swap-order="after" to all router-view elements
+
+    .plugin(PLATFORM.moduleName('aurelia-dialog'), config => {
+      config.useDefaults();
+      config.settings.startingZIndex = 1005;
+      config.settings.lock = true;
+      config.settings.centerHorizontalOnly = false;
+    })
 
     // Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
     // .plugin('aurelia-html-import-template-loader')

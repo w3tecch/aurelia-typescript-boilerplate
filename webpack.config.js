@@ -6,6 +6,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
 const WebpackNotifierPlugin = require('webpack-notifier');
 const CompressionPlugin = require("compression-webpack-plugin");
+const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const { AureliaPlugin } = require('aurelia-webpack-plugin');
 const { optimize: { CommonsChunkPlugin }, ProvidePlugin, BannerPlugin, DefinePlugin } = require('webpack')
 const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loader');
@@ -35,12 +36,11 @@ const cssRules = [
 
 module.exports = ({ production, server, extractCss, coverage, platform, config } = {}) => {
 
-  const ENV = process.env.NODE_ENV && process.env.NODE_ENV.toLowerCase() || 'development';
   const PLATFORM = platform || 'browser';
-  const CONFIG = config || ENV;
+  const CONFIG = config || 'development';
 
   console.log('');
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('NODE_ENV: ') + chalk.green.bold(ENV));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('NODE_ENV: ') + chalk.green.bold(process.env.NODE_ENV));
   console.log(chalk.yellow('➜') + ' ' + chalk.white('CONFIG:   ') + chalk.green.bold(CONFIG));
   console.log(chalk.yellow('➜') + ' ' + chalk.white('PLATFORM: ') + chalk.green.bold(PLATFORM));
   console.log('');
@@ -59,10 +59,10 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
       publicPath: baseUrl,
       filename: production ? '[name].[chunkhash].bundle.js' : '[name].[hash].bundle.js',
       sourceMapFilename: production ? '[name].[chunkhash].bundle.map' : '[name].[hash].bundle.map',
-      chunkFilename: production ? '[chunkhash].chunk.js' : '[hash].chunk.js',
+      chunkFilename: production ? '[name].[chunkhash].chunk.js' : '[name].[hash].chunk.js',
     },
     devServer: {
-      contentBase: baseUrl,
+      contentBase: outDir,
       historyApiFallback: true
     },
     module: {
@@ -144,10 +144,11 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
         template: './src/index.ejs',
         minify: production ? {
           removeComments: true,
-          collapseWhitespace: true
+          collapseWhitespace: true,
+          minifyCSS: true
         } : undefined,
         metadata: {
-          title: pkg.title, server, baseUrl, description: pkg.description, version: pkg.version, author: pkg.author, platform: PLATFORM, ENV
+          title: pkg.title, server, baseUrl, description: pkg.description, version: pkg.version, author: pkg.author, platform: PLATFORM
         },
       }),
       ...when(extractCss, new ExtractTextPlugin({
@@ -157,9 +158,6 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
       ...when(production, new CommonsChunkPlugin({
         name: ['common']
       })),
-      ...when(production, new CopyWebpackPlugin([
-        { from: 'static/favicon.ico', to: 'favicon.ico' }
-      ])),
       ...when(production, new BannerPlugin(
         ' @name           ' + pkg.title + '\n' +
         ' @description    ' + pkg.description + '\n\n' +
@@ -170,17 +168,17 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
       ...when(production, new CompressionPlugin({
         asset: "[path].gz[query]",
         algorithm: "gzip",
-        test: /\.js$|\.html$/,
+        test: /\.(js|html|css|eot|svg|ttf|woff2|woff)$/i,
         threshold: 10240,
         minRatio: 0.8
       })),
-      new FaviconsWebpackPlugin({
+      ...when(production, new FaviconsWebpackPlugin({
         logo: path.resolve('icon.png'),
         persistentCache: true,
         inject: true,
         title: pkg.title,
         icons: { android: true, appleIcon: true, appleStartup: true, coast: false, favicons: true, firefox: true, opengraph: false, twitter: false, yandex: false, windows: false }
-      }),
+      })),
       new WebpackNotifierPlugin({
         title: pkg.title,
         contentImage: path.resolve('icon.png')
@@ -189,9 +187,9 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
         NAME: JSON.stringify(pkg.name),
         VERSION: JSON.stringify(pkg.version),
         PLATFORM: JSON.stringify(PLATFORM),
-        ENV: JSON.stringify(ENV),
         CONFIG: JSON.stringify(require(path.resolve('src', 'config', `${CONFIG}.json`)))
-      })
+      }),
+      new CaseSensitivePathsPlugin()
     ],
   })
 }

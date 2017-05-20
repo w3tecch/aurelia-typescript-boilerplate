@@ -7,16 +7,19 @@ module.exports = {
     test: {
       default: 'nps test.jest',
       jest: {
-        default: 'jest',
+        default: series(
+          rimraf('test/coverage-jest'),
+          'jest'
+        ),
         watch: 'jest --watch',
       },
       karma: {
         default: series(
-          rimraf('test/karma-coverage'),
+          rimraf('test/coverage-karma'),
           'karma start test/karma.conf.js'
         ),
-        watch: 'karma start test/karma.conf.js --single-run=false',
-        debug: 'karma start test/karma.conf.js --single-run=false --debug'
+        watch: 'karma start test/karma.conf.js --no-single-run',
+        debug: 'karma start test/karma.conf.js --no-single-run --debug'
       },
       all: concurrent({
         browser: series.nps('test.karma', 'e2e'),
@@ -85,7 +88,7 @@ module.exports = {
         hmr: `webpack-dev-server -d --devtool '#source-map' --inline --hot --env.server`
       },
     },
-    serve: 'http-server dist --cors',
+    serve: 'http-server dist --cors --gzip',
     mobile: {
       default: 'nps mobile.build',
       link: 'node ./scripts/mobile-link.js',
