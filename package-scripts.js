@@ -7,12 +7,15 @@ module.exports = {
     test: {
       default: 'nps test.jest',
       jest: {
-        default: 'jest',
+        default: series(
+          rimraf('test/coverage-jest'),
+          'jest'
+        ),
         watch: 'jest --watch',
       },
       karma: {
         default: series(
-          rimraf('test/karma-coverage'),
+          rimraf('test/coverage-karma'),
           'karma start test/karma.conf.js'
         ),
         watch: 'karma start test/karma.conf.js --no-single-run',
