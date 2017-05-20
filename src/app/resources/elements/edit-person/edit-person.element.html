@@ -1,0 +1,13 @@
+<template>
+  <ux-dialog>
+    <ux-dialog-body>
+      <h2>Edit first name</h2>
+      <input value.bind="person.firstName" />
+    </ux-dialog-body>
+
+    <ux-dialog-footer>
+      <button click.trigger="dialogController.cancel()">Cancel</button>
+      <button click.trigger="dialogController.ok(person)">Ok</button>
+    </ux-dialog-footer>
+  </ux-dialog>
+</template>
