@@ -2,7 +2,7 @@ import { Lazy, inject, PLATFORM } from 'aurelia-framework';
 import { Router, RouterConfiguration } from 'aurelia-router';
 import { I18N } from 'aurelia-i18n';
 import { HttpClient } from 'aurelia-fetch-client';
-import * as moment from 'moment';
+import moment from 'moment';
 
 import { LogManager, Logger} from './services/logger.service';
 import { AppConfigService } from './services/app-config.service';
