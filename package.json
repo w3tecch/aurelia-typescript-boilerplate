@@ -35,9 +35,7 @@
   },
   "scripts": {
     "start": "nps",
-    "test": "nps test",
-    "install:dev": "npm i && npm run install:typings",
-    "install:typings": "./node_modules/.bin/typings i"
+    "test": "nps test"
   },
   "jest": {
     "modulePaths": [
@@ -133,7 +131,6 @@
     "tslint": "^5.4.3",
     "tslint-loader": "^3.5.3",
     "typescript": "^2.3.4",
-    "typings": "^2.1.1",
     "url-loader": "^0.5.8",
     "wait-on": "^2.0.2",
     "webpack": "^2.6.1",
