@@ -80,7 +80,6 @@
     "@types/jest": "^19.2.4",
     "@types/jquery": "^2.0.46",
     "@types/lodash": "^4.14.65",
-    "@types/moment": "^2.13.0",
     "@types/node": "^7.0.29",
     "@types/webpack": "^2.2.15",
     "aurelia-loader-nodejs": "^1.0.1",
