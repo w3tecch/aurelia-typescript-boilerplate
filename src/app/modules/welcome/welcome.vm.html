@@ -24,7 +24,7 @@
     <div red-square></div>
 
     <h3>Global value converter</h3>
-    <p>${currentDate | dateFormat}</p>
+    <p>${currentDate | dateFormat & signal:'locale:changed'}</p>
 
     <h3>Switch Language</h3>
     <button click.delegate="switchLanguage()" class="btn btn-primary">Click me!</button>
