@@ -15,7 +15,9 @@
     // Be strict
     "alwaysStrict": true,
     "strict": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    // For i18next and any other module with default export error
+    "allowSyntheticDefaultImports": true
   },
   "exclude": [
     "node_modules",

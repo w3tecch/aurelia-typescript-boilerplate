@@ -1,7 +1,7 @@
 import { autoinject } from 'aurelia-framework';
 import { I18N } from 'aurelia-i18n';
 import { BindingSignaler } from 'aurelia-templating-resources';
-import * as moment from 'moment/moment';
+import moment from 'moment';
 
 import { Logger, LogManager} from './logger.service';
 
