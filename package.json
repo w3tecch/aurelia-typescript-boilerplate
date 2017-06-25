@@ -1,6 +1,6 @@
 {
   "name": "aurelia-typescript-boilerplate",
-  "version": "5.0.1",
+  "version": "6.0.0",
   "title": "Aurelia Typescript Boilerplate",
   "description": "A starter kit for building a standard navigation-style app with Aurelia and Webpack.",
   "main": "dist/app.bundle.js",
