@@ -78,7 +78,7 @@
     "@types/cordova": "^0.0.34",
     "@types/i18next-browser-languagedetector": "^0.0.31",
     "@types/jest": "^20.0.2",
-    "@types/jquery": "^2.0.46",
+    "@types/jquery": "^3.2.5",
     "@types/lodash": "^4.14.68",
     "@types/node": "^8.0.7",
     "@types/webpack": "^3.0.1",
