@@ -136,7 +136,7 @@ npm start -- test.all
 ```
 
 ## App configuration
-There is an app configuration management in place. Two standart environments are already set (devlopment and production).
+There is an app configuration management in place. Two standart environments are already set (development and production).
 You can for example build the production with:
 
 ```shell
