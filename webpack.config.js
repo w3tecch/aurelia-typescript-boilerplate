@@ -1,4 +1,4 @@
-const path = require('path')
+const path = require('path');
 const chalk = require('chalk');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -8,7 +8,7 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 const CompressionPlugin = require("compression-webpack-plugin");
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const { AureliaPlugin } = require('aurelia-webpack-plugin');
-const { optimize: { CommonsChunkPlugin }, ProvidePlugin, BannerPlugin, DefinePlugin } = require('webpack')
+const { optimize: { CommonsChunkPlugin }, ProvidePlugin, BannerPlugin, DefinePlugin } = require('webpack');
 const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loader');
 const pkg = require('./package.json');
 
@@ -34,6 +34,9 @@ const cssRules = [
   }
 ]
 
+/**
+ * @return {webpack.Configuration}
+ */
 module.exports = ({ production, server, extractCss, coverage, platform, config } = {}) => {
 
   const PLATFORM = platform || 'browser';
@@ -57,6 +60,7 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
       extensions: ['.ts', '.js'],
       modules: [srcDir, 'node_modules'],
     },
+    devtool: production ? 'source-map' : 'cheap-module-eval-source-map',
     entry: {
       app: ['aurelia-bootstrapper'],
       vendor: ['bluebird', 'jquery', 'bootstrap-sass'],
