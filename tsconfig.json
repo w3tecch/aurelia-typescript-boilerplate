@@ -1,4 +1,5 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
     "target": "es5",
     "module": "es6",
@@ -8,7 +9,6 @@
     "allowJs": true,
     "sourceRoot": "src",
     "importHelpers": true,
-    "compileOnSave": false,
     "lib": [
       "es2017", "dom"
     ],
