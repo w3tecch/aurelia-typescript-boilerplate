@@ -1,5 +1,6 @@
 import { bootstrap } from 'aurelia-bootstrapper';
 import { StageComponent } from 'aurelia-testing';
+import { PLATFORM } from 'aurelia-pal';
 
 describe('WelcomeComponent', () => {
   let component;
@@ -7,8 +8,8 @@ describe('WelcomeComponent', () => {
   beforeEach(async () => {
     component = StageComponent
       .withResources([
-        '../../src/app/modules/welcome/welcome.vm',
-        '../../src/app/resources/converters/date-format.converter'
+        PLATFORM.moduleName('../../src/app/modules/welcome/welcome.vm'),
+        PLATFORM.moduleName('../../src/app/resources/converters/date-format.converter')
       ])
       .inView('<welcome-view-model></welcome-view-model>');
       await component.create(bootstrap);
