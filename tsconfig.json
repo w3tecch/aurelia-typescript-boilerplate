@@ -8,6 +8,7 @@
     "allowJs": true,
     "sourceRoot": "src",
     "importHelpers": true,
+    "compileOnSave": false,
     "lib": [
       "es2017", "dom"
     ],
