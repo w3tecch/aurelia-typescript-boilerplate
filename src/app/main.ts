@@ -66,6 +66,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
           'de-DE': ['de-CH', 'en-US'],
           'default': ['en-US']
         },
+        lng: 'en-US',
         debug: false,
         detection: {
           order: ['localStorage', 'navigator'],
