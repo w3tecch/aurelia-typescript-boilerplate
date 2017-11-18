@@ -1,3 +1,5 @@
+import { PLATFORM } from 'aurelia-framework';
+
 import { ChildRouterViewModel } from '../../src/app/modules/child-router/child-router.vm';
 
 class RouterStub {
@@ -34,7 +36,7 @@ describe('the Child Router module', () => {
 		expect(sut.router.routes).toContainEqual({
 			route: ['', 'welcome'],
 			name: 'welcome',
-			moduleId: './../welcome/welcome.vm',
+			moduleId: PLATFORM.moduleName('./../welcome/welcome.vm'),
 			nav: true,
 			title: 'Welcome'
 		});
@@ -44,7 +46,7 @@ describe('the Child Router module', () => {
 		expect(sut.router.routes).toContainEqual({
 			route: 'users',
 			name: 'users',
-			moduleId: './../users/users.vm',
+			moduleId: PLATFORM.moduleName('./../users/users.vm'),
 			nav: true,
 			title: 'Github Users'
 		});
@@ -54,7 +56,7 @@ describe('the Child Router module', () => {
 		expect(sut.router.routes).toContainEqual({
 			route: 'child-router',
 			name: 'child-router',
-			moduleId: './../child-router/child-router.vm',
+			moduleId: PLATFORM.moduleName('./../child-router/child-router.vm'),
 			nav: true,
 			title: 'Child Router'
 		});

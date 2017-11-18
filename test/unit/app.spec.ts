@@ -89,7 +89,7 @@ describe('the App module', () => {
     expect(sut.router.routes).toContainEqual({
       route: 'users',
       name: 'users',
-      moduleId: './modules/users/users.vm',
+      moduleId: PLATFORM.moduleName('./modules/users/users.vm'),
       nav: true,
       title: 'Github Users'
     });
@@ -99,7 +99,7 @@ describe('the App module', () => {
     expect(sut.router.routes).toContainEqual({
       route: 'child-router',
       name: 'child-router',
-      moduleId: './modules/child-router/child-router.vm',
+      moduleId: PLATFORM.moduleName('./modules/child-router/child-router.vm'),
       nav: true,
       title: 'Child Router'
     });
