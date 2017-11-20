@@ -135,8 +135,8 @@ To run all the unit test suites and the E2E tests, you may simply run:
 npm start -- test.all
 ```
 
-## App confugration
-There is an app configuration management in place. Two standart environments are already set (devlopment and production).
+## App configuration
+There is an app configuration management in place. Two standart environments are already set (development and production).
 You can for example build the production with:
 
 ```shell
