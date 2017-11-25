@@ -119,7 +119,7 @@ module.exports = {
         prepare: 'cd ./cordova && ./../node_modules/.bin/cordova prepare',
         build: 'cd ./cordova && ./../node_modules/.bin/cordova build',
         clean: series(
-          rimraf('./cordova/plaforms'),
+          rimraf('./cordova/platforms'),
           rimraf('./cordova/plugins')
         )
       }
