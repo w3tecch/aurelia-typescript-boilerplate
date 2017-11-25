@@ -1,4 +1,4 @@
-const { series, crossEnv, concurrent, rimraf } = require('nps-utils');
+const { series, crossEnv, concurrent, rimraf, ifWindows } = require('nps-utils');
 const { config: { port: E2E_PORT } } = require('./test/protractor.conf');
 
 module.exports = {
@@ -116,8 +116,14 @@ module.exports = {
         ),
       },
       cordova: {
-        prepare: 'cd ./cordova && ./../node_modules/.bin/cordova prepare',
-        build: 'cd ./cordova && ./../node_modules/.bin/cordova build',
+        prepare: ifWindows(
+          'cd .\\cordova && .\\..\\node_modules\\.bin\\cordova prepare',
+          'cd ./cordova && ./../node_modules/.bin/cordova prepare'
+        ),
+        build: ifWindows(
+          'cd .\\cordova && .\\..\\node_modules\\.bin\\cordova build',
+          'cd ./cordova && ./../node_modules/.bin/cordova build'
+        ),
         clean: series(
           rimraf('./cordova/platforms'),
           rimraf('./cordova/plugins')
