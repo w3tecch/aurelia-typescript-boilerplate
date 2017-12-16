@@ -1,41 +1,42 @@
-import {browser, element, by, By, $, $$, ExpectedConditions} from 'aurelia-protractor-plugin/protractor';
+import { browser, element, by, ExpectedConditions, promise } from 'aurelia-protractor-plugin/protractor';
+import { ElementFinder } from 'protractor/built/element';
 
-export class PageObject_Welcome {
-  getGreeting() {
+export class PageObjectWelcome {
+  public getGreeting(): promise.Promise<string> {
     return element(by.tagName('h2')).getText();
   }
 
-  getFirstnameElement() {
+  public getFirstnameElement(): ElementFinder {
     return element(by.valueBind('firstName'));
   }
 
-  setFirstname(value) {
+  public setFirstname(value: string): promise.Promise<void> {
     const firstName = this.getFirstnameElement();
     return firstName.clear().then(() => firstName.sendKeys(value));
   }
 
-  getLastnameElement() {
+  public getLastnameElement(): ElementFinder  {
     return element(by.valueBind('lastName'));
   }
 
-  setLastname(value) {
+  public setLastname(value: string): promise.Promise<void> {
     const lastName = this.getLastnameElement();
     return lastName.clear().then(() => lastName.sendKeys(value));
   }
 
-  getFullnameElement() {
+  public getFullnameElement(): ElementFinder  {
     return element(by.css('.help-block'));
   }
 
-  getFullname() {
+  public getFullname(): promise.Promise<string> {
     return this.getFullnameElement().getText();
   }
 
-  pressSubmitButton() {
+  public pressSubmitButton(): promise.Promise<void> {
     return element(by.css('button[type="submit"]')).click();
   }
 
-  async openAlertDialog() {
+  public async openAlertDialog(): Promise<boolean> {
     await this.pressSubmitButton();
 
     await browser.wait(ExpectedConditions.alertIsPresent(), 5000);
