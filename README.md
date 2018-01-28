@@ -187,3 +187,27 @@ Sometimes the ```www``` symlink is removed (e.g. git clone). Run this command to
 npm start -- mobile.link
 ```
 
+## Docker
+There is a ```Dockerfile``` unsing the [nginx](https://hub.docker.com/_/nginx/) image to build the docker image.
+
+### Getting started
+First build your aurelia app with
+```shell
+npm start build
+```
+
+Then build the image with
+```shell
+docker build -t nginx-aurelia .
+```
+
+Then run a container with
+```shell
+docker run --name aurelia-app -d -p 8080:80 nginx-aurelia
+```
+Now your website is available with ```http://localhost:8080```.
+
+If you like to update the source do this
+```shell
+docker cp ./dist/. mycontainer:/usr/share/nginx/html
+```
