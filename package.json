@@ -152,7 +152,6 @@
     "aurelia-templating-router": "^1.1.0",
     "aurelia-validation": "^1.1.1",
     "bluebird": "^3.5.0",
-    "bootstrap-sass": "^3.3.7",
     "font-awesome": "^4.7.0",
     "i18next-browser-languagedetector": "^2.0.0",
     "isomorphic-fetch": "^2.2.1",
