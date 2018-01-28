@@ -28,6 +28,11 @@ import de_CHTranslation from './../locales/de_CH.json';
 import 'isomorphic-fetch';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
+// Fontawesome setup
+import fontawesome from '@fortawesome/fontawesome';
+import fontawesomeSolid from '@fortawesome/fontawesome-free-solid';
+fontawesome.library.add(fontawesomeSolid);
+
 import * as Bluebird from 'bluebird';
 // remove out if you don't want a Promise polyfill (remove also from webpack.config.js)
 Bluebird.config({ warnings: { wForgottenReturn: false } });

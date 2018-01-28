@@ -1,17 +1,21 @@
 <template>
-  <section class="au-animate">
+  <div class="container-fluid au-animate">
     <h2>${heading}</h2>
-    <div>
-      <div class="col-md-2">
-        <ul class="well nav nav-pills nav-stacked">
-          <li repeat.for="row of router.navigation" class="${row.isActive ? 'active' : ''}">
-            <a href.bind="row.href">${row.title}</a>
-          </li>
-        </ul>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+              <a repeat.for="row of router.navigation"
+                class="nav-link ${row.isActive ? 'active' : ''}"
+                href.bind="row.href">${ row.title }</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="col-md-10" style="padding: 0">
+      <div class="col-md-9" style="padding: 0">
         <router-view></router-view>
       </div>
     </div>
-  </section>
+  </div>
 </template>

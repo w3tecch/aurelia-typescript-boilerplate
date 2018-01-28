@@ -41,11 +41,11 @@ module.exports = {
         development: {
           default: series(
             'nps webpack.build.before',
-            'webpack --progress -d --env.config=development'
+            'webpack --progress -d --env.extractCss --env.config=development'
           ),
-          extractCss: series(
+          inlineCss: series(
             'nps webpack.build.before',
-            'webpack --progress -d --env.extractCss, --env.config=development'
+            'webpack --progress -d --env.config=development'
           ),
           serve: series.nps(
             'webpack.build.development',
@@ -68,8 +68,8 @@ module.exports = {
         }
       },
       server: {
-        default: `webpack-dev-server -d --inline --env.server`,
-        extractCss: `webpack-dev-server -d --inline --env.server --env.extractCss`,
+        default: `webpack-dev-server -d --inline --env.server --env.extractCss`,
+        inlineCss: `webpack-dev-server -d --inline --env.server`,
         hmr: `webpack-dev-server -d --inline --hot --env.server`
       },
     },
