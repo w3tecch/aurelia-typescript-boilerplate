@@ -5,26 +5,11 @@ module.exports = {
   scripts: {
     default: 'nps webpack',
     test: {
-      default: 'nps test.jest',
-      jest: {
-        default: series(
-          rimraf('test/coverage-jest'),
-          'jest'
-        ),
-        watch: 'jest --watch',
-      },
-      karma: {
-        default: series(
-          rimraf('test/coverage-karma'),
-          'karma start test/karma.conf.js'
-        ),
-        watch: 'karma start test/karma.conf.js --auto-watch --no-single-run',
-        debug: 'karma start test/karma.conf.js --auto-watch --no-single-run --debug'
-      },
-      all: concurrent({
-        browser: series.nps('test.karma', 'e2e'),
-        jest: 'nps test.jest',
-      })
+      default: series(
+        rimraf('test/coverage-jest'),
+        'jest'
+      ),
+      watch: 'jest --watch'
     },
     e2e: {
       default: concurrent({
