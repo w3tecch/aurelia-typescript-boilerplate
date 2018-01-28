@@ -63,7 +63,7 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
     devtool: production ? 'source-map' : 'cheap-module-eval-source-map',
     entry: {
       app: ['aurelia-bootstrapper'],
-      vendor: ['bluebird', 'jquery', 'bootstrap-sass'],
+      vendor: ['bluebird', 'jquery', 'bootstrap', 'popper.js', 'moment'],
     },
     output: {
       path: outDir,
