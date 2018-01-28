@@ -5,26 +5,11 @@ module.exports = {
   scripts: {
     default: 'nps webpack',
     test: {
-      default: 'nps test.jest',
-      jest: {
-        default: series(
-          rimraf('test/coverage-jest'),
-          'jest'
-        ),
-        watch: 'jest --watch',
-      },
-      karma: {
-        default: series(
-          rimraf('test/coverage-karma'),
-          'karma start test/karma.conf.js'
-        ),
-        watch: 'karma start test/karma.conf.js --auto-watch --no-single-run',
-        debug: 'karma start test/karma.conf.js --auto-watch --no-single-run --debug'
-      },
-      all: concurrent({
-        browser: series.nps('test.karma', 'e2e'),
-        jest: 'nps test.jest',
-      })
+      default: series(
+        rimraf('test/coverage-jest'),
+        'jest'
+      ),
+      watch: 'jest --watch'
     },
     e2e: {
       default: concurrent({
@@ -56,11 +41,11 @@ module.exports = {
         development: {
           default: series(
             'nps webpack.build.before',
-            'webpack --progress -d --env.config=development'
+            'webpack --progress -d --env.extractCss --env.config=development'
           ),
-          extractCss: series(
+          inlineCss: series(
             'nps webpack.build.before',
-            'webpack --progress -d --env.extractCss, --env.config=development'
+            'webpack --progress -d --env.config=development'
           ),
           serve: series.nps(
             'webpack.build.development',
@@ -83,8 +68,8 @@ module.exports = {
         }
       },
       server: {
-        default: `webpack-dev-server -d --inline --env.server`,
-        extractCss: `webpack-dev-server -d --inline --env.server --env.extractCss`,
+        default: `webpack-dev-server -d --inline --env.server --env.extractCss`,
+        inlineCss: `webpack-dev-server -d --inline --env.server`,
         hmr: `webpack-dev-server -d --inline --hot --env.server`
       },
     },

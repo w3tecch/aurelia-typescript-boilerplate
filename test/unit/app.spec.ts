@@ -5,7 +5,6 @@ import { EventAggregator } from 'aurelia-event-aggregator';
 import { HttpClient } from 'aurelia-fetch-client';
 
 import { AppViewModel } from '../../src/app/app.vm';
-import { AppConfigService } from '../../src/app/services/app-config.service';
 let en_USTranslation = require('./../../src/locales/en_US.json');
 let de_CHTranslation = require('./../../src/locales/de_CH.json');
 

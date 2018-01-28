@@ -39,7 +39,7 @@ const cssRules = [
  */
 module.exports = ({ production, server, extractCss, coverage, platform, config } = {}) => {
 
-  const PLATFORM = platform || 'browser';
+  const PLATFORM = platform || 'browser'; // possibilities browser, mobile
   const CONFIG = config || 'development';
 
   console.log('');
@@ -63,11 +63,11 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
     devtool: production ? 'source-map' : 'cheap-module-eval-source-map',
     entry: {
       app: ['aurelia-bootstrapper'],
-      vendor: ['bluebird', 'jquery', 'bootstrap-sass'],
+      vendor: ['bluebird', 'jquery', 'bootstrap', 'popper.js', 'moment'],
     },
     output: {
       path: outDir,
-      publicPath: baseUrl,
+      publicPath: PLATFORM === 'mobile' ? '' : baseUrl,
       filename: production ? '[name].[chunkhash].bundle.js' : '[name].[hash].bundle.js',
       sourceMapFilename: production ? '[name].[chunkhash].bundle.map' : '[name].[hash].bundle.map',
       chunkFilename: production ? '[name].[chunkhash].chunk.js' : '[name].[hash].chunk.js',

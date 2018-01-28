@@ -12,10 +12,15 @@
     "lib": [
       "es2017", "dom"
     ],
+    "pretty": true,
     // Be strict
-    "alwaysStrict": true,
     "strict": true,
     "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "noUnusedParameters": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "suppressExcessPropertyErrors": true,
     // For i18next and any other module with default export error
     "allowSyntheticDefaultImports": true
   },
