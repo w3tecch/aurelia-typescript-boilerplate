@@ -232,6 +232,52 @@ The function `validateFilledFieldsWithValidationRules` us really useful as you c
 
 The function `controllerValidByRules` will check if a validation controller is valid.
 
+This could be an example implementation
+```
+class FormExample {
+
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) public user: User;
+
+  private controller: ValidationController;
+  private rules: Rule<CustomerContactRestModel, any>[][];
+
+  public constructor(
+    private validationControllerFactory: ValidationControllerFactory
+  ) {
+    this.controller = this.validationControllerFactory.createForCurrentScope();
+    this.controller.validateTrigger = validateTrigger.changeOrBlur;
+  }
+
+  public bind(): void {
+    this.setupValidationRules();
+    validateFilledFieldsWithValidationRules(this.rules, this.user, this.controller);
+  }
+
+  @computedFrom('user')
+  public get isValid(): boolean {
+    return controllerValidByRules(this.rules, this.user, this.controller);
+  }
+
+  private setupValidationRules(): void {
+    this.rules = ValidationRules
+      .ensure((user: User) => user.lastName)
+        .displayName('USER.LAST_NAME')
+        .required()
+      .ensure((user: User) => user.email)
+        .displayName('USER.EMAIL')
+        .email()
+      .on(this.customerContact).rules;
+  }
+}
+```
+
+### i18n integration
+You can pass a tranlation string into the `displayName('USER.LAST_NAME')` and it will be translated for you.
+
+Additionally you can translate methods like `.required()` in `src/local/*` as demostrated in the files.
+
+If you use the the method `withMessageKey('YOUR.TRANSLATION')` you can pass a translation string and it will be translated for you.
+
 ## Route generator service
 If you have router tree like this
 ```
