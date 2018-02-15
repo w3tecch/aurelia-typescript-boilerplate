@@ -5,6 +5,7 @@ import { EventAggregator } from 'aurelia-event-aggregator';
 import { HttpClient } from 'aurelia-fetch-client';
 
 import { AppViewModel } from '../../src/app/app.vm';
+import { RouteGeneratorService } from '../../src/app/services/route-generator.service';
 let en_USTranslation = require('./../../src/locales/en_US.json');
 let de_CHTranslation = require('./../../src/locales/de_CH.json');
 
@@ -37,7 +38,6 @@ class AppConfigStub {
 describe('the App module', () => {
   let sut;
   let mockedRouter;
-  let appConfigSub;
   let i18nMock;
 
   beforeEach(() => {
@@ -60,9 +60,10 @@ describe('the App module', () => {
       debug: false
     });
 
-    appConfigSub = new AppConfigStub();
+    const appConfigSub = new AppConfigStub();
+    const routeGeneratorService = new RouteGeneratorService(undefined as any);
 
-    sut = new AppViewModel(i18nMock, appConfigSub, AnyMock, AnyMock, AnyMock, new HttpClient());
+    sut = new AppViewModel(i18nMock, appConfigSub as any, AnyMock, AnyMock, AnyMock, new HttpClient(), routeGeneratorService);
     sut.configureRouter(mockedRouter, mockedRouter);
   });
 
@@ -78,7 +79,7 @@ describe('the App module', () => {
     expect(sut.router.routes).toContainEqual({
       route: ['', 'welcome'],
       name: 'welcome',
-      moduleId: PLATFORM.moduleName('./modules/welcome/welcome.vm'),
+      moduleId: PLATFORM.moduleName('modules/welcome/welcome.vm'),
       nav: true,
       title: 'Welcome'
     });
@@ -88,7 +89,7 @@ describe('the App module', () => {
     expect(sut.router.routes).toContainEqual({
       route: 'users',
       name: 'users',
-      moduleId: PLATFORM.moduleName('./modules/users/users.vm'),
+      moduleId: PLATFORM.moduleName('modules/users/users.vm'),
       nav: true,
       title: 'Github Users'
     });
@@ -98,7 +99,7 @@ describe('the App module', () => {
     expect(sut.router.routes).toContainEqual({
       route: 'child-router',
       name: 'child-router',
-      moduleId: PLATFORM.moduleName('./modules/child-router/child-router.vm'),
+      moduleId: PLATFORM.moduleName('modules/child-router/child-router.vm'),
       nav: true,
       title: 'Child Router'
     });
