@@ -1,4 +1,5 @@
 [![Build Status](https://api.travis-ci.org/w3tecch/aurelia-typescript-boilerplate.svg?branch=master)](https://travis-ci.org/w3tecch/aurelia-typescript-boilerplate)
+[![Build status](https://ci.appveyor.com/api/projects/status/7oyx5vxl6ue6oqsf/branch/master?svg=true)](https://ci.appveyor.com/project/dweber019/aurelia-typescript-boilerplate/branch/master)
 [![Dependency Status](https://david-dm.org/w3tecch/aurelia-typescript-boilerplate.svg)](https://david-dm.org/w3tecch/aurelia-typescript-boilerplate)
 [![devDependency Status](https://david-dm.org/w3tecch/aurelia-typescript-boilerplate/dev-status.svg)](https://david-dm.org/w3tecch/aurelia-typescript-boilerplate#info=devDependencies)
 
