@@ -8,7 +8,6 @@ install:
 test_script:
   - npm test
   - npm start build
-  - npm start webpack.build.production
   - npm start mobile.setup
   - npm start mobile.cordova.addbowser
   - npm start mobile.build
