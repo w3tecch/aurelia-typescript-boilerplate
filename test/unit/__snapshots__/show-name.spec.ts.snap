@@ -1,0 +1,8 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ShowNameComponent should render correctly 1`] = `
+"<body><div><show-name some-text.bind=\\"firstName\\" class=\\"au-target show-name\\" au-target-id=\\"2\\">
+  <h3>Custom global element</h3>
+  <p>Your text: <span id=\\"fn\\">Bob</span></p>
+</show-name></div></body>"
+`;

@@ -56,7 +56,8 @@
     ],
     "testEnvironment": "node",
     "moduleNameMapper": {
-      "aurelia-(.*)": "<rootDir>/node_modules/aurelia-$1"
+      "aurelia-(.*)": "<rootDir>/node_modules/aurelia-$1",
+      "^.*\\.scss$": "<rootDir>/test/unit/stubs/sass-stub.js"
     },
     "collectCoverage": true,
     "collectCoverageFrom": [
