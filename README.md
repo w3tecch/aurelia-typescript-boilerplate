@@ -212,3 +212,56 @@ If you like to update the source do this
 ```shell
 docker cp ./dist/. mycontainer:/usr/share/nginx/html
 ```
+
+## Additional features
+This repo houses some additional features which provd to be very useful in projects.
+
+## String polyfill
+The file `utils/polyfills.utils.ts` contains a string polyfills.
+With this polyfill you can do this:
+```
+'Teststring'.isEmpty() => false
+''.isEmpty() => true
+undefined.isEmpty() => true
+```
+
+## Validation
+The file `utils/validation.utils.ts` contains some validatoin helper functions and regex patterns.
+
+The function `validateFilledFieldsWithValidationRules` us really useful as you can check a object which is already prefiled if it's valid and if not show errors.
+
+The function `controllerValidByRules` will check if a validation controller is valid.
+
+## Route generator service
+If you have router tree like this
+```
+     root
+    /    \
+left      right
+```
+You can't navigate from `left` to `right` with `this.router.navigateToRoute(...)` as `right` is in a branch which `left` is unaware of. This is due to the injection of the router service.
+
+One solution is to use `this.router.navigate(...)` but this is unsave as if the route configuration is changed the navigation is broken as it's hardcoded.
+
+The `route-generator.service.ts` will provide a type safe solution for save navigation.
+
+Check the following files to get an idea how to use it:
+- `route-generator.service.ts`
+- `app.vm.ts` and `app.routes.ts`
+- `child-router.vm.ts` and `child-router.routes.ts`
+
+As an example you could navigate like this from `left` to `right`
+```
+this.routeGeneratorService.navigateByRouteNames(
+  { routeName: 'root' },
+  { routeName: 'right' }
+);
+```
+
+You can also pass route parameters like this but remember that query parameter have to attached to the last element
+```
+this.routeGeneratorService.navigateByRouteNames(
+  { routeName: 'root', params: { id: '1' }},
+  { routeName: 'right' }
+);
+```
