@@ -18,7 +18,7 @@ export interface IAppConfigEnv {
 export class AppConfigService {
   private name: string;
   private version: string;
-  private env: string;
+  private env!: string;
   private platform: string;
   private config: IAppConfigEnv;
 

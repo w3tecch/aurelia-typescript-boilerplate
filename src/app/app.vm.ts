@@ -16,7 +16,7 @@ export class AppViewModel {
 
   private logger: Logger;
 
-  public router: Router;
+  public router!: Router;
 
   constructor(
     private i18n: I18N,

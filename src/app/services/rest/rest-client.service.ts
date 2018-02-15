@@ -1,5 +1,5 @@
 import { autoinject, transient } from 'aurelia-framework';
-import { HttpClient, json } from 'aurelia-fetch-client';
+import { HttpClient, json, RequestInit } from 'aurelia-fetch-client';
 
 import { AppConfigService } from './../app-config.service';
 
@@ -24,9 +24,9 @@ export const jsonHeaders = {
 @autoinject
 export class RestClient {
 
-  private resource: string;
+  private resource!: string;
 
-  private baseUrl: string;
+  private baseUrl!: string;
 
   private headers: THeaders = {};
 

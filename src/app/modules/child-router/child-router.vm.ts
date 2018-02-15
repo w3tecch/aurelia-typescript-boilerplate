@@ -3,7 +3,7 @@ import { Router, RouterConfiguration } from 'aurelia-router';
 
 export class ChildRouterViewModel {
 
-	public router: Router;
+	public router!: Router;
 	public heading = 'Child Router';
 
 	public configureRouter(config: RouterConfiguration, router: Router): void {
