@@ -2,28 +2,26 @@ import { bootstrap } from 'aurelia-bootstrapper';
 import { StageComponent } from 'aurelia-testing';
 import { PLATFORM } from 'aurelia-framework';
 
-describe('WelcomeComponent', () => {
+describe('ShowNameComponent', () => {
   let component;
 
   beforeEach(async () => {
     component = StageComponent
       .withResources([
-        PLATFORM.moduleName('../../src/app/modules/welcome/welcome.vm'),
-        PLATFORM.moduleName('../../src/app/resources/converters/date-format.converter')
+        PLATFORM.moduleName('../../src/app/resources/elements/show-name/show-name.element'),
       ])
-      .inView('<welcome-view-model></welcome-view-model>');
+      .inView('<show-name some-text.bind="firstName"></show-name>')
+      .boundTo({ firstName: 'Bob' });
       await component.create(bootstrap);
   });
 
- if (jest) {
-  xit('should render correctly', () => {
+  it('should render correctly', () => {
     expect(document.body.outerHTML).toMatchSnapshot();
   });
- }
 
-  xit('should render first name', () => {
+  it('should render first name', () => {
     const nameElement = document.querySelector('#fn') as HTMLInputElement;
-    expect(nameElement.value).toBe('John');
+    expect(nameElement.innerHTML).toBe('Bob');
   });
 
   afterEach(() => {
