@@ -1,0 +1,19 @@
+<template>
+  <ux-dialog>
+    <ux-dialog-header>
+      <div class="row align-items-center">
+        <div class="col-auto">
+          <h2 t.bind="title"></h2>
+        </div>
+        <div class="col">
+          <button repeat.for="button of buttons" click.delegate="execute(button)" class="btn ${button.classes} ml-2" disabled.bind="!button.isEnabled"
+            t.bind="button.title">
+          </button>
+        </div>
+      </div>
+    </ux-dialog-header>
+    <ux-dialog-body>
+      <compose view-model.ref="composeElement" view-model.bind="contentView" model.bind="contentModel"></compose>
+    </ux-dialog-body>
+  </ux-dialog>
+</template>
