@@ -311,3 +311,10 @@ this.routeGeneratorService.navigateByRouteNames(
   { routeName: 'right' }
 );
 ```
+
+## Class transfomer (model handling)
+
+## Dialog service
+There is a custom dialog implementation for simpler useage of elements in dialogs.
+
+The Service is named `generic-dialog.service.ts` and an example can be found in `welcome.vm.ts`.
