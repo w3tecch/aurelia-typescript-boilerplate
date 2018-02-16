@@ -1,5 +1,5 @@
 import { autoinject } from 'aurelia-framework';
-import { UserService } from './../../services/user.service';
+import { UserRestService } from './../../services/rest/user.service';
 import { UserModel } from './../../models/user.model';
 
 @autoinject
@@ -8,10 +8,10 @@ export class UsersViewModel {
 	public users: Array<UserModel> = [];
 
 	constructor(
-    private userService: UserService
+    private userRestService: UserRestService
   ) { }
 
 	public async activate(): Promise<void> {
-		this.users = await this.userService.getUsers();
+    this.users = await this.userRestService.getUsers();
 	}
 }

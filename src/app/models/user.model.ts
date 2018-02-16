@@ -1,10 +1,15 @@
 
+import { Expose } from 'class-transformer';
+
 export class UserModel {
-  constructor(
-    public avatarUrl: string,
-    public login: string,
-    public htmlUrl: string
-  ) { }
+
+  @Expose({ name: 'avatar_url' })
+  public avatarUrl: string = '';
+
+  public login: string = '';
+
+  @Expose({ name: 'html_url' })
+  public htmlUrl: string = '';
 
   public getLogin(): string {
     return this.login;

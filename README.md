@@ -313,6 +313,8 @@ this.routeGeneratorService.navigateByRouteNames(
 ```
 
 ## Class transfomer (model handling)
+We have included the [class transformer](https://github.com/typestack/class-transformer) which helps creating models (`src/app/models/*`). This transformation can be done
+in both direction (rest to model, model to rest).
 
 ## Dialog service
 There is a custom dialog implementation for simpler useage of elements in dialogs.

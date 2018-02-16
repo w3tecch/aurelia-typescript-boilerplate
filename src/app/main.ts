@@ -34,6 +34,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 /**
  * Polyfills
  */
+import 'reflect-metadata';
 import 'utils/polyfills.utils';
 
 // Fontawesome setup
