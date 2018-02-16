@@ -1,4 +1,4 @@
-import { Lazy, inject, PLATFORM } from 'aurelia-framework';
+import { Lazy, inject } from 'aurelia-framework';
 import { Router, RouterConfiguration } from 'aurelia-router';
 import { I18N } from 'aurelia-i18n';
 import { HttpClient } from 'aurelia-fetch-client';
@@ -10,13 +10,14 @@ import { CordovaService } from './services/cordova.service';
 import { EventBusService, EventBusEvents } from './services/event-bus.service';
 import { LanguageService } from './services/language.service';
 import { ExampleStep } from './piplines/example.step';
+import { RouteGeneratorService } from './services/route-generator.service';
 
-@inject(I18N, AppConfigService, Lazy.of(CordovaService), EventBusService, LanguageService, HttpClient)
+@inject(I18N, AppConfigService, Lazy.of(CordovaService), EventBusService, LanguageService, HttpClient, RouteGeneratorService)
 export class AppViewModel {
 
   private logger: Logger;
 
-  public router: Router;
+  public router!: Router;
 
   constructor(
     private i18n: I18N,
@@ -24,7 +25,8 @@ export class AppViewModel {
     private cordovaServiceFn: () => CordovaService,
     private eventBusService: EventBusService,
     private languageService: LanguageService,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    private routeGeneratorService: RouteGeneratorService,
   ) {
     this.logger = LogManager.getLogger('AppViewModel');
     this.configureHttpClient();
@@ -42,29 +44,7 @@ export class AppViewModel {
     if (this.appConfigService.platformIsMobile()) {
       this.cordovaServiceFn();
     }
-    config.map([
-      {
-        route: ['', 'welcome'],
-        name: 'welcome',
-        moduleId: PLATFORM.moduleName('./modules/welcome/welcome.vm', 'welcome'),
-        nav: true,
-        title: 'Welcome'
-      },
-      {
-        route: 'users',
-        name: 'users',
-        moduleId: PLATFORM.moduleName('./modules/users/users.vm', 'users'),
-        nav: true,
-        title: 'Github Users'
-      },
-      {
-        route: 'child-router',
-        name: 'child-router',
-        moduleId: PLATFORM.moduleName('./modules/child-router/child-router.vm', 'child-router'),
-        nav: true,
-        title: 'Child Router'
-      }
-    ]);
+    config.map(this.routeGeneratorService.getRootRoutesConfig());
     config.mapUnknownRoutes({ route: '', redirect: '' });
 
     config.addAuthorizeStep(ExampleStep);

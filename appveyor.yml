@@ -1,14 +1,13 @@
-language: node_js
-node_js:
-  - "8.9.4"
+environment:
+  nodejs_version: "8"
+
 install:
+  - ps: Install-Product node $env:nodejs_version
   - yarn install
-script:
+
+test_script:
   - npm test
   - npm start build
   - npm start mobile.setup
   - npm start mobile.cordova.addbowser
   - npm start mobile.build
-notifications:
-  email: false
-  hipchat: 861e4f14f03ed33d069f1083a6c9f5@2679708

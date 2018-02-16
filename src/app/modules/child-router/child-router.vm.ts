@@ -1,18 +1,20 @@
-import { PLATFORM } from 'aurelia-framework';
+import { autoinject } from 'aurelia-framework';
 import { Router, RouterConfiguration } from 'aurelia-router';
 
+import { RouteGeneratorService } from './../../services/route-generator.service';
+
+@autoinject
 export class ChildRouterViewModel {
 
-	public router: Router;
-	public heading = 'Child Router';
+	public router!: Router;
+  public heading = 'Child Router';
+
+  constructor(
+    private routeGeneratorService: RouteGeneratorService,
+  ) { }
 
 	public configureRouter(config: RouterConfiguration, router: Router): void {
-		config.map([
-			{ route: ['', 'welcome'], name: 'welcome', moduleId: PLATFORM.moduleName('./../welcome/welcome.vm'), nav: true, title: 'Welcome' },
-			{ route: 'users', name: 'users', moduleId: PLATFORM.moduleName('./../users/users.vm'), nav: true, title: 'Github Users' },
-			{ route: 'child-router', name: 'child-router',
-        moduleId: PLATFORM.moduleName('./../child-router/child-router.vm'), nav: true, title: 'Child Router' }
-		]);
+    config.map(this.routeGeneratorService.getRoutesConfigByParentRouteName('child-router'));
 
 		this.router = router;
 	}

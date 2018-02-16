@@ -1,4 +1,12 @@
 {
+  "VALIDATIONS": {
+    "required": "${$displayName} fehlt!"
+  },
+  "ACTIONS": {
+    "SAVE": "Speichern",
+    "CANCEL": "Abbrechen",
+    "CLOSE": "Schliessen"
+  },
   "TITLE": "Übersetztungs Titel",
   "TR_ATTR": "...in Deutsch",
   "TR_SIGNALER": "Signaler Beispiel funktioniert..."

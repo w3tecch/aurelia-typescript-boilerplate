@@ -1,6 +1,7 @@
 import { PLATFORM } from 'aurelia-framework';
 
 import { ChildRouterViewModel } from '../../src/app/modules/child-router/child-router.vm';
+import { RouteGeneratorService } from '../../src/app/services/route-generator.service';
 
 class RouterStub {
 	public routes;
@@ -19,8 +20,10 @@ describe('the Child Router module', () => {
 	let mockedRouter;
 
 	beforeEach(() => {
+    const routeGeneratorService = new RouteGeneratorService(undefined as any);
+
 		mockedRouter = new RouterStub();
-		sut = new ChildRouterViewModel();
+    sut = new ChildRouterViewModel(routeGeneratorService);
 		sut.configureRouter(mockedRouter, mockedRouter);
 	});
 
@@ -36,7 +39,7 @@ describe('the Child Router module', () => {
 		expect(sut.router.routes).toContainEqual({
 			route: ['', 'welcome'],
 			name: 'welcome',
-			moduleId: PLATFORM.moduleName('./../welcome/welcome.vm'),
+      moduleId: PLATFORM.moduleName('modules/welcome/welcome.vm'),
 			nav: true,
 			title: 'Welcome'
 		});
@@ -46,7 +49,7 @@ describe('the Child Router module', () => {
 		expect(sut.router.routes).toContainEqual({
 			route: 'users',
 			name: 'users',
-			moduleId: PLATFORM.moduleName('./../users/users.vm'),
+      moduleId: PLATFORM.moduleName('modules/users/users.vm'),
 			nav: true,
 			title: 'Github Users'
 		});
@@ -56,7 +59,7 @@ describe('the Child Router module', () => {
 		expect(sut.router.routes).toContainEqual({
 			route: 'child-router',
 			name: 'child-router',
-			moduleId: PLATFORM.moduleName('./../child-router/child-router.vm'),
+      moduleId: PLATFORM.moduleName('modules/child-router/child-router.vm'),
 			nav: true,
 			title: 'Child Router'
 		});

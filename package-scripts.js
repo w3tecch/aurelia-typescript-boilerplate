@@ -112,7 +112,11 @@ module.exports = {
         clean: series(
           rimraf('./cordova/platforms'),
           rimraf('./cordova/plugins')
-        )
+        ),
+        addbowser: ifWindows(
+          'cd .\\cordova && .\\..\\node_modules\\.bin\\cordova platform add browser',
+          'cd ./cordova && ./../node_modules/.bin/cordova platform add browser'
+        ),
       }
     }
   },

@@ -1,6 +1,6 @@
 {
   "NAME": "Development",
-  "API_MAIN_URL": "https://api",
+  "API_MAIN_URL": "https://api.github.com/",
   "API_UAM_URL": "https://api",
   "LOG_LEVEL": "debug"
 }

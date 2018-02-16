@@ -15,6 +15,9 @@ const appConfigService = new AppConfigService();
  */
 import { Aurelia, LogManager, PLATFORM } from 'aurelia-framework';
 import { ConsoleAppender } from 'aurelia-logging-console';
+import { ValidationMessageProvider } from 'aurelia-validation';
+import { Expression } from 'aurelia-binding';
+import { I18N } from 'aurelia-i18n';
 
 /**
  * Locals i18n imports
@@ -27,6 +30,12 @@ import de_CHTranslation from './../locales/de_CH.json';
  */
 import 'isomorphic-fetch';
 import LanguageDetector from 'i18next-browser-languagedetector';
+
+/**
+ * Polyfills
+ */
+import 'reflect-metadata';
+import 'utils/polyfills.utils';
 
 // Fontawesome setup
 import fontawesome from '@fortawesome/fontawesome';
@@ -128,4 +137,19 @@ export async function configure(aurelia: Aurelia): Promise<void> {
   const offline = await System.import('offline-plugin/runtime');
   offline.install();
   */
+
+  // Configure validation translations
+  ValidationMessageProvider.prototype.getMessage = function (key): Expression {
+    const i18n = aurelia.container.get(I18N);
+    const translationId = `VALIDATIONS.${key}`;
+    let translation = i18n.tr(translationId);
+    if (translation === translationId) {
+      translation = i18n.tr(key);
+    }
+    return (this as any).parser.parse(translation);
+  };
+  ValidationMessageProvider.prototype.getDisplayName = function (...args): string {
+    const i18n = aurelia.container.get(I18N);
+    return i18n.tr(args[1]);
+  };
 }

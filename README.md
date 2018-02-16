@@ -1,4 +1,5 @@
 [![Build Status](https://api.travis-ci.org/w3tecch/aurelia-typescript-boilerplate.svg?branch=master)](https://travis-ci.org/w3tecch/aurelia-typescript-boilerplate)
+[![Build status](https://ci.appveyor.com/api/projects/status/7oyx5vxl6ue6oqsf/branch/master?svg=true)](https://ci.appveyor.com/project/dweber019/aurelia-typescript-boilerplate/branch/master)
 [![Dependency Status](https://david-dm.org/w3tecch/aurelia-typescript-boilerplate.svg)](https://david-dm.org/w3tecch/aurelia-typescript-boilerplate)
 [![devDependency Status](https://david-dm.org/w3tecch/aurelia-typescript-boilerplate/dev-status.svg)](https://david-dm.org/w3tecch/aurelia-typescript-boilerplate#info=devDependencies)
 
@@ -211,3 +212,111 @@ If you like to update the source do this
 ```shell
 docker cp ./dist/. mycontainer:/usr/share/nginx/html
 ```
+
+## Additional features
+This repo houses some additional features which provd to be very useful in projects.
+
+## String polyfill
+The file `utils/polyfills.utils.ts` contains a string polyfills.
+With this polyfill you can do this:
+```
+'Teststring'.isEmpty() => false
+''.isEmpty() => true
+undefined.isEmpty() => true
+```
+
+## Validation
+The file `utils/validation.utils.ts` contains some validatoin helper functions and regex patterns.
+
+The function `validateFilledFieldsWithValidationRules` us really useful as you can check a object which is already prefiled if it's valid and if not show errors.
+
+The function `controllerValidByRules` will check if a validation controller is valid.
+
+This could be an example implementation
+```
+class FormExample {
+
+  @bindable({ defaultBindingMode: bindingMode.twoWay }) public user: User;
+
+  private controller: ValidationController;
+  private rules: Rule<CustomerContactRestModel, any>[][];
+
+  public constructor(
+    private validationControllerFactory: ValidationControllerFactory
+  ) {
+    this.controller = this.validationControllerFactory.createForCurrentScope();
+    this.controller.validateTrigger = validateTrigger.changeOrBlur;
+  }
+
+  public bind(): void {
+    this.setupValidationRules();
+    validateFilledFieldsWithValidationRules(this.rules, this.user, this.controller);
+  }
+
+  @computedFrom('user')
+  public get isValid(): boolean {
+    return controllerValidByRules(this.rules, this.user, this.controller);
+  }
+
+  private setupValidationRules(): void {
+    this.rules = ValidationRules
+      .ensure((user: User) => user.lastName)
+        .displayName('USER.LAST_NAME')
+        .required()
+      .ensure((user: User) => user.email)
+        .displayName('USER.EMAIL')
+        .email()
+      .on(this.customerContact).rules;
+  }
+}
+```
+
+### i18n integration
+You can pass a tranlation string into the `displayName('USER.LAST_NAME')` and it will be translated for you.
+
+Additionally you can translate methods like `.required()` in `src/local/*` as demostrated in the files.
+
+If you use the the method `withMessageKey('YOUR.TRANSLATION')` you can pass a translation string and it will be translated for you.
+
+## Route generator service
+If you have router tree like this
+```
+     root
+    /    \
+left      right
+```
+You can't navigate from `left` to `right` with `this.router.navigateToRoute(...)` as `right` is in a branch which `left` is unaware of. This is due to the injection of the router service.
+
+One solution is to use `this.router.navigate(...)` but this is unsave as if the route configuration is changed the navigation is broken as it's hardcoded.
+
+The `route-generator.service.ts` will provide a type safe solution for save navigation.
+
+Check the following files to get an idea how to use it:
+- `route-generator.service.ts`
+- `app.vm.ts` and `app.routes.ts`
+- `child-router.vm.ts` and `child-router.routes.ts`
+
+As an example you could navigate like this from `left` to `right`
+```
+this.routeGeneratorService.navigateByRouteNames(
+  { routeName: 'root' },
+  { routeName: 'right' }
+);
+```
+
+You can also pass route parameters like this but remember that query parameter have to attached to the last element
+```
+this.routeGeneratorService.navigateByRouteNames(
+  { routeName: 'root', params: { id: '1' }},
+  { routeName: 'right' }
+);
+```
+
+## Class transfomer (model handling)
+We have included the [class transformer](https://github.com/typestack/class-transformer) which helps creating models (`src/app/models/*`). This transformation can be done
+in both direction (rest to model, model to rest).
+
+## Dialog service
+There is a custom dialog implementation for simpler useage of elements in dialogs.
+
+The Service is named `generic-dialog.service.ts` and an example can be found in `welcome.vm.ts`.
