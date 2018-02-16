@@ -1,4 +1,4 @@
-import { autoinject } from 'aurelia-framework';
+import { autoinject, PLATFORM } from 'aurelia-framework';
 import { ValidationControllerFactory, ValidationController, validateTrigger, ValidationRules } from 'aurelia-validation';
 import { DialogService } from 'aurelia-dialog';
 
@@ -6,6 +6,8 @@ import { LogManager, Logger} from './../../services/logger.service';
 import { AppConfigService } from './../../services/app-config.service';
 import { LanguageService } from './../../services/language.service';
 import { EditPersonCustomElement } from './../../resources/elements/edit-person/edit-person.element';
+import { GenericDialogService } from './../../services/generic-dialog.service';
+import { ShowPersonCustomElement } from '../../resources/elements/show-person/show-person.element';
 
 @autoinject
 export class WelcomeViewModel {
@@ -24,7 +26,8 @@ export class WelcomeViewModel {
     private appConfigService: AppConfigService,
     private languageService: LanguageService,
     private dialogService: DialogService,
-    validationControllerFactory: ValidationControllerFactory
+    validationControllerFactory: ValidationControllerFactory,
+    private genericDialogService: GenericDialogService,
   ) {
 		this.logger = LogManager.getLogger('Welcome VM');
 		this.logger.info('appConfig => name:', this.appConfigService.getName());
@@ -85,6 +88,31 @@ export class WelcomeViewModel {
     } else {
       this.languageService.setLocale(this.languageService.getSupportedLanguages()[0]);
     }
+  }
+
+  public openGenericDialog(): void {
+    const dialog = this.genericDialogService.showDialog<ShowPersonCustomElement>({
+      title: 'Zeige Person', // Can be a translation string
+      contentViewModel: PLATFORM.moduleName('resources/elements/show-person/show-person.element'),
+      contentModel: {
+        firstName: this.firstName
+      },
+      buttons: [
+        GenericDialogService.createCancelButton<ShowPersonCustomElement>(() => Promise.resolve()),
+        GenericDialogService.createSaveButton<ShowPersonCustomElement>(ele => {
+          this.logger.debug('Clicked on save in dialog', ele);
+          return Promise.resolve();
+        }, ele => ele.isValid)
+      ]
+    });
+
+    dialog.whenClosed(result => {
+      if (!result.wasCancelled) {
+        this.logger.debug('Dialog not canceld', result);
+      } else {
+        this.logger.debug('Dialog canceld', result);
+      }
+    });
   }
 }
 
