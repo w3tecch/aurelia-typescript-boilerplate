@@ -8,7 +8,7 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 const CompressionPlugin = require("compression-webpack-plugin");
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const { AureliaPlugin } = require('aurelia-webpack-plugin');
-const { optimize: { CommonsChunkPlugin }, ProvidePlugin, BannerPlugin, DefinePlugin } = require('webpack');
+const { ProvidePlugin, BannerPlugin, DefinePlugin } = require('webpack');
 const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loader');
 const pkg = require('./package.json');
 
@@ -65,6 +65,7 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
       app: ['aurelia-bootstrapper'],
       vendor: ['bluebird', 'jquery', 'bootstrap', 'popper.js', 'moment'],
     },
+    mode: 'development',
     output: {
       path: outDir,
       publicPath: PLATFORM === 'mobile' ? '' : baseUrl,
@@ -123,7 +124,6 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
           }]
         },
         { test: /\.ts$/i, loader: 'awesome-typescript-loader', exclude: nodeModulesDir },
-        { test: /\.json$/i, loader: 'json-loader' },
         // use Bluebird as the global Promise implementation:
         { test: /[\/\\]node_modules[\/\\]bluebird[\/\\].+\.js$/, loader: 'expose-loader?Promise' },
         // exposes jQuery globally as $ and as jQuery:
@@ -133,12 +133,7 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
         { test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff2' } },
         { test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff' } },
         // load these fonts normally, as files:
-        { test: /\.(ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'file-loader' },
-        ...when(coverage, {
-          test: /\.[jt]s$/i, loader: 'istanbul-instrumenter-loader',
-          include: srcDir, exclude: [/\.{spec,test}\.[jt]s$/i],
-          enforce: 'post', options: { esModules: true },
-        })
+        { test: /\.(ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'file-loader' }
       ]
     },
     plugins: [
