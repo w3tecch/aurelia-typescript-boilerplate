@@ -71,8 +71,7 @@
       "lcov",
       "text",
       "html"
-    ],
-    "mapCoverage": true
+    ]
   },
   "devDependencies": {
     "@types/cordova": "^0.0.34",
