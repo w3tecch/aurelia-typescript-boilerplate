@@ -1,18 +1,22 @@
 <template>
   <div class="container-fluid au-animate">
-    <h2>${heading}</h2>
-    <div class="row au-stagger">
-      <div class="col-sm-6 col-md-3 au-animate" repeat.for="user of users">
+    <div class="row">
+      <div class="col-md-12 py-3">
+        <h2>${heading}</h2>
+        <div class="row au-stagger">
+          <div class="col-sm-6 col-md-3 au-animate" repeat.for="user of users">
 
-        <div class="card mb-4">
-          <img class="card-img-top" src.bind="user.getAvatarUrl()" crossorigin ref="image">
-          <div class="card-body">
-            <h5 class="card-title">${user.getLogin()}</h5>
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <a href.bind="user.getHtmlUrl()" target="_blank" class="btn btn-primary">Contact</a>
+            <div class="card mb-4">
+              <img class="card-img-top" src.bind="user.getAvatarUrl()" crossorigin ref="image">
+              <div class="card-body">
+                <h5 class="card-title">${user.getLogin()}</h5>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href.bind="user.getHtmlUrl()" target="_blank" class="btn btn-primary">Contact</a>
+              </div>
+            </div>
+
           </div>
         </div>
-
       </div>
     </div>
   </div>

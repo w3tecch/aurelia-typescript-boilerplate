@@ -1,5 +1,5 @@
 <template bindable="router">
-  <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+  <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
       <i class="fa fa-home"></i>
       <span>${ router.title }</span>
@@ -9,7 +9,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav mr-auto">
         <li repeat.for="row of router.navigation" class="nav-item ${row.isActive ? 'active' : ''}">
           <a class="nav-link" href.bind="row.href">${ row.title }</a>
         </li>
