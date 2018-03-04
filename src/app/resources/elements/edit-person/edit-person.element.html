@@ -1,13 +1,27 @@
 <template>
   <ux-dialog>
-    <ux-dialog-body>
-      <h2>Edit first name</h2>
-      <input value.bind="person.firstName" />
-    </ux-dialog-body>
-
-    <ux-dialog-footer>
-      <button click.trigger="dialogController.cancel()">Cancel</button>
-      <button click.trigger="dialogController.ok(person)">Ok</button>
-    </ux-dialog-footer>
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <ux-dialog-header>
+          <div class="modal-header">
+            <h5 class="modal-title">Edit first name</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close" click.delegate="dialogController.close()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+        </ux-dialog-header>
+        <ux-dialog-body>
+          <div class="modal-body">
+            <input class="form-control" value.bind="person.firstName" />
+          </div>
+        </ux-dialog-body>
+        <ux-dialog-footer>
+          <div class="modal-footer">
+            <button class="btn btn-outline-secondary" click.trigger="dialogController.cancel()">Cancel</button>
+            <button class="btn btn-primary" click.trigger="dialogController.ok(person)">Ok</button>
+          </div>
+        </ux-dialog-footer>
+      </div>
+    </div>
   </ux-dialog>
 </template>
