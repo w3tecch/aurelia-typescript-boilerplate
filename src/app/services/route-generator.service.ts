@@ -75,14 +75,15 @@ export class RouteGeneratorService {
     return routes.map(route => {
       const newRoute = _.cloneDeep(route);
       delete newRoute.subroutes;
+
       return newRoute;
     });
   }
 
-  private findNameInRouteTree(routeName: TAllowedRouteNames, treeConfig: ITreeConfig |  ITreeConfig[]): ITreeConfig | undefined {
+  private findNameInRouteTree(routeName: TAllowedRouteNames, treeConfig: ITreeConfig | ITreeConfig[]): ITreeConfig | undefined {
     let result;
     if (treeConfig instanceof Array) {
-      for (let conf of treeConfig) {
+      for (const conf of treeConfig) {
         result = this.findNameInRouteTree(routeName, conf);
         if (result) {
           break;
@@ -96,6 +97,7 @@ export class RouteGeneratorService {
         result = this.findNameInRouteTree(routeName, treeConfig.subroutes);
       }
     }
+
     return result;
   }
 

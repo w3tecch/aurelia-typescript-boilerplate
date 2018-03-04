@@ -42,26 +42,31 @@ export class RestClient {
    */
   public useAPI(): RestClient {
     this.configureURL(this.appConfigService.getConfig().API_MAIN_URL);
+
     return this;
   }
 
   public useUAM(): RestClient {
     this.configureURL(this.appConfigService.getConfig().API_UAM_URL);
+
     return this;
   }
 
   public withResource(resource: string): RestClient {
     this.resource = resource;
+
     return this;
   }
 
   public withHeaders(headers: THeaders): RestClient {
     this.configureHeaders(headers);
+
     return this;
   }
 
   public withJsonHeaders(): RestClient {
     this.withHeaders(jsonHeaders);
+
     return this;
   }
 
@@ -104,6 +109,7 @@ export class RestClient {
       headers: this.headers,
     }, requestOption);
     const response: Response = await this.httpClient.fetch(this.getRequestURL(requestURL, query), finalRequestOption);
+
     return response.json();
   }
 
@@ -113,6 +119,7 @@ export class RestClient {
       headers: this.headers
     }, { body }, requestOption);
     const response: Response = await this.httpClient.fetch(this.getRequestURL(requestURL, query), finalRequestOption);
+
     return response.json();
   }
 
@@ -122,6 +129,7 @@ export class RestClient {
       headers: this.headers
     }, { body }, requestOption);
     const response: Response = await this.httpClient.fetch(this.getRequestURL(requestURL, query), finalRequestOption);
+
     return response.json();
   }
 
@@ -131,6 +139,7 @@ export class RestClient {
       headers: this.headers
     }, { body }, requestOption);
     const response: Response = await this.httpClient.fetch(this.getRequestURL(requestURL, query), finalRequestOption);
+
     return response.json();
   }
 
@@ -140,6 +149,7 @@ export class RestClient {
       headers: this.headers
     }, requestOption);
     const response: Response = await this.httpClient.fetch(this.getRequestURL(requestURL, query), finalRequestOption);
+
     return response.json();
   }
 

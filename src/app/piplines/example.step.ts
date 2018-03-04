@@ -14,6 +14,7 @@ export class ExampleStep {
 
   public run(navigationInstruction: NavigationInstruction, next: Next): any {
     this.logger.debug('Middleware hit on:', navigationInstruction.fragment);
+
     return next();
   }
 }

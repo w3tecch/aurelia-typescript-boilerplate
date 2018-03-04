@@ -3,6 +3,7 @@ export class LimitValueConverter {
     if (Array.isArray(array)) {
       return array.slice(0, amount);
     }
+
     return [];
   }
 }

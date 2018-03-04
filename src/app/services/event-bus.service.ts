@@ -23,6 +23,7 @@ export class EventBusService {
 
   public addSubscription(eventId: string, callback: Function): EventBusService {
     this.disposables.push(this.eventAggregator.subscribe(eventId, callback));
+
     return this;
   }
 

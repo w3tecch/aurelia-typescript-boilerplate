@@ -4,14 +4,14 @@ import { UserModel } from './../../models/user.model';
 
 @autoinject
 export class UsersViewModel {
-	public heading: string = 'Github Users';
-	public users: Array<UserModel> = [];
+  public heading: string = 'Github Users';
+  public users: UserModel[] = [];
 
-	constructor(
+  constructor(
     private userRestService: UserRestService
   ) { }
 
-	public async activate(): Promise<void> {
+  public async activate(): Promise<void> {
     this.users = await this.userRestService.getUsers();
-	}
+  }
 }

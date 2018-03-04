@@ -128,6 +128,7 @@ export class GenericDialogService {
         }
       });
     }
+
     return this.dialogService.open({ viewModel: PLATFORM.moduleName('resources/elements/dialog/dialog.element'), model });
   }
 }

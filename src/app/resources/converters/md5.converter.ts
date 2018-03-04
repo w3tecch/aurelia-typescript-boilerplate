@@ -4,6 +4,7 @@ export class Md5ValueConverter {
     if (value) {
       return this.md5(value);
     }
+
     return;
   }
 
@@ -11,7 +12,10 @@ export class Md5ValueConverter {
   private hex_chr = '0123456789abcdef'.split('');
 
   private md5cycle(x, k): void {
-    let a = x[0], b = x[1], c = x[2], d = x[3];
+    let a = x[0];
+    let b = x[1];
+    let c = x[2];
+    let d = x[3];
 
     a = this.ff(a, b, c, d, k[0], 7, -680876936);
     d = this.ff(d, a, b, c, k[1], 12, -389564586);
@@ -90,6 +94,7 @@ export class Md5ValueConverter {
 
   private cmn(q, a, b, x, s, t): any {
     a = this.add32(this.add32(a, q), this.add32(x, t));
+
     return this.add32((a << s) | (a >>> (32 - s)), b);
   }
 
@@ -110,13 +115,18 @@ export class Md5ValueConverter {
   }
 
   private md51(s): any[] {
-    let n = s.length,
-      state = [1732584193, -271733879, -1732584194, 271733878], i;
+    const n = s.length;
+    const state = [1732584193, -271733879, -1732584194, 271733878];
+    let i;
+
     for (i = 64; i <= s.length; i += 64) {
       this.md5cycle(state, this.md5blk(s.substring(i - 64, i)));
     }
+
     s = s.substring(i - 64);
-    let tail = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+    const tail = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
     for (i = 0; i < s.length; i++) {
       tail[i >> 2] |= s.charCodeAt(i) << ((i % 4) << 3);
     }
@@ -129,27 +139,32 @@ export class Md5ValueConverter {
     }
     tail[14] = n * 8;
     this.md5cycle(state, tail);
+
     return state;
   }
 
   private md5blk(s): any { /* I figured global was faster.   */
-    let md5blks: any[] = [], i;
+    const md5blks: any[] = [];
+
     /* Andy King said do it this way. */
-    for (i = 0; i < 64; i += 4) {
+    for (let i = 0; i < 64; i += 4) {
       md5blks[i >> 2] = s.charCodeAt(i)
         + (s.charCodeAt(i + 1) << 8)
         + (s.charCodeAt(i + 2) << 16)
         + (s.charCodeAt(i + 3) << 24);
     }
+
     return md5blks;
   }
 
   private rhex(n): string {
-    let s = '', j = 0;
-    for (; j < 4; j++) {
+    let s = '';
+
+    for (let j = 0; j < 4; j++) {
       s += this.hex_chr[(n >> (j * 8 + 4)) & 0x0F]
         + this.hex_chr[(n >> (j * 8)) & 0x0F];
     }
+
     return s;
   }
 
@@ -157,6 +172,7 @@ export class Md5ValueConverter {
     for (let i = 0; i < x.length; i++) {
       x[i] = this.rhex(x[i]);
     }
+
     return x.join('');
   }
 
