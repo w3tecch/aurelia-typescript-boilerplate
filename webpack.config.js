@@ -162,9 +162,6 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
         filename: production ? '[contenthash].css' : '[id].css',
         allChunks: true,
       })),
-      ...when(production, new CommonsChunkPlugin({
-        name: ['common']
-      })),
       ...when(production, new BannerPlugin(
         ' @name           ' + pkg.title + '\n' +
         ' @description    ' + pkg.description + '\n\n' +
