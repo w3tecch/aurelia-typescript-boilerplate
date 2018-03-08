@@ -65,7 +65,7 @@ module.exports = ({ production, server, extractCss, coverage, platform, config, 
     devtool: production ? 'source-map' : 'cheap-module-eval-source-map',
     entry: {
       app: ['aurelia-bootstrapper'],
-      vendor: ['bluebird', 'jquery', 'bootstrap', 'popper.js', 'moment'],
+      vendor: ['jquery', 'bootstrap', 'popper.js', 'moment', 'reflect-metadata', 'es6-promise', 'whatwg-fetch'],
     },
     optimization: {
       splitChunks: {
@@ -137,8 +137,6 @@ module.exports = ({ production, server, extractCss, coverage, platform, config, 
           }]
         },
         { test: /\.ts$/i, loader: 'awesome-typescript-loader', exclude: nodeModulesDir },
-        // use Bluebird as the global Promise implementation:
-        { test: /[\/\\]node_modules[\/\\]bluebird[\/\\].+\.js$/, loader: 'expose-loader?Promise' },
         // exposes jQuery globally as $ and as jQuery:
         { test: require.resolve('jquery'), loader: 'expose-loader?$!expose-loader?jQuery' },
         // embed small images and fonts as Data Urls and larger ones as files:
@@ -152,7 +150,6 @@ module.exports = ({ production, server, extractCss, coverage, platform, config, 
     plugins: [
       new AureliaPlugin({ root: '', src: './src/app', title: pkg.title, baseUrl: '/' }),
       new ProvidePlugin({
-        'Promise': 'bluebird',
         '$': 'jquery',
         'jQuery': 'jquery',
         'window.jQuery': 'jquery',

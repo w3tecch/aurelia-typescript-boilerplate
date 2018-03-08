@@ -148,16 +148,16 @@
     "aurelia-templating-resources": "^1.5.4",
     "aurelia-templating-router": "^1.1.0",
     "aurelia-validation": "^1.1.1",
-    "bluebird": "^3.5.0",
     "bootstrap": "^4.0.0",
     "class-transformer": "^0.1.9",
+    "es6-promise": "^4.2.4",
     "i18next-browser-languagedetector": "^2.0.0",
-    "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.2.1",
     "lodash-es": "^4.17.7",
     "moment": "^2.18.1",
     "normalize.css": "^8.0.0",
     "popper.js": "^1.12.9",
-    "reflect-metadata": "^0.1.12"
+    "reflect-metadata": "^0.1.12",
+    "whatwg-fetch": "^2.0.3"
   }
 }
