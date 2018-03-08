@@ -67,7 +67,18 @@ module.exports = ({ production, server, extractCss, coverage, platform, config, 
       app: ['aurelia-bootstrapper'],
       vendor: ['bluebird', 'jquery', 'bootstrap', 'popper.js', 'moment'],
     },
-    mode: 'development',
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            name: 'vendor',
+            chunks: 'all',
+            minChunks: 2,
+            enforce: true
+          }
+        }
+      }
+    },
     output: {
       path: outDir,
       publicPath: PLATFORM === 'mobile' ? '' : baseUrl,
