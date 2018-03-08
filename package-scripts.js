@@ -118,6 +118,7 @@ module.exports = {
           'cd ./cordova && ./../node_modules/.bin/cordova platform add browser'
         ),
       }
-    }
-  },
+    },
+    analyse: "webpack --progress --mode production --env.production --env.extractCss --env.config=development --env.analyse"
+  }
 }

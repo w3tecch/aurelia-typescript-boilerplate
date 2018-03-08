@@ -3,13 +3,14 @@ const chalk = require('chalk');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const WebappWebpackPlugin = require('webapp-webpack-plugin')
 const WebpackNotifierPlugin = require('webpack-notifier');
 const CompressionPlugin = require("compression-webpack-plugin");
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const { AureliaPlugin } = require('aurelia-webpack-plugin');
 const { ProvidePlugin, BannerPlugin, DefinePlugin } = require('webpack');
 const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loader');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const pkg = require('./package.json');
 
 // config helpers:
@@ -37,22 +38,23 @@ const cssRules = [
 /**
  * @return {webpack.Configuration}
  */
-module.exports = ({ production, server, extractCss, coverage, platform, config } = {}) => {
+module.exports = ({ production, server, extractCss, coverage, platform, config, analyse } = {}) => {
 
   const PLATFORM = platform || 'browser'; // possibilities browser, mobile
   const CONFIG = config || 'development';
 
   console.log('');
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('NODE_ENV: ') + chalk.green.bold(process.env.NODE_ENV));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('CONFIG:   ') + chalk.green.bold(CONFIG));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('PLATFORM: ') + chalk.green.bold(PLATFORM));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('NODE_ENV: ') + chalk.green.bold(process.env.NODE_ENV || ''));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('CONFIG:   ') + chalk.green.bold(CONFIG || ''));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('PLATFORM: ') + chalk.green.bold(PLATFORM || ''));
   console.log('');
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => production: ') + chalk.green.bold(production));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => server:   ') + chalk.green.bold(server));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => extractCss: ') + chalk.green.bold(extractCss));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => coverage: ') + chalk.green.bold(coverage));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => platform: ') + chalk.green.bold(platform));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => config: ') + chalk.green.bold(config));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => production: ') + chalk.green.bold(production || ''));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => server:   ') + chalk.green.bold(server || ''));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => extractCss: ') + chalk.green.bold(extractCss || ''));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => coverage: ') + chalk.green.bold(coverage || ''));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => platform: ') + chalk.green.bold(platform || ''));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => config: ') + chalk.green.bold(config || ''));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => analyse: ') + chalk.green.bold(analyse || ''));
   console.log('');
 
   return ({
@@ -82,22 +84,22 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
         {
           test: /\.ts$/, enforce: 'pre', loader: 'tslint-loader'
         },
-        {
-          test: /\.html$/i,
-          enforce: 'pre',
-          include: [srcDir],
-          use: [{
-            loader: 'aurelia-template-lint-webpack-loader',
-            options: {
-              emitErrors: production,
-              failOnHint: production,
-              typeChecking: true,
-              reflectionOpts: {
-                sourceFileGlob: './src/app/**/*.ts'
-              }
-            }
-          }]
-        },
+        // {
+        //   test: /\.html$/i,
+        //   enforce: 'pre',
+        //   include: [srcDir],
+        //   use: [{
+        //     loader: 'aurelia-template-lint-webpack-loader',
+        //     options: {
+        //       emitErrors: production,
+        //       failOnHint: production,
+        //       typeChecking: true,
+        //       reflectionOpts: {
+        //         sourceFileGlob: './src/app/**/*.ts'
+        //       }
+        //     }
+        //   }]
+        // },
         // CSS required in JS/TS files should use the style-loader that auto-injects it into the website
         // only when the issuer is a .js/.ts file, so the loaders are not applied inside html templates
         {
@@ -176,13 +178,17 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
         threshold: 10240,
         minRatio: 0.8
       })),
-      ...when(production, new FaviconsWebpackPlugin({
+      ...when(production, new WebappWebpackPlugin({
         logo: path.resolve('icon.png'),
-        persistentCache: true,
         inject: true,
-        title: pkg.title,
-        icons: { android: true, appleIcon: true, appleStartup: true, coast: false, favicons: true, firefox: true, opengraph: false, twitter: false, yandex: false, windows: false }
+        favicons: {
+          appName: pkg.title,
+          appDescription: pkg.description,
+          background: '#ddd',
+          theme_color: '#007bff'
+        }
       })),
+      ...when(analyse, new BundleAnalyzerPlugin()),
       new WebpackNotifierPlugin({
         title: pkg.title,
         contentImage: path.resolve('icon.png')
