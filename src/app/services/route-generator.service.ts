@@ -1,10 +1,10 @@
 import { autoinject } from 'aurelia-framework';
-import { Router, RouteConfig } from 'aurelia-router';
-import { RouteRecognizer, RouteHandler } from 'aurelia-route-recognizer';
-import * as _ from 'lodash';
+import { RouteHandler, RouteRecognizer } from 'aurelia-route-recognizer';
+import { RouteConfig, Router } from 'aurelia-router';
+import { cloneDeep } from 'lodash-es';
 
-import * as appRoutes from './../app.routes';
-import * as childRouterRoutes from './../modules/child-router/child-router.routes';
+import * as appRoutes from '../app.routes';
+import * as childRouterRoutes from '../modules/child-router/child-router.routes';
 
 export type TAllowedRouteNames = appRoutes.RouteNames | childRouterRoutes.RouteNames;
 
@@ -33,7 +33,7 @@ export class RouteGeneratorService {
   ) { }
 
   public getUrlByRouteNames(routes: TRouteConfig): string {
-    return this.buildUrl(_.cloneDeep(routes), this.routeTree);
+    return this.buildUrl(cloneDeep(routes), this.routeTree);
   }
 
   public navigateByUrl(url: string, options?: any): void {
@@ -41,7 +41,7 @@ export class RouteGeneratorService {
   }
 
   public navigateByRouteNames(routes: TRouteConfig, options?: any): void {
-    const url = this.buildUrl(_.cloneDeep(routes), this.routeTree);
+    const url = this.buildUrl(cloneDeep(routes), this.routeTree);
     this.navigateByUrl(url, options);
   }
 
@@ -73,7 +73,7 @@ export class RouteGeneratorService {
 
   private removeSubroutes(routes: RouteConfig[]): RouteConfig[] {
     return routes.map(route => {
-      const newRoute = _.cloneDeep(route);
+      const newRoute = cloneDeep(route);
       delete newRoute.subroutes;
       return newRoute;
     });

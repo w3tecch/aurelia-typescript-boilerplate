@@ -1,6 +1,6 @@
+import { DialogCancellableOpenResult, DialogOpenPromise, DialogService } from 'aurelia-dialog';
 import { autoinject, PLATFORM } from 'aurelia-framework';
-import { DialogService, DialogOpenPromise, DialogCancellableOpenResult } from 'aurelia-dialog';
-import * as _ from 'lodash';
+import { cloneDeep, isFunction } from 'lodash-es';
 
 type ButtonAction<T> = (element: T) => Promise<any>;
 type IsEnabled<T> = (element: T) => boolean;
@@ -123,8 +123,8 @@ export class GenericDialogService {
   public showDialog<T>(model: IDialogConfiguration<T>): DialogOpenPromise<DialogCancellableOpenResult> { // TODO: change type
     if (model.contentModel) {
       Object.keys(model.contentModel).forEach(key => {
-        if (!_.isFunction(model.contentModel[key])) {
-          model.contentModel[key] = _.cloneDeep(model.contentModel[key]);
+        if (!isFunction(model.contentModel[key])) {
+          model.contentModel[key] = cloneDeep(model.contentModel[key]);
         }
       });
     }
