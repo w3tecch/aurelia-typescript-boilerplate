@@ -8,7 +8,7 @@ const WebpackNotifierPlugin = require('webpack-notifier');
 const CompressionPlugin = require("compression-webpack-plugin");
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const { AureliaPlugin } = require('aurelia-webpack-plugin');
-const { ProvidePlugin, BannerPlugin, DefinePlugin } = require('webpack');
+const { ProvidePlugin, BannerPlugin, DefinePlugin, IgnorePlugin } = require('webpack');
 const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loader');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const pkg = require('./package.json');
@@ -65,7 +65,7 @@ module.exports = ({ production, server, extractCss, coverage, platform, config, 
     devtool: production ? 'source-map' : 'cheap-module-eval-source-map',
     entry: {
       app: ['aurelia-bootstrapper'],
-      vendor: ['jquery', 'bootstrap', 'popper.js', 'moment', 'reflect-metadata', 'es6-promise', 'whatwg-fetch'],
+      vendor: ['jquery', 'bootstrap', 'popper.js', 'moment', 'reflect-metadata', 'es6-promise', 'isomorphic-fetch'],
     },
     optimization: {
       splitChunks: {
@@ -168,6 +168,7 @@ module.exports = ({ production, server, extractCss, coverage, platform, config, 
           title: pkg.title, server, baseUrl, description: pkg.description, version: pkg.version, author: pkg.author, platform: PLATFORM
         },
       }),
+      new IgnorePlugin(/^\.\/locale$/, /moment$/),
       ...when(extractCss, new ExtractTextPlugin({
         filename: production ? '[contenthash].css' : '[id].css',
         allChunks: true,

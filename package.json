@@ -48,8 +48,11 @@
       "ts"
     ],
     "transform": {
-      "^.+\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+      "^.+\\.(js|ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!lodash-es/.*)"
+    ],
     "testRegex": "\\.spec\\.(ts|js)x?$",
     "setupFiles": [
       "<rootDir>/test/jest-pretest.ts"
@@ -152,12 +155,12 @@
     "class-transformer": "^0.1.9",
     "es6-promise": "^4.2.4",
     "i18next-browser-languagedetector": "^2.0.0",
+    "isomorphic-fetch": "^2.2.1",
     "jquery": "^3.2.1",
     "lodash-es": "^4.17.7",
     "moment": "^2.18.1",
     "normalize.css": "^8.0.0",
     "popper.js": "^1.12.9",
-    "reflect-metadata": "^0.1.12",
-    "whatwg-fetch": "^2.0.3"
+    "reflect-metadata": "^0.1.12"
   }
 }

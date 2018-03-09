@@ -1,5 +1,5 @@
-import { autoinject, transient } from 'aurelia-framework';
 import { EventAggregator, Subscription } from 'aurelia-event-aggregator';
+import { autoinject, transient } from 'aurelia-framework';
 
 export class EventBusEvents {
   public static IDS = {

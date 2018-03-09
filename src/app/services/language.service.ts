@@ -3,7 +3,7 @@ import { I18N } from 'aurelia-i18n';
 import { BindingSignaler } from 'aurelia-templating-resources';
 import moment from 'moment';
 
-import { Logger, LogManager} from './logger.service';
+import { Logger, LogManager } from './logger.service';
 
 export const LocaleChangedSignal: string = 'locale:changed';
 

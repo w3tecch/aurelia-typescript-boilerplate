@@ -1,13 +1,16 @@
+import { EventAggregator } from 'aurelia-event-aggregator';
+import { HttpClient } from 'aurelia-fetch-client';
 import { PLATFORM } from 'aurelia-framework';
 import { I18N } from 'aurelia-i18n';
 import { BindingSignaler } from 'aurelia-templating-resources';
-import { EventAggregator } from 'aurelia-event-aggregator';
-import { HttpClient } from 'aurelia-fetch-client';
 
 import { AppViewModel } from '../../src/app/app.vm';
+import { EventBusService } from '../../src/app/services/event-bus.service';
+import { LanguageService } from '../../src/app/services/language.service';
 import { RouteGeneratorService } from '../../src/app/services/route-generator.service';
-let en_USTranslation = require('./../../src/locales/en_US.json');
-let de_CHTranslation = require('./../../src/locales/de_CH.json');
+
+let en_Translation = require('./../../src/locales/en.json');
+let de_Translation = require('./../../src/locales/de.json');
 
 class RouterStub {
   public routes;
@@ -49,21 +52,25 @@ describe('the App module', () => {
     i18nMock = new I18N(new EventAggregator(), new BindingSignaler());
     i18nMock.setup({
       resources: {
-        'en-US': {
-          translation: en_USTranslation
+        'en': {
+          translation: en_Translation
         },
-        'de-CH': {
-          translation: de_CHTranslation
+        'de': {
+          translation: de_Translation
         }
       },
-      lng: 'en-US',
+      lng: 'en',
       debug: false
     });
 
     const appConfigSub = new AppConfigStub();
     const routeGeneratorService = new RouteGeneratorService(undefined as any);
+    const languageService = new LanguageService(i18nMock, undefined as any);
+    const eventBusService = new EventBusService(new EventAggregator);
 
-    sut = new AppViewModel(i18nMock, appConfigSub as any, AnyMock, AnyMock, AnyMock, new HttpClient(), routeGeneratorService);
+    sut = new AppViewModel(
+      i18nMock, appConfigSub as any, AnyMock, eventBusService, languageService, new HttpClient(), routeGeneratorService
+    );
     sut.configureRouter(mockedRouter, mockedRouter);
   });
 
