@@ -61,6 +61,9 @@ module.exports = ({ production, server, extractCss, coverage, platform, config, 
     resolve: {
       extensions: ['.ts', '.js'],
       modules: [srcDir, 'node_modules'],
+      alias: {
+        '@fortawesome/fontawesome-free-solid$': '@fortawesome/fontawesome-free-solid/shakable.es.js'
+      }
     },
     devtool: production ? 'source-map' : 'cheap-module-eval-source-map',
     entry: {

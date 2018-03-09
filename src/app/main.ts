@@ -38,8 +38,11 @@ import 'utils/polyfills.utils';
 
 // Fontawesome setup
 import fontawesome from '@fortawesome/fontawesome';
-import fontawesomeSolid from '@fortawesome/fontawesome-free-solid';
-fontawesome.library.add(fontawesomeSolid);
+import { faHome, faSpinner } from '@fortawesome/fontawesome-free-solid';
+fontawesome.library.add(
+  faHome,
+  faSpinner
+);
 
 /**
  * Aurelia configruation
