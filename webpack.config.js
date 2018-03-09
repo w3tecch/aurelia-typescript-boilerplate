@@ -98,6 +98,7 @@ module.exports = ({ production, server, extractCss, coverage, platform, config, 
         {
           test: /\.ts$/, enforce: 'pre', loader: 'tslint-loader'
         },
+        // Waiting for PR https://github.com/niieani/aurelia-template-lint-webpack-loader/pull/3
         // {
         //   test: /\.html$/i,
         //   enforce: 'pre',
