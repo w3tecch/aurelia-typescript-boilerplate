@@ -140,7 +140,7 @@ export async function configure(aurelia: Aurelia): Promise<void> {
   */
 
   // Configure validation translations
-  ValidationMessageProvider.prototype.getMessage = function (key): Expression {
+  ValidationMessageProvider.prototype.getMessage = function(key): Expression {
     const i18n = aurelia.container.get(I18N);
     const translationId = `VALIDATIONS.${key}`;
     let translation = i18n.tr(translationId);

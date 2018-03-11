@@ -1,6 +1,6 @@
 import { autoinject } from 'aurelia-framework';
 import { NavigationInstruction, Next } from 'aurelia-router';
-import { LogManager, Logger } from './../services/logger.service';
+import { Logger, LogManager } from './../services/logger.service';
 
 @autoinject
 export class ExampleStep {

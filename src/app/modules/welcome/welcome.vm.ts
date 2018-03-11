@@ -11,16 +11,16 @@ import { ShowPersonCustomElement } from '../../resources/elements/show-person/sh
 
 @autoinject
 export class WelcomeViewModel {
-  private logger: Logger;
-  private vController: ValidationController;
-
   public heading: string = 'Welcome to the Aurelia Navigation App';
   public firstName: string = 'John';
   public lastName: string = 'Doe';
   public previousValue: string = this.fullName;
   public currentDate: Date = new Date();
-  public jsonProperty: Object = { key1: 'value1', key2: 'value2' };
+  public jsonProperty: {} = { key1: 'value1', key2: 'value2' };
   public validationValid: boolean = false;
+
+  private logger: Logger;
+  private validationController: ValidationController;
 
   constructor(
     private appConfigService: AppConfigService,
@@ -36,8 +36,8 @@ export class WelcomeViewModel {
     this.logger.info('appConfig => platform:', this.appConfigService.getPlatform());
     this.logger.info('appConfig => config:', this.appConfigService.getConfig());
 
-    this.vController = validationControllerFactory.createForCurrentScope();
-    this.vController.validateTrigger = validateTrigger.manual;
+    this.validationController = validationControllerFactory.createForCurrentScope();
+    this.validationController.validateTrigger = validateTrigger.manual;
   }
 
   public canDeactivate(): boolean {
@@ -49,7 +49,7 @@ export class WelcomeViewModel {
   }
 
   public validateFirstName(): void {
-    this.vController
+    this.validationController
       .validate({
         object: this,
         rules: ValidationRules.ensure('firstName').required().rules
@@ -68,11 +68,11 @@ export class WelcomeViewModel {
     });
   }
 
-  //Getters can't be directly observed, so they must be dirty checked.
-  //However, if you tell Aurelia the dependencies, it no longer needs to dirty check the property.
-  //To optimize by declaring the properties that this getter is computed from, uncomment the line below
-  //as well as the corresponding import above.
-  //@computedFrom('firstName', 'lastName')
+  // Getters can't be directly observed, so they must be dirty checked.
+  // However, if you tell Aurelia the dependencies, it no longer needs to dirty check the property.
+  // To optimize by declaring the properties that this getter is computed from, uncomment the line below
+  // as well as the corresponding import above.
+  // @computedFrom('firstName', 'lastName')
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;
   }

@@ -1,4 +1,6 @@
 export class Md5ValueConverter {
+  // MD5 Hash
+  private hexChr = '0123456789abcdef'.split('');
 
   public toView(value): string | void {
     if (value) {
@@ -7,9 +9,6 @@ export class Md5ValueConverter {
 
     return;
   }
-
-  //MD5 Hash
-  private hex_chr = '0123456789abcdef'.split('');
 
   private md5cycle(x, k): void {
     let a = x[0];
@@ -161,8 +160,8 @@ export class Md5ValueConverter {
     let s = '';
 
     for (let j = 0; j < 4; j++) {
-      s += this.hex_chr[(n >> (j * 8 + 4)) & 0x0F]
-        + this.hex_chr[(n >> (j * 8)) & 0x0F];
+      s += this.hexChr[(n >> (j * 8 + 4)) & 0x0F]
+        + this.hexChr[(n >> (j * 8)) & 0x0F];
     }
 
     return s;

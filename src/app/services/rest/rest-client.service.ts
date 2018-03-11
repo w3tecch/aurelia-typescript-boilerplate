@@ -6,11 +6,11 @@ import { AppConfigService } from './../app-config.service';
 export interface IFetchOption {
   method?: string;
   headers?: THeaders;
-  body?: string | Object;
+  body?: string | {};
 }
 
 export type TBody = Blob | BufferSource | FormData | URLSearchParams | string;
-export type THeaders = Headers | Object | { [name: string]: string } | undefined;
+export type THeaders = Headers | {} | { [name: string]: string } | undefined;
 export type TIdentifier = string | number;
 
 export const toJson = json;

@@ -9,15 +9,14 @@ import { AppConfigService } from './services/app-config.service';
 import { CordovaService } from './services/cordova.service';
 import { EventBusService, EventBusEvents } from './services/event-bus.service';
 import { LanguageService } from './services/language.service';
-import { ExampleStep } from './piplines/example.step';
+import { ExampleStep } from './pipelines/example.step';
 import { RouteGeneratorService } from './services/route-generator.service';
 
 @inject(I18N, AppConfigService, Lazy.of(CordovaService), EventBusService, LanguageService, HttpClient, RouteGeneratorService)
 export class AppViewModel {
+  public router!: Router;
 
   private logger: Logger;
-
-  public router!: Router;
 
   constructor(
     private i18n: I18N,
