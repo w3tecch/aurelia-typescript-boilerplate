@@ -21,8 +21,9 @@ export class EventBusService {
     public eventAggregator: EventAggregator
   ) { }
 
-  public addSubscription(eventId: string, callback: Function): EventBusService {
+  public addSubscription(eventId: string, callback: (data: any) => void): EventBusService {
     this.disposables.push(this.eventAggregator.subscribe(eventId, callback));
+
     return this;
   }
 

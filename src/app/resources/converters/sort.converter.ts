@@ -27,8 +27,10 @@ export class SortValueConverter {
       if (aProp > bProp) {
         return sortAsc ? 1 : -1;
       }
+
       return 0;
     });
+
     return array;
   }
 }

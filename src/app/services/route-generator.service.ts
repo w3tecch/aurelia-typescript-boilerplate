@@ -6,10 +6,14 @@ import * as _ from 'lodash';
 import * as appRoutes from './../app.routes';
 import * as childRouterRoutes from './../modules/child-router/child-router.routes';
 
+export interface IRouteConfigItem {
+  routeName: TAllowedRouteNames;
+  params?: { [key: string]: any };
+}
+
 export type TAllowedRouteNames = appRoutes.RouteNames | childRouterRoutes.RouteNames;
 
-export type TRouteConfigItem = { routeName: TAllowedRouteNames, params?: { [key: string]: any } };
-export type TRouteConfig = [TRouteConfigItem];
+export type TRouteConfig = [IRouteConfigItem];
 export type ITreeConfig = RouteConfig & { subroutes?: ITreeConfig[] };
 
 @autoinject()
@@ -75,14 +79,15 @@ export class RouteGeneratorService {
     return routes.map(route => {
       const newRoute = _.cloneDeep(route);
       delete newRoute.subroutes;
+
       return newRoute;
     });
   }
 
-  private findNameInRouteTree(routeName: TAllowedRouteNames, treeConfig: ITreeConfig |  ITreeConfig[]): ITreeConfig | undefined {
+  private findNameInRouteTree(routeName: TAllowedRouteNames, treeConfig: ITreeConfig | ITreeConfig[]): ITreeConfig | undefined {
     let result;
     if (treeConfig instanceof Array) {
-      for (let conf of treeConfig) {
+      for (const conf of treeConfig) {
         result = this.findNameInRouteTree(routeName, conf);
         if (result) {
           break;
@@ -96,6 +101,7 @@ export class RouteGeneratorService {
         result = this.findNameInRouteTree(routeName, treeConfig.subroutes);
       }
     }
+
     return result;
   }
 
@@ -105,7 +111,7 @@ export class RouteGeneratorService {
       return '';
     }
 
-    const currentRouteConfig = routes.shift() as TRouteConfigItem;
+    const currentRouteConfig = routes.shift() as IRouteConfigItem;
     const currentTreeConfig = treeConfig.find(config => config.name === currentRouteConfig.routeName);
 
     if (!currentTreeConfig) {
@@ -123,7 +129,7 @@ export class RouteGeneratorService {
     return url + this.buildUrl(routes, currentTreeConfig.subroutes as ITreeConfig[]);
   }
 
-  private getUrlByTreeConfig(treeConfig: ITreeConfig, routeConfig: TRouteConfigItem): string {
+  private getUrlByTreeConfig(treeConfig: ITreeConfig, routeConfig: IRouteConfigItem): string {
 
     const routeRecognizer = new RouteRecognizer();
     if (Array.isArray(treeConfig.route)) {
