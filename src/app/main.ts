@@ -47,7 +47,7 @@ import * as Bluebird from 'bluebird';
 Bluebird.config({ warnings: { wForgottenReturn: false } });
 
 /**
- * Aurelia configruation
+ * Aurelia configuration
  */
 export async function configure(aurelia: Aurelia): Promise<void> {
   LogManager.addAppender(new ConsoleAppender());
