@@ -1,9 +1,46 @@
-[![Build Status](https://api.travis-ci.org/w3tecch/aurelia-typescript-boilerplate.svg?branch=master)](https://travis-ci.org/w3tecch/aurelia-typescript-boilerplate)
-[![Build status](https://ci.appveyor.com/api/projects/status/7oyx5vxl6ue6oqsf/branch/master?svg=true)](https://ci.appveyor.com/project/dweber019/aurelia-typescript-boilerplate/branch/master)
-[![Dependency Status](https://david-dm.org/w3tecch/aurelia-typescript-boilerplate.svg)](https://david-dm.org/w3tecch/aurelia-typescript-boilerplate)
-[![devDependency Status](https://david-dm.org/w3tecch/aurelia-typescript-boilerplate/dev-status.svg)](https://david-dm.org/w3tecch/aurelia-typescript-boilerplate#info=devDependencies)
+<p align="center">
+  <img src="./w3tec-logo.png" alt="w3tec" width="400" />
+</p>
 
-## Getting started
+<h1 align="center">Aurelia Typescript Boilerplate</h1>
+
+<p align="center">
+  <a href="https://david-dm.org/w3tecch/aurelia-typescript-boilerplate">
+    <img src="https://david-dm.org/w3tecch/aurelia-typescript-boilerplate/status.svg?style=flat" alt="dependency" />
+  </a>
+  <a href="https://travis-ci.org/w3tecch/aurelia-typescript-boilerplate">
+    <img src="https://travis-ci.org/w3tecch/aurelia-typescript-boilerplate.svg?branch=master" alt="travis" />
+  </a>
+  <a href="https://ci.appveyor.com/project/dweber019/aurelia-typescript-boilerplate/branch/master">
+    <img src="https://ci.appveyor.com/api/projects/status/7oyx5vxl6ue6oqsf/branch/master?svg=true&passingText=Windows%20passing&pendingText=Windows%20pending&failingText=Windows%20failing" alt="appveyor" />
+  </a>
+</p>
+
+<p align="center">
+  <b>A full configured and ready to go boilerplate/skeleton for an Aurelia app</b></br>
+  Heavily inspired by <a href="https://github.com/aurelia/skeleton-navigation/tree/master/skeleton-typescript-webpack">Aurelia Skeleton</a>.<br>
+  <sub>Made with ❤️ by <a href="https://github.com/w3tecch">w3tech</a>, <a href="https://www.linkedin.com/in/david-weber-6a0819b7/">David Weber</a> and <a href="https://github.com/w3tecch/template-gen/graphs/contributors">contributors</a></sub>
+</p>
+
+<br />
+
+## ❯ Why
+
+The skeletons provided by Aurelia are great but aren't ready for an enterprise grade app. This boilerplate provides a lot of features out of the box like i18n or an optin Cordova setup.
+
+## ❯ Table of Contents
+- [Getting Started](#-getting-started)
+- [Feature configuration](#-feature-configuration)
+- [Bundling](#-bundling)
+- [Running tests](#-running-tests)
+- [App configuration](#-app-configuration)
+- [HTML5 pushState routing](#-html5-pushstate-routing)
+- [Cordova - Mobile development](#-cordova-mobile-development)
+- [Docker](#-docker)
+- [Additional features](#-additional-features)
+
+
+## ❯ Getting started
 
 Before you start, make sure you have a recent version of [NodeJS](http://nodejs.org/) environment *>=6.0* with NPM 3 or Yarn.
 
@@ -34,12 +71,12 @@ If you wish to try out the experimental Hot Module Reload, you may run your appl
 npm start -- webpack.server.hmr
 ```
 
-## Feature configuration
+## ❯ Feature configuration
 
 Most of the configuration will happen in the `webpack.config.js` file.
 There, you may configure advanced loader features or add direct SASS or LESS loading support.
 
-## Bundling
+## ❯ Bundling
 
 To build an optimized, minified production bundle (output to /dist) execute:
 
@@ -57,7 +94,7 @@ npm start -- serve
 
 The production bundle includes all files that are required for deployment.
 
-## Running The Tests
+## ❯ Running tests
 
 This skeleton provides three frameworks for running tests.
 
@@ -96,26 +133,6 @@ To run the Jest watcher (re-runs tests on changes), run:
 npm start -- test.jest.watch
 ```
 
-### Karma + Jasmine 2
-
-Karma is also a powerful test runner, which by default runs in the browser. This means that whatever works in real browsers, should also work the same way in the unit tests. But it also means the framework is heavier to execute and not as lean to work with.
-
-To ease transitioning between Jest and Karma, Jasmine 2 is configured with Jest's matchers.
-
-To create new Karma tests, create files with the extension `.spec.ts`, either in the `src` directory or in the `test/unit` directory.
-
-To run the Karma unit tests, run:
-
-```shell
-npm start -- test.karma
-```
-
-To run the Karma watcher (re-runs tests on changes), run:
-
-```shell
-npm start -- test.karma.watch
-```
-
 ### Protractor (E2E / integration tests)
 
 Integration tests can be performed with [Protractor](http://angular.github.io/protractor/#/).
@@ -128,7 +145,7 @@ Integration tests can be performed with [Protractor](http://angular.github.io/pr
 npm start -- e2e
 ```
 
-## Running all test suites
+### Running all test suites
 
 To run all the unit test suites and the E2E tests, you may simply run:
 
@@ -136,8 +153,8 @@ To run all the unit test suites and the E2E tests, you may simply run:
 npm start -- test.all
 ```
 
-## App confugration
-There is an app configuration management in place. Two standart environments are already set (devlopment and production).
+## ❯ App configuration
+There is an app configuration management in place. Two standard environments are already set (development and production).
 You can for example build the production with:
 
 ```shell
@@ -166,11 +183,11 @@ preprod: {
 }
 ```
 
-## HTML5 pushState routing
+## ❯ HTML5 pushState routing
 By default pushState, also known as html5 routing, is enabled. The Webpack server is already configured to handle this but many webserver need
 extra confuration to enable this.
 
-## Cordova - Mobile Development
+## ❯ Cordova - Mobile development
 
 ### Installation
 Initiate cordova with the following commands:
@@ -188,7 +205,7 @@ Sometimes the ```www``` symlink is removed (e.g. git clone). Run this command to
 npm start -- mobile.link
 ```
 
-## Docker
+## ❯ Docker
 There is a ```Dockerfile``` unsing the [nginx](https://hub.docker.com/_/nginx/) image to build the docker image.
 
 ### Getting started
@@ -213,10 +230,10 @@ If you like to update the source do this
 docker cp ./dist/. mycontainer:/usr/share/nginx/html
 ```
 
-## Additional features
+## ❯ Additional features
 This repo houses some additional features which provd to be very useful in projects.
 
-## String polyfill
+### String polyfill
 The file `utils/polyfills.utils.ts` contains a string polyfills.
 With this polyfill you can do this:
 ```
@@ -225,7 +242,7 @@ With this polyfill you can do this:
 undefined.isEmpty() => true
 ```
 
-## Validation
+### Validation
 The file `utils/validation.utils.ts` contains some validatoin helper functions and regex patterns.
 
 The function `validateFilledFieldsWithValidationRules` us really useful as you can check a object which is already prefiled if it's valid and if not show errors.
@@ -278,7 +295,7 @@ Additionally you can translate methods like `.required()` in `src/local/*` as de
 
 If you use the the method `withMessageKey('YOUR.TRANSLATION')` you can pass a translation string and it will be translated for you.
 
-## Route generator service
+### Route generator service
 If you have router tree like this
 ```
      root
@@ -312,11 +329,11 @@ this.routeGeneratorService.navigateByRouteNames(
 );
 ```
 
-## Class transfomer (model handling)
+### Class transfomer (model handling)
 We have included the [class transformer](https://github.com/typestack/class-transformer) which helps creating models (`src/app/models/*`). This transformation can be done
 in both direction (rest to model, model to rest).
 
-## Dialog service
+### Dialog service
 There is a custom dialog implementation for simpler useage of elements in dialogs.
 
 The Service is named `generic-dialog.service.ts` and an example can be found in `welcome.vm.ts`.
