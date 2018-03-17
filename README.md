@@ -161,7 +161,7 @@ You can for example build the production with:
 npm start -- webpack.build.production
 ```
 
-If you like to add an additional configuaration you have to do the following two steps:
+If you like to add an additional configuration you have to do the following two steps:
 1. Add the configuration json to ```app/config```, example preprod.json
 2. Add the corresponding command to ```package-script.js``` and pass the right argument like ```--env.config=preprod```
 
@@ -185,7 +185,7 @@ preprod: {
 
 ## ❯ HTML5 pushState routing
 By default pushState, also known as html5 routing, is enabled. The Webpack server is already configured to handle this but many webserver need
-extra confuration to enable this.
+extra configuration to enable this.
 
 ## ❯ Cordova - Mobile development
 
@@ -198,7 +198,7 @@ npm start -- mobile.setup
 
 ### Run and build
 Cordova takes the ```www``` folder source to create the Cordova app. This ```www``` folder is a symlink pointing to the ```dist``` folder.
-So make sure you run for example ```npm start -- build``` first before runing/building a Cordova app.
+So make sure you run for example ```npm start -- build``` first before running/building a Cordova app.
 
 Sometimes the ```www``` symlink is removed (e.g. git clone). Run this command to fix this:
 ```shell
@@ -206,7 +206,7 @@ npm start -- mobile.link
 ```
 
 ## ❯ Docker
-There is a ```Dockerfile``` unsing the [nginx](https://hub.docker.com/_/nginx/) image to build the docker image.
+There is a ```Dockerfile``` using the [nginx](https://hub.docker.com/_/nginx/) image to build the docker image.
 
 ### Getting started
 First build your aurelia app with
@@ -231,7 +231,7 @@ docker cp ./dist/. mycontainer:/usr/share/nginx/html
 ```
 
 ## ❯ Additional features
-This repo houses some additional features which provd to be very useful in projects.
+This repository houses some additional features which prove to be very useful in projects.
 
 ### String polyfill
 The file `utils/polyfills.utils.ts` contains a string polyfills.
@@ -243,9 +243,9 @@ undefined.isEmpty() => true
 ```
 
 ### Validation
-The file `utils/validation.utils.ts` contains some validatoin helper functions and regex patterns.
+The file `utils/validation.utils.ts` contains some validation helper functions and regex patterns.
 
-The function `validateFilledFieldsWithValidationRules` us really useful as you can check a object which is already prefiled if it's valid and if not show errors.
+The function `validateFilledFieldsWithValidationRules` us really useful as you can check a object which is already prefilled if it's valid and if not show errors.
 
 The function `controllerValidByRules` will check if a validation controller is valid.
 
@@ -289,9 +289,9 @@ class FormExample {
 ```
 
 ### i18n integration
-You can pass a tranlation string into the `displayName('USER.LAST_NAME')` and it will be translated for you.
+You can pass a translation string into the `displayName('USER.LAST_NAME')` and it will be translated for you.
 
-Additionally you can translate methods like `.required()` in `src/local/*` as demostrated in the files.
+Additionally you can translate methods like `.required()` in `src/local/*` as demonstrated in the files.
 
 If you use the the method `withMessageKey('YOUR.TRANSLATION')` you can pass a translation string and it will be translated for you.
 
@@ -304,7 +304,7 @@ left      right
 ```
 You can't navigate from `left` to `right` with `this.router.navigateToRoute(...)` as `right` is in a branch which `left` is unaware of. This is due to the injection of the router service.
 
-One solution is to use `this.router.navigate(...)` but this is unsave as if the route configuration is changed the navigation is broken as it's hardcoded.
+One solution is to use `this.router.navigate(...)` but this is unsafe as if the route configuration is changed the navigation is broken as it's hard coded.
 
 The `route-generator.service.ts` will provide a type safe solution for save navigation.
 
@@ -329,11 +329,11 @@ this.routeGeneratorService.navigateByRouteNames(
 );
 ```
 
-### Class transfomer (model handling)
+### Class transformer (model handling)
 We have included the [class transformer](https://github.com/typestack/class-transformer) which helps creating models (`src/app/models/*`). This transformation can be done
 in both direction (rest to model, model to rest).
 
 ### Dialog service
-There is a custom dialog implementation for simpler useage of elements in dialogs.
+There is a custom dialog implementation for simpler usage of elements in dialogs.
 
 The Service is named `generic-dialog.service.ts` and an example can be found in `welcome.vm.ts`.
