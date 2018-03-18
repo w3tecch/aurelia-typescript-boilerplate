@@ -15,7 +15,7 @@ module.exports = {
   files: [
     {
       template: params => {
-        return `import { autoinject } from 'aurelia-framework';
+        return `import { autoinject, View } from 'aurelia-framework';
 
 @autoinject
 export class ${params.name}CustomElement {

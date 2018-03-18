@@ -9554,8 +9554,8 @@ tempfile@^2.0.0:
     uuid "^3.0.1"
 
 template-gen@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/template-gen/-/template-gen-2.0.0.tgz#d4c6a3580a667971e82158d4a4c2d8f2cf50e1e2"
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/template-gen/-/template-gen-2.1.0.tgz#efcb13175b014e58eeedb3e9aa575e9687e76eb1"
   dependencies:
     chalk "^2.3.2"
     figlet "^1.2.0"
