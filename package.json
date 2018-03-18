@@ -92,6 +92,7 @@
     "awesome-typescript-loader": "^3.2.3",
     "case-sensitive-paths-webpack-plugin": "^2.1.1",
     "chalk": "^2.1.0",
+    "change-case": "^3.0.2",
     "compression-webpack-plugin": "^1.0.0",
     "copy-webpack-plugin": "^4.0.1",
     "cordova": "^8.0.0",
