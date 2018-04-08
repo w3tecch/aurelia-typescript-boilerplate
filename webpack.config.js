@@ -2,7 +2,9 @@ const path = require('path');
 const chalk = require('chalk');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 const WebappWebpackPlugin = require('webapp-webpack-plugin')
 const WebpackNotifierPlugin = require('webpack-notifier');
 const CompressionPlugin = require("compression-webpack-plugin");
@@ -80,7 +82,15 @@ module.exports = ({ production, server, extractCss, coverage, platform, config, 
             enforce: true
           }
         }
-      }
+      },
+      minimizer: production ? [
+        new UglifyJsPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: true // set to true if you want JS source maps
+        }),
+        new OptimizeCSSAssetsPlugin({})
+      ] : []
     },
     output: {
       path: outDir,
@@ -120,10 +130,10 @@ module.exports = ({ production, server, extractCss, coverage, platform, config, 
         {
           test: /\.scss$/i,
           // issuer: [{ not: [{ test: /\.html$/i }] }],
-          use: extractCss ? ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: cssRules,
-          }) : ['style-loader', ...cssRules],
+          use: extractCss ? [
+            MiniCssExtractPlugin.loader,
+            ...cssRules
+          ] : ['style-loader', ...cssRules],
         },
         {
           test: /\.css$/i,
@@ -173,7 +183,7 @@ module.exports = ({ production, server, extractCss, coverage, platform, config, 
         },
       }),
       new IgnorePlugin(/^\.\/locale$/, /moment$/),
-      ...when(extractCss, new ExtractTextPlugin({
+      ...when(extractCss, new MiniCssExtractPlugin({
         filename: production ? '[contenthash].css' : '[id].css',
         allChunks: true,
       })),

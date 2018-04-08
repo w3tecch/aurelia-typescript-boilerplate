@@ -6,6 +6,7 @@ yarn-error.log
 /test/*coverage
 /test/coverage*
 /.chrome
+.wwp-cache
 
 # Logs #
 logs
@@ -25,10 +26,6 @@ Thumbs.db
 /node_modules
 /bower_components
 npm-debug.log
-
-# OS generated files #
-.DS_Store
-Thumbs.db
 
 # Typing #
 /typings/
