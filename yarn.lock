@@ -854,7 +854,7 @@ autoprefixer@^8.0.0:
     postcss "^6.0.20"
     postcss-value-parser "^3.2.3"
 
-awesome-typescript-loader@^5.0.0-1:
+awesome-typescript-loader@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/awesome-typescript-loader/-/awesome-typescript-loader-5.0.0.tgz#130c304ae52a60933f15d93f7629003b483fa8b1"
   dependencies:
