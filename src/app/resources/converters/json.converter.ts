@@ -3,6 +3,7 @@ export class JsonValueConverter {
     if (value) {
       return JSON.stringify(value, undefined, '\t');
     }
+
     return;
   }
 }

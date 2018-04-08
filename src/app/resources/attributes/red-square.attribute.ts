@@ -5,7 +5,7 @@ export class RedSquareCustomAttribute {
   constructor(
     private element: Element
   ) {
-    (<HTMLElement>this.element).style.width = (<HTMLElement>this.element).style.height = '100px';
-    (<HTMLElement>this.element).style.backgroundColor = 'red';
+    (this.element as HTMLElement).style.width = (this.element as HTMLElement).style.height = '100px';
+    (this.element as HTMLElement).style.backgroundColor = 'red';
   }
 }

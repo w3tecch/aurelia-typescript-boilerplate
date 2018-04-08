@@ -119,6 +119,17 @@ module.exports = {
         ),
       }
     },
-    analyse: "webpack --progress --mode production --env.production --env.extractCss --env.config=development --env.analyse"
+    analyse: "webpack --progress --mode production --env.production --env.extractCss --env.config=development --env.analyse",
+    tg: {
+      vm: 'tg -d ./scripts/templates vm',
+      route: 'tg -d ./scripts/templates route',
+      element: 'tg -d ./scripts/templates element',
+      template: 'tg -d ./scripts/templates template',
+      attribute: 'tg -d ./scripts/templates attribute',
+      converter: 'tg -d ./scripts/templates converter',
+      pipeline: 'tg -d ./scripts/templates pipeline',
+      service: 'tg -d ./scripts/templates service',
+      restservice: 'tg -d ./scripts/templates restservice'
+    }
   }
 }
