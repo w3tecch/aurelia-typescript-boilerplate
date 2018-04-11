@@ -120,7 +120,7 @@ export class RouteGeneratorService {
 
     const url = this.getUrlByTreeConfig(currentTreeConfig, currentRouteConfig);
 
-    if (url.includes('?') && routes.length >= 1) {
+    if (_.includes(url, '?') && routes.length >= 1) {
       throw new Error(
         `You provided a parameter not used in ${currentRouteConfig.routeName}. Add query parameters to the last route configuration!`
       );
