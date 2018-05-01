@@ -50,13 +50,13 @@ module.exports = ({ production, server, extractCss, coverage, platform, config, 
   console.log(chalk.yellow('➜') + ' ' + chalk.white('CONFIG:   ') + chalk.green.bold(CONFIG || ''));
   console.log(chalk.yellow('➜') + ' ' + chalk.white('PLATFORM: ') + chalk.green.bold(PLATFORM || ''));
   console.log('');
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => production: ') + chalk.green.bold(production || ''));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => server:   ') + chalk.green.bold(server || ''));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => extractCss: ') + chalk.green.bold(extractCss || ''));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => coverage: ') + chalk.green.bold(coverage || ''));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => platform: ') + chalk.green.bold(platform || ''));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => config: ') + chalk.green.bold(config || ''));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => analyse: ') + chalk.green.bold(analyse || ''));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => production: ') + chalk.green.bold(production || 'false'));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => server:   ') + chalk.green.bold(server || 'false'));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => extractCss: ') + chalk.green.bold(extractCss || 'false'));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => coverage: ') + chalk.green.bold(coverage || 'false'));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => platform: ') + chalk.green.bold(platform || 'false'));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => config: ') + chalk.green.bold(config || 'false'));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => analyse: ') + chalk.green.bold(analyse || 'false'));
   console.log('');
 
   return ({
