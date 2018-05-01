@@ -1,7 +1,7 @@
 import { autoinject } from 'aurelia-framework';
 import { RouteHandler, RouteRecognizer } from 'aurelia-route-recognizer';
 import { RouteConfig, Router } from 'aurelia-router';
-import { cloneDeep } from 'lodash-es';
+import { cloneDeep, includes } from 'lodash-es';
 
 import * as appRoutes from '../app.routes';
 import * as childRouterRoutes from '../modules/child-router/child-router.routes';
@@ -120,7 +120,7 @@ export class RouteGeneratorService {
 
     const url = this.getUrlByTreeConfig(currentTreeConfig, currentRouteConfig);
 
-    if (_.includes(url, '?') && routes.length >= 1) {
+    if (includes(url, '?') && routes.length >= 1) {
       throw new Error(
         `You provided a parameter not used in ${currentRouteConfig.routeName}. Add query parameters to the last route configuration!`
       );
