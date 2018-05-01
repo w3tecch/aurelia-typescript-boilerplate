@@ -22,29 +22,27 @@ import { I18N } from 'aurelia-i18n';
 /**
  * Locals i18n imports
  */
-import en_USTranslation from './../locales/en_US.json';
-import de_CHTranslation from './../locales/de_CH.json';
+import en_Translation from './../locales/en.json';
+import de_Translation from './../locales/de.json';
+import 'moment/locale/de';
 
 /**
- * Third Party Libraries and polyfill
+ * Third Party Libraries
  */
-import 'isomorphic-fetch';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
 /**
  * Polyfills
  */
-import 'reflect-metadata';
 import 'utils/polyfills.utils';
 
 // Fontawesome setup
 import fontawesome from '@fortawesome/fontawesome';
-import fontawesomeSolid from '@fortawesome/fontawesome-free-solid';
-fontawesome.library.add(fontawesomeSolid);
-
-import * as Bluebird from 'bluebird';
-// remove out if you don't want a Promise polyfill (remove also from webpack.config.js)
-Bluebird.config({ warnings: { wForgottenReturn: false } });
+import { faHome, faSpinner } from '@fortawesome/fontawesome-free-solid';
+fontawesome.library.add(
+  faHome,
+  faSpinner
+);
 
 /**
  * Aurelia configuration
@@ -69,19 +67,19 @@ export async function configure(aurelia: Aurelia): Promise<void> {
       // make sure to return the promise of the setup method, in order to guarantee proper loading
       return instance.setup({
         resources: {
-          'en-US': {
-            translation: en_USTranslation
+          en: {
+            translation: en_Translation
           },
-          'de-CH': {
-            translation: de_CHTranslation
+          de: {
+            translation: de_Translation
           }
         },
         fallbackLng: {
-          'de': ['de-CH', 'en-US'],
-          'de-DE': ['de-CH', 'en-US'],
-          'default': ['en-US']
+          'de-CH': ['de', 'en'],
+          'de-DE': ['de', 'en'],
+          'default': ['en']
         },
-        lng: 'en-US',
+        lng: 'en',
         debug: false,
         detection: {
           order: ['localStorage', 'navigator'],

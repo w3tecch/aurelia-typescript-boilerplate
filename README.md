@@ -237,9 +237,9 @@ This repository houses some additional features which prove to be very useful in
 The file `utils/polyfills.utils.ts` contains a string polyfills.
 With this polyfill you can do this:
 ```
-'Teststring'.isEmpty() => false
-''.isEmpty() => true
-undefined.isEmpty() => true
+String.isEmpty('Teststring') => false
+String.isEmpty('') => true
+String.isEmpty(undefined) => true
 ```
 
 ### Validation
@@ -283,7 +283,7 @@ class FormExample {
       .ensure((user: User) => user.email)
         .displayName('USER.EMAIL')
         .email()
-      .on(this.customerContact).rules;
+      .on(this.user).rules;
   }
 }
 ```

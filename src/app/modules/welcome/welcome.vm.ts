@@ -1,13 +1,15 @@
-import { autoinject, PLATFORM } from 'aurelia-framework';
-import { ValidationControllerFactory, ValidationController, validateTrigger, ValidationRules } from 'aurelia-validation';
 import { DialogService } from 'aurelia-dialog';
+import { autoinject, PLATFORM } from 'aurelia-framework';
+import {
+  validateTrigger, ValidationController, ValidationControllerFactory, ValidationRules
+} from 'aurelia-validation';
 
-import { LogManager, Logger } from './../../services/logger.service';
-import { AppConfigService } from './../../services/app-config.service';
-import { LanguageService } from './../../services/language.service';
-import { EditPersonCustomElement } from './../../resources/elements/edit-person/edit-person.element';
-import { GenericDialogService } from './../../services/generic-dialog.service';
+import { EditPersonCustomElement } from '../../resources/elements/edit-person/edit-person.element';
 import { ShowPersonCustomElement } from '../../resources/elements/show-person/show-person.element';
+import { AppConfigService } from '../../services/app-config.service';
+import { GenericDialogService } from '../../services/generic-dialog.service';
+import { LanguageService } from '../../services/language.service';
+import { Logger, LogManager } from '../../services/logger.service';
 
 @autoinject
 export class WelcomeViewModel {

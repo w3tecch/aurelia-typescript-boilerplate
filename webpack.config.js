@@ -2,14 +2,17 @@ const path = require('path');
 const chalk = require('chalk');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const WebappWebpackPlugin = require('webapp-webpack-plugin')
 const WebpackNotifierPlugin = require('webpack-notifier');
 const CompressionPlugin = require("compression-webpack-plugin");
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const { AureliaPlugin } = require('aurelia-webpack-plugin');
-const { optimize: { CommonsChunkPlugin }, ProvidePlugin, BannerPlugin, DefinePlugin } = require('webpack');
+const { ProvidePlugin, BannerPlugin, DefinePlugin, IgnorePlugin } = require('webpack');
 const { TsConfigPathsPlugin, CheckerPlugin } = require('awesome-typescript-loader');
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const pkg = require('./package.json');
 
 // config helpers:
@@ -37,33 +40,57 @@ const cssRules = [
 /**
  * @return {webpack.Configuration}
  */
-module.exports = ({ production, server, extractCss, coverage, platform, config } = {}) => {
+module.exports = ({ production, server, extractCss, coverage, platform, config, analyse } = {}) => {
 
   const PLATFORM = platform || 'browser'; // possibilities browser, mobile
   const CONFIG = config || 'development';
 
   console.log('');
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('NODE_ENV: ') + chalk.green.bold(process.env.NODE_ENV));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('CONFIG:   ') + chalk.green.bold(CONFIG));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('PLATFORM: ') + chalk.green.bold(PLATFORM));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('NODE_ENV: ') + chalk.green.bold(process.env.NODE_ENV || ''));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('CONFIG:   ') + chalk.green.bold(CONFIG || ''));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('PLATFORM: ') + chalk.green.bold(PLATFORM || ''));
   console.log('');
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => production: ') + chalk.green.bold(production));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => server:   ') + chalk.green.bold(server));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => extractCss: ') + chalk.green.bold(extractCss));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => coverage: ') + chalk.green.bold(coverage));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => platform: ') + chalk.green.bold(platform));
-  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => config: ') + chalk.green.bold(config));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => production: ') + chalk.green.bold(production || 'false'));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => server:   ') + chalk.green.bold(server || 'false'));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => extractCss: ') + chalk.green.bold(extractCss || 'false'));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => coverage: ') + chalk.green.bold(coverage || 'false'));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => platform: ') + chalk.green.bold(platform || 'false'));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => config: ') + chalk.green.bold(config || 'false'));
+  console.log(chalk.yellow('➜') + ' ' + chalk.white('WPK => analyse: ') + chalk.green.bold(analyse || 'false'));
   console.log('');
 
   return ({
     resolve: {
       extensions: ['.ts', '.js'],
       modules: [srcDir, 'node_modules'],
+      alias: {
+        '@fortawesome/fontawesome-free-solid$': '@fortawesome/fontawesome-free-solid/shakable.es.js'
+      }
     },
     devtool: production ? 'source-map' : 'cheap-module-eval-source-map',
     entry: {
       app: ['aurelia-bootstrapper'],
-      vendor: ['bluebird', 'jquery', 'bootstrap', 'popper.js', 'moment'],
+      vendor: ['jquery', 'bootstrap', 'popper.js', 'moment', 'reflect-metadata', 'es6-promise', 'isomorphic-fetch'],
+    },
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          commons: {
+            name: 'vendor',
+            chunks: 'all',
+            minChunks: 2,
+            enforce: true
+          }
+        }
+      },
+      minimizer: production ? [
+        new UglifyJsPlugin({
+          cache: true,
+          parallel: true,
+          sourceMap: true // set to true if you want JS source maps
+        }),
+        new OptimizeCSSAssetsPlugin({})
+      ] : []
     },
     output: {
       path: outDir,
@@ -81,31 +108,32 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
         {
           test: /\.ts$/, enforce: 'pre', loader: 'tslint-loader'
         },
-        {
-          test: /\.html$/i,
-          enforce: 'pre',
-          include: [srcDir],
-          use: [{
-            loader: 'aurelia-template-lint-webpack-loader',
-            options: {
-              emitErrors: production,
-              failOnHint: production,
-              typeChecking: true,
-              reflectionOpts: {
-                sourceFileGlob: './src/app/**/*.ts'
-              }
-            }
-          }]
-        },
+        // Waiting for PR https://github.com/niieani/aurelia-template-lint-webpack-loader/pull/3
+        // {
+        //   test: /\.html$/i,
+        //   enforce: 'pre',
+        //   include: [srcDir],
+        //   use: [{
+        //     loader: 'aurelia-template-lint-webpack-loader',
+        //     options: {
+        //       emitErrors: production,
+        //       failOnHint: production,
+        //       typeChecking: true,
+        //       reflectionOpts: {
+        //         sourceFileGlob: './src/app/**/*.ts'
+        //       }
+        //     }
+        //   }]
+        // },
         // CSS required in JS/TS files should use the style-loader that auto-injects it into the website
         // only when the issuer is a .js/.ts file, so the loaders are not applied inside html templates
         {
           test: /\.scss$/i,
           // issuer: [{ not: [{ test: /\.html$/i }] }],
-          use: extractCss ? ExtractTextPlugin.extract({
-            fallback: 'style-loader',
-            use: cssRules,
-          }) : ['style-loader', ...cssRules],
+          use: extractCss ? [
+            MiniCssExtractPlugin.loader,
+            ...cssRules
+          ] : ['style-loader', ...cssRules],
         },
         {
           test: /\.css$/i,
@@ -123,9 +151,6 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
           }]
         },
         { test: /\.ts$/i, loader: 'awesome-typescript-loader', exclude: nodeModulesDir },
-        { test: /\.json$/i, loader: 'json-loader' },
-        // use Bluebird as the global Promise implementation:
-        { test: /[\/\\]node_modules[\/\\]bluebird[\/\\].+\.js$/, loader: 'expose-loader?Promise' },
         // exposes jQuery globally as $ and as jQuery:
         { test: require.resolve('jquery'), loader: 'expose-loader?$!expose-loader?jQuery' },
         // embed small images and fonts as Data Urls and larger ones as files:
@@ -133,18 +158,12 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
         { test: /\.woff2(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff2' } },
         { test: /\.woff(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'url-loader', options: { limit: 10000, mimetype: 'application/font-woff' } },
         // load these fonts normally, as files:
-        { test: /\.(ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'file-loader' },
-        ...when(coverage, {
-          test: /\.[jt]s$/i, loader: 'istanbul-instrumenter-loader',
-          include: srcDir, exclude: [/\.{spec,test}\.[jt]s$/i],
-          enforce: 'post', options: { esModules: true },
-        })
+        { test: /\.(ttf|eot|svg|otf)(\?v=[0-9]\.[0-9]\.[0-9])?$/i, loader: 'file-loader' }
       ]
     },
     plugins: [
       new AureliaPlugin({ root: '', src: './src/app', title: pkg.title, baseUrl: '/' }),
       new ProvidePlugin({
-        'Promise': 'bluebird',
         '$': 'jquery',
         'jQuery': 'jquery',
         'window.jQuery': 'jquery',
@@ -163,12 +182,10 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
           title: pkg.title, server, baseUrl, description: pkg.description, version: pkg.version, author: pkg.author, platform: PLATFORM
         },
       }),
-      ...when(extractCss, new ExtractTextPlugin({
+      new IgnorePlugin(/^\.\/locale$/, /moment$/),
+      ...when(extractCss, new MiniCssExtractPlugin({
         filename: production ? '[contenthash].css' : '[id].css',
         allChunks: true,
-      })),
-      ...when(production, new CommonsChunkPlugin({
-        name: ['common']
       })),
       ...when(production, new BannerPlugin(
         ' @name           ' + pkg.title + '\n' +
@@ -184,13 +201,17 @@ module.exports = ({ production, server, extractCss, coverage, platform, config }
         threshold: 10240,
         minRatio: 0.8
       })),
-      ...when(production, new FaviconsWebpackPlugin({
+      ...when(production, new WebappWebpackPlugin({
         logo: path.resolve('icon.png'),
-        persistentCache: true,
         inject: true,
-        title: pkg.title,
-        icons: { android: true, appleIcon: true, appleStartup: true, coast: false, favicons: true, firefox: true, opengraph: false, twitter: false, yandex: false, windows: false }
+        favicons: {
+          appName: pkg.title,
+          appDescription: pkg.description,
+          background: '#ddd',
+          theme_color: '#007bff'
+        }
       })),
+      ...when(analyse, new BundleAnalyzerPlugin()),
       new WebpackNotifierPlugin({
         title: pkg.title,
         contentImage: path.resolve('icon.png')

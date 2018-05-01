@@ -29,9 +29,6 @@ export class AppViewModel {
   ) {
     this.logger = LogManager.getLogger('AppViewModel');
     this.configureHttpClient();
-  }
-
-  public attached(): void {
     this.configureMoment();
   }
 

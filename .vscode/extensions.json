@@ -5,6 +5,12 @@
     "steoates.autoimport",
     "EditorConfig.EditorConfig",
     "christian-kohler.path-intellisense",
-    "behzad88.Aurelia"
+    "behzad88.Aurelia",
+    "mike-co.import-sorter",
+    "christian-kohler.npm-intellisense",
+    "eg2.tslint",
+    "formulahendry.auto-close-tag",
+    "formulahendry.auto-rename-tag",
+    "mkaufman.htmlhint"
   ]
 }
