@@ -1,8 +1,8 @@
 import { PLATFORM } from 'aurelia-framework';
 
 export function configure(aurelia): void {
-	aurelia
-		.globalResources([
+  aurelia
+    .globalResources([
       PLATFORM.moduleName('./red-square.attribute')
     ]);
 }

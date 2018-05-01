@@ -1,6 +1,6 @@
+import { DialogCancellableOpenResult, DialogOpenPromise, DialogService } from 'aurelia-dialog';
 import { autoinject, PLATFORM } from 'aurelia-framework';
-import { DialogService, DialogOpenPromise, DialogCancellableOpenResult } from 'aurelia-dialog';
-import * as _ from 'lodash';
+import { cloneDeep, isFunction } from 'lodash-es';
 
 type ButtonAction<T> = (element: T) => Promise<any>;
 type IsEnabled<T> = (element: T) => boolean;
@@ -75,29 +75,16 @@ export class DialogButton<T> implements IDialogButton {
         default:
           break;
       }
-    } finally {
+    } catch (error) {
       return Promise.resolve();
     }
+
+    return Promise.resolve();
   }
 }
 
 @autoinject
 export class GenericDialogService {
-
-  public constructor(
-    public dialogService: DialogService
-  ) {
-  }
-
-  private static createButton<T>(
-    title: string,
-    onAction: ButtonAction<T>,
-    type: ButtonType,
-    enabled: IsEnabled<T> = () => true,
-    classes = ''): IButtonDescriptor<T> {
-    return { title, type, onAction, classes, enabled };
-  }
-
   public static createSaveButton<T>(action: ButtonAction<T>, enabled?: IsEnabled<T>, classes = ''): IButtonDescriptor<T> {
     return GenericDialogService.createButton<T>(
       'ACTIONS.SAVE', action, ButtonType.OK, enabled, classes + ' btn-primary'
@@ -120,14 +107,29 @@ export class GenericDialogService {
     return GenericDialogService.createButton<T>(title, action, ButtonType.ERROR, enabled, classes);
   }
 
+  private static createButton<T>(
+    title: string,
+    onAction: ButtonAction<T>,
+    type: ButtonType,
+    enabled: IsEnabled<T> = () => true,
+    classes = ''): IButtonDescriptor<T> {
+    return { title, type, onAction, classes, enabled };
+  }
+
+  public constructor(
+    public dialogService: DialogService
+  ) {
+  }
+
   public showDialog<T>(model: IDialogConfiguration<T>): DialogOpenPromise<DialogCancellableOpenResult> { // TODO: change type
     if (model.contentModel) {
       Object.keys(model.contentModel).forEach(key => {
-        if (!_.isFunction(model.contentModel[key])) {
-          model.contentModel[key] = _.cloneDeep(model.contentModel[key]);
+        if (!isFunction(model.contentModel[key])) {
+          model.contentModel[key] = cloneDeep(model.contentModel[key]);
         }
       });
     }
+
     return this.dialogService.open({ viewModel: PLATFORM.moduleName('resources/elements/dialog/dialog.element'), model });
   }
 }

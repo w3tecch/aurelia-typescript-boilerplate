@@ -1,5 +1,5 @@
-import { autoinject, transient } from 'aurelia-framework';
 import { EventAggregator, Subscription } from 'aurelia-event-aggregator';
+import { autoinject, transient } from 'aurelia-framework';
 
 export class EventBusEvents {
   public static IDS = {
@@ -21,8 +21,9 @@ export class EventBusService {
     public eventAggregator: EventAggregator
   ) { }
 
-  public addSubscription(eventId: string, callback: Function): EventBusService {
+  public addSubscription(eventId: string, callback: (data: any) => void): EventBusService {
     this.disposables.push(this.eventAggregator.subscribe(eventId, callback));
+
     return this;
   }
 

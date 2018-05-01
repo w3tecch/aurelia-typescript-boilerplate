@@ -41,11 +41,11 @@ module.exports = {
         development: {
           default: series(
             'nps webpack.build.before',
-            'webpack --progress -d --env.extractCss --env.config=development'
+            'webpack --progress --mode development --env.extractCss --env.config=development'
           ),
           inlineCss: series(
             'nps webpack.build.before',
-            'webpack --progress -d --env.config=development'
+            'webpack --progress --mode development --env.config=development'
           ),
           serve: series.nps(
             'webpack.build.development',
@@ -55,11 +55,11 @@ module.exports = {
         production: {
           inlineCss: series(
             'nps webpack.build.before',
-            'webpack --progress -p --env.production --env.config=production'
+            'webpack --progress --mode production --env.production --env.config=production'
           ),
           default: series(
             'nps webpack.build.before',
-            'webpack --progress -p --env.production --env.extractCss --env.config=production'
+            'webpack --progress --mode production --env.production --env.extractCss --env.config=production'
           ),
           serve: series.nps(
             'webpack.build.production',
@@ -68,9 +68,9 @@ module.exports = {
         }
       },
       server: {
-        default: `webpack-dev-server -d --inline --env.server --env.extractCss`,
-        inlineCss: `webpack-dev-server -d --inline --env.server`,
-        hmr: `webpack-dev-server -d --inline --hot --env.server`
+        default: `webpack-dev-server --mode development --inline --env.server --env.extractCss`,
+        inlineCss: `webpack-dev-server --mode development --inline --env.server`,
+        hmr: `webpack-dev-server --mode development --inline --hot --env.server`
       },
     },
     serve: 'http-server dist --cors --gzip',
@@ -118,6 +118,18 @@ module.exports = {
           'cd ./cordova && ./../node_modules/.bin/cordova platform add browser'
         ),
       }
+    },
+    analyse: "webpack --progress --mode production --env.production --env.extractCss --env.config=development --env.analyse",
+    tg: {
+      vm: 'tg -d ./scripts/templates vm',
+      route: 'tg -d ./scripts/templates route',
+      element: 'tg -d ./scripts/templates element',
+      template: 'tg -d ./scripts/templates template',
+      attribute: 'tg -d ./scripts/templates attribute',
+      converter: 'tg -d ./scripts/templates converter',
+      pipeline: 'tg -d ./scripts/templates pipeline',
+      service: 'tg -d ./scripts/templates service',
+      restservice: 'tg -d ./scripts/templates restservice'
     }
-  },
+  }
 }

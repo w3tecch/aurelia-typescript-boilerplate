@@ -1,15 +1,19 @@
 import { autoinject } from 'aurelia-framework';
-import { Router, RouteConfig } from 'aurelia-router';
-import { RouteRecognizer, RouteHandler } from 'aurelia-route-recognizer';
-import * as _ from 'lodash';
+import { RouteHandler, RouteRecognizer } from 'aurelia-route-recognizer';
+import { RouteConfig, Router } from 'aurelia-router';
+import { cloneDeep, includes } from 'lodash-es';
 
-import * as appRoutes from './../app.routes';
-import * as childRouterRoutes from './../modules/child-router/child-router.routes';
+import * as appRoutes from '../app.routes';
+import * as childRouterRoutes from '../modules/child-router/child-router.routes';
+
+export interface IRouteConfigItem {
+  routeName: TAllowedRouteNames;
+  params?: { [key: string]: any };
+}
 
 export type TAllowedRouteNames = appRoutes.RouteNames | childRouterRoutes.RouteNames;
 
-export type TRouteConfigItem = { routeName: TAllowedRouteNames, params?: { [key: string]: any } };
-export type TRouteConfig = [TRouteConfigItem];
+export type TRouteConfig = [IRouteConfigItem];
 export type ITreeConfig = RouteConfig & { subroutes?: ITreeConfig[] };
 
 @autoinject()
@@ -33,7 +37,7 @@ export class RouteGeneratorService {
   ) { }
 
   public getUrlByRouteNames(routes: TRouteConfig): string {
-    return this.buildUrl(_.cloneDeep(routes), this.routeTree);
+    return this.buildUrl(cloneDeep(routes), this.routeTree);
   }
 
   public navigateByUrl(url: string, options?: any): void {
@@ -41,7 +45,7 @@ export class RouteGeneratorService {
   }
 
   public navigateByRouteNames(routes: TRouteConfig, options?: any): void {
-    const url = this.buildUrl(_.cloneDeep(routes), this.routeTree);
+    const url = this.buildUrl(cloneDeep(routes), this.routeTree);
     this.navigateByUrl(url, options);
   }
 
@@ -73,16 +77,17 @@ export class RouteGeneratorService {
 
   private removeSubroutes(routes: RouteConfig[]): RouteConfig[] {
     return routes.map(route => {
-      const newRoute = _.cloneDeep(route);
+      const newRoute = cloneDeep(route);
       delete newRoute.subroutes;
+
       return newRoute;
     });
   }
 
-  private findNameInRouteTree(routeName: TAllowedRouteNames, treeConfig: ITreeConfig |  ITreeConfig[]): ITreeConfig | undefined {
+  private findNameInRouteTree(routeName: TAllowedRouteNames, treeConfig: ITreeConfig | ITreeConfig[]): ITreeConfig | undefined {
     let result;
     if (treeConfig instanceof Array) {
-      for (let conf of treeConfig) {
+      for (const conf of treeConfig) {
         result = this.findNameInRouteTree(routeName, conf);
         if (result) {
           break;
@@ -96,6 +101,7 @@ export class RouteGeneratorService {
         result = this.findNameInRouteTree(routeName, treeConfig.subroutes);
       }
     }
+
     return result;
   }
 
@@ -105,7 +111,7 @@ export class RouteGeneratorService {
       return '';
     }
 
-    const currentRouteConfig = routes.shift() as TRouteConfigItem;
+    const currentRouteConfig = routes.shift() as IRouteConfigItem;
     const currentTreeConfig = treeConfig.find(config => config.name === currentRouteConfig.routeName);
 
     if (!currentTreeConfig) {
@@ -114,7 +120,7 @@ export class RouteGeneratorService {
 
     const url = this.getUrlByTreeConfig(currentTreeConfig, currentRouteConfig);
 
-    if (url.includes('?') && routes.length >= 1) {
+    if (includes(url, '?') && routes.length >= 1) {
       throw new Error(
         `You provided a parameter not used in ${currentRouteConfig.routeName}. Add query parameters to the last route configuration!`
       );
@@ -123,7 +129,7 @@ export class RouteGeneratorService {
     return url + this.buildUrl(routes, currentTreeConfig.subroutes as ITreeConfig[]);
   }
 
-  private getUrlByTreeConfig(treeConfig: ITreeConfig, routeConfig: TRouteConfigItem): string {
+  private getUrlByTreeConfig(treeConfig: ITreeConfig, routeConfig: IRouteConfigItem): string {
 
     const routeRecognizer = new RouteRecognizer();
     if (Array.isArray(treeConfig.route)) {

@@ -1,0 +1,22 @@
+/**
+ * this changes aurelia-dialog default classes to make it work with bootstrap 4 modal
+ */
+ux-dialog-overlay {
+  background-color: $black;
+  opacity: .5 !important;
+  z-index: 1040 !important;
+}
+
+ux-dialog-container {
+  z-index: 1040 !important;
+
+  ux-dialog {
+    box-shadow: initial !important;
+    border: none !important;
+    padding: 0;
+
+    .modal-dialog {
+      margin: 0;
+    }
+  }
+}

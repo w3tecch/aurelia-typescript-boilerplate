@@ -22,32 +22,30 @@ import { I18N } from 'aurelia-i18n';
 /**
  * Locals i18n imports
  */
-import en_USTranslation from './../locales/en_US.json';
-import de_CHTranslation from './../locales/de_CH.json';
+import en_Translation from './../locales/en.json';
+import de_Translation from './../locales/de.json';
+import 'moment/locale/de';
 
 /**
- * Third Party Libraries and polyfill
+ * Third Party Libraries
  */
-import 'isomorphic-fetch';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
 /**
  * Polyfills
  */
-import 'reflect-metadata';
 import 'utils/polyfills.utils';
 
 // Fontawesome setup
 import fontawesome from '@fortawesome/fontawesome';
-import fontawesomeSolid from '@fortawesome/fontawesome-free-solid';
-fontawesome.library.add(fontawesomeSolid);
-
-import * as Bluebird from 'bluebird';
-// remove out if you don't want a Promise polyfill (remove also from webpack.config.js)
-Bluebird.config({ warnings: { wForgottenReturn: false } });
+import { faHome, faSpinner } from '@fortawesome/fontawesome-free-solid';
+fontawesome.library.add(
+  faHome,
+  faSpinner
+);
 
 /**
- * Aurelia configruation
+ * Aurelia configuration
  */
 export async function configure(aurelia: Aurelia): Promise<void> {
   LogManager.addAppender(new ConsoleAppender());
@@ -62,25 +60,26 @@ export async function configure(aurelia: Aurelia): Promise<void> {
      *
      * See: https://github.com/aurelia/i18n
      */
-    .plugin(PLATFORM.moduleName('aurelia-i18n'), (instance) => {
+    .plugin(PLATFORM.moduleName('aurelia-i18n'), instance => {
       instance.i18next.use(LanguageDetector);
+
       // adapt options to your needs (see http://i18next.com/docs/options/)
       // make sure to return the promise of the setup method, in order to guarantee proper loading
       return instance.setup({
         resources: {
-          'en-US': {
-            translation: en_USTranslation
+          en: {
+            translation: en_Translation
           },
-          'de-CH': {
-            translation: de_CHTranslation
+          de: {
+            translation: de_Translation
           }
         },
         fallbackLng: {
-          'de': ['de-CH', 'en-US'],
-          'de-DE': ['de-CH', 'en-US'],
-          'default': ['en-US']
+          'de-CH': ['de', 'en'],
+          'de-DE': ['de', 'en'],
+          'default': ['en']
         },
-        lng: 'en-US',
+        lng: 'en',
         debug: false,
         detection: {
           order: ['localStorage', 'navigator'],
@@ -111,9 +110,9 @@ export async function configure(aurelia: Aurelia): Promise<void> {
 
     // Anyone wanting to use HTMLImports to load views, will need to install the following plugin.
     // .plugin('aurelia-html-import-template-loader')
-		/**
-		 * Features
-		 */
+    /**
+     * Features
+     */
     .feature(PLATFORM.moduleName('resources/attributes/index'))
     .feature(PLATFORM.moduleName('resources/elements/index'))
     .feature(PLATFORM.moduleName('resources/templates/index'))
@@ -139,17 +138,20 @@ export async function configure(aurelia: Aurelia): Promise<void> {
   */
 
   // Configure validation translations
-  ValidationMessageProvider.prototype.getMessage = function (key): Expression {
+  ValidationMessageProvider.prototype.getMessage = function(key): Expression {
     const i18n = aurelia.container.get(I18N);
     const translationId = `VALIDATIONS.${key}`;
     let translation = i18n.tr(translationId);
     if (translation === translationId) {
       translation = i18n.tr(key);
     }
+
     return (this as any).parser.parse(translation);
   };
-  ValidationMessageProvider.prototype.getDisplayName = function (...args): string {
+
+  ValidationMessageProvider.prototype.getDisplayName = (...args): string => {
     const i18n = aurelia.container.get(I18N);
+
     return i18n.tr(args[1]);
   };
 }
