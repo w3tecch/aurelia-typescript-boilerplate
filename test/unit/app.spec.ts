@@ -9,8 +9,10 @@ import { EventBusService } from '../../src/app/services/event-bus.service';
 import { LanguageService } from '../../src/app/services/language.service';
 import { RouteGeneratorService } from '../../src/app/services/route-generator.service';
 
-let en_Translation = require('./../../src/locales/en.json');
-let de_Translation = require('./../../src/locales/de.json');
+// tslint:disable-next-line:no-var-requires
+const enTranslation = require('./../../src/locales/en.json');
+// tslint:disable-next-line:no-var-requires
+const deTranslation = require('./../../src/locales/de.json');
 
 class RouterStub {
   public routes;
@@ -52,11 +54,11 @@ describe('the App module', () => {
     i18nMock = new I18N(new EventAggregator(), new BindingSignaler());
     i18nMock.setup({
       resources: {
-        'en': {
-          translation: en_Translation
+        en: {
+          translation: enTranslation
         },
-        'de': {
-          translation: de_Translation
+        de: {
+          translation: deTranslation
         }
       },
       lng: 'en',
@@ -66,7 +68,7 @@ describe('the App module', () => {
     const appConfigSub = new AppConfigStub();
     const routeGeneratorService = new RouteGeneratorService(undefined as any);
     const languageService = new LanguageService(i18nMock, undefined as any);
-    const eventBusService = new EventBusService(new EventAggregator);
+    const eventBusService = new EventBusService(new EventAggregator());
 
     sut = new AppViewModel(
       i18nMock, appConfigSub as any, AnyMock, eventBusService, languageService, new HttpClient(), routeGeneratorService
